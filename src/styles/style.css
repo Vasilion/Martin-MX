@@ -3018,7 +3018,7 @@ textarea.is-invalid {
     height: var(--btn-size, 56px);
     line-height: var(--btn-size, 54px);
     font-size: var(--btn-font-size, 20px);
-    background-color: var(--icon-bg, #f7f7f7);
+    background-color: var(--icon-bg, #f7f7f756);
     color: var(--title-color);
     text-align: center;
     border-radius: 0;

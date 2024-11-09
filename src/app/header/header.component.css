@@ -1,0 +1,33 @@
+.martin-logo {
+    width: 17vw;
+    height: 5vh;
+}
+
+.navigation {
+    width: 67vw;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.icon-btn {
+    display: inline-block;
+    width: var(--btn-size, 56px);
+    height: var(--btn-size, 56px);
+    line-height: var(--btn-size, 54px);
+    font-size: var(--btn-font-size, 20px);
+    background-color: var(--icon-bg, #f7f7f756);
+    color: var(--title-color);
+    text-align: center;
+    border-radius: 0;
+    border: 1px solid var(--th-border-color);
+    -webkit-transition: 0.4s ease-in-out;
+    transition: 0.4s ease-in-out;
+    position: relative;
+}
+
+@media only screen and (max-width: 768px) {
+    .martin-logo {
+        width: 70vw;
+    }
+}
