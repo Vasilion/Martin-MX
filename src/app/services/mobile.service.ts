@@ -4,12 +4,14 @@ import {
     BreakpointState,
 } from '@angular/cdk/layout';
 import { Injectable } from '@angular/core';
-import { map, Observable } from 'rxjs';
+import { BehaviorSubject, map, Observable } from 'rxjs';
 
 @Injectable({
     providedIn: 'root',
 })
 export class MobileService {
+    public isMobileMenuActive$: BehaviorSubject<boolean> =
+        new BehaviorSubject<boolean>(false);
     /*
     Luke is a little slut 
     */

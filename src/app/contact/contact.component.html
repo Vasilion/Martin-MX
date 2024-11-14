@@ -1,0 +1,62 @@
+<div
+    class="overflow-hidden bmi-area-1 space-bottom bg-black2"
+    data-mask-src="/images/hero/hero_bg-shape-mask.png"
+>
+    <div class="container">
+        <div class="title-area text-center">
+            <span class="sub-title">Contact Us</span>
+        </div>
+        <div class="bmi-calculator-form">
+            <form
+                class="bmi-form"
+                id="form"
+                name="bmiCalc"
+                [formGroup]="contactForm"
+            >
+                <div class="row gy-30 gx-30 justify-content-center">
+                    <div class="col-12">
+                        <div class="form-group style-dark2">
+                            <input
+                                formControlName="name"
+                                class="form-control"
+                                placeholder="Name"
+                                type="text"
+                                name="name"
+                            />
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <div class="form-group style-dark2">
+                            <input
+                                formControlName="email"
+                                class="form-control"
+                                placeholder="Email"
+                                type="email"
+                                name="email"
+                            />
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <div class="form-group style-dark2">
+                            <textarea
+                                formControlName="message"
+                                class="form-control"
+                                name="message"
+                                placeholder="Message"
+                            ></textarea>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <div class="th-btn">
+                            <input
+                                type="button"
+                                value="Submit"
+                                onClick="submit()"
+                            />
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
