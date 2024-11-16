@@ -1,6 +1,7 @@
 <section
     class="overflow-hidden space"
     data-bg-src="/images/bg/schedule_bg_1_1.png"
+    *ngIf="events && events.length > 0"
 >
     <div
         class="shape-mockup schedule-shape1-1 jump-reverse d-xl-block d-none"
@@ -20,27 +21,20 @@
         <div class="title-area text-center">
             <span class="sub-title">Our Events</span>
         </div>
-        <div class="table-responsive">
-            <table class="table schedule_table">
-                <tbody>
-                    <tr>
-                        <td>Wednesday Nov, 28 2024 8:00 AM - 9:00 AM</td>
-                        <td>Crazy Biker Event</td>
-                    </tr>
-                    <tr>
-                        <td>Wednesday Nov, 28 2024 8:00 AM - 9:00 AM</td>
-                        <td>Crazy Biker Event</td>
-                    </tr>
-                    <tr>
-                        <td>Wednesday Nov, 28 2024 8:00 AM - 9:00 AM</td>
-                        <td>Crazy Biker Event</td>
-                    </tr>
-                    <tr>
-                        <td>Wednesday Nov, 28 2024 8:00 AM - 9:00 AM</td>
-                        <td>Crazy Biker Event</td>
-                    </tr>
-                </tbody>
-            </table>
+        <div class="events-container">
+            <div class="event" *ngFor="let event of events">
+                <div class="event-img">
+                    <img [src]="event.image" alt="img" />
+                </div>
+                <div class="event-content">
+                    <h3>{{ event.name }}</h3>
+                    <div>
+                        {{ event.startDate | date }} -
+                        {{ event.endDate | date }}
+                    </div>
+                    <div>{{ event.description }}</div>
+                </div>
+            </div>
         </div>
     </div>
 </section>

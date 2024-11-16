@@ -4,6 +4,7 @@ import { BlogComponent } from '../blog-news/blog.component';
 import { ContactComponent } from '../contact/contact.component';
 import { EventsComponent } from '../event-schedule/events.component';
 import { HeroComponent } from '../hero/hero.component';
+import { TracksComponent } from '../tracks/tracks.component';
 
 @Component({
     standalone: true,
@@ -13,6 +14,7 @@ import { HeroComponent } from '../hero/hero.component';
         EventsComponent,
         BlogComponent,
         AboutComponent,
+        TracksComponent,
     ],
     selector: 'app-home',
     templateUrl: 'home.component.html',

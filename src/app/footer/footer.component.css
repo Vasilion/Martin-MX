@@ -9,3 +9,12 @@ svg {
     padding-top: 0px;
     margin-top: 0px;
 }
+
+.footer-img {
+    width: 503px;
+    height: 100%;
+    filter: brightness(0.2);
+    margin-top: 30px;
+    border-radius: 126px;
+    margin-left: 20px;
+}

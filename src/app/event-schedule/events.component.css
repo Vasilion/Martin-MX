@@ -3,3 +3,51 @@ td {
     min-height: 10vh;
     width: 49%;
 }
+
+.events-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin: 0 auto;
+    padding: 0 10px;
+    max-width: 1200px;
+}
+
+.event {
+    border: 3px solid var(--theme-color2);
+    border-radius: 10px;
+    margin: 10px 0;
+    padding: 10px;
+    width: 49%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.event-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-end;
+    width: 70%;
+    color: #000;
+}
+
+.event-img {
+    max-width: 250px;
+}
+
+@media only screen and (max-width: 768px) {
+    .event,
+    .events-container {
+        flex-direction: column;
+    }
+    .event {
+        width: 70vw;
+    }
+    .event-content {
+        align-items: center;
+        justify-content: center;
+    }
+}

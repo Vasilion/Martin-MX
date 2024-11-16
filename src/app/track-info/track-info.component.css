@@ -27,3 +27,20 @@
 .th-social a:hover {
     background-color: var(--theme-color);
 }
+
+.parallax-container {
+    height: 60vh;
+    position: relative;
+}
+
+.parallax-image {
+    background-image: url("/images/old-site/3.jpg");
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+    width: 100%;
+    z-index: -1;
+    height: 100%;
+}
