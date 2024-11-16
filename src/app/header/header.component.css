@@ -26,6 +26,12 @@
     position: relative;
 }
 
+.waiver-menu {
+}
+
+.waiver-menu > a {
+}
+
 @media only screen and (max-width: 768px) {
     .martin-logo {
         width: 70vw;

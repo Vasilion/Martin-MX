@@ -1,3 +1,7 @@
 .header-logo {
     width: 20vw;
 }
+
+.clickable {
+    cursor: pointer;
+}

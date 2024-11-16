@@ -24,6 +24,7 @@
                         </ul>
                     </div>
                 </div>
+
                 <div class="col-auto d-none d-lg-block">
                     <div class="header-links social-links">
                         <ul>
@@ -53,7 +54,7 @@
         <div class="menu-area">
             <div class="container">
                 <div class="d-flex align-items-center justify-content-between">
-                    <div class="header-logo">
+                    <div class="header-logo clickable" routerLink="/">
                         <a href="index.html"></a>
                         <svg
                             class="martin-logo"
@@ -103,8 +104,36 @@
                                 <li class="">
                                     <a href="index.html">Our Tracks</a>
                                 </li>
+                                <li class="waiver-menu menu-item-has-children">
+                                    <a href="#">Waivers</a>
+                                    <ul class="sub-menu">
+                                        <li>
+                                            <a
+                                                href="/images/old-site/guardian-release.pdf"
+                                                target="_blank"
+                                                >Guardian Release</a
+                                            >
+                                        </li>
+                                        <li>
+                                            <a
+                                                href="/images/old-site/rider-waiver.pdf"
+                                                target="_blank"
+                                                >Adult Waiver</a
+                                            >
+                                        </li>
+                                        <li>
+                                            <a
+                                                href="/images/old-site/minor-waiver.pdf"
+                                                target="_blank"
+                                                >Child Waiver</a
+                                            >
+                                        </li>
+                                    </ul>
+                                </li>
                                 <li>
-                                    <a href="about.html">Track Information</a>
+                                    <a routerLink="/track-info"
+                                        >Track Information</a
+                                    >
                                 </li>
                                 <li class="">
                                     <a href="#">Track Status</a>

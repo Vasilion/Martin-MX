@@ -6897,7 +6897,6 @@ ol.wp-block-rss {
 }
 
 .main-menu ul li.menu-item-has-children > a:after {
-    content: "\f107";
     display: inline-block;
     position: relative;
     font-family: var(--icon-font);
@@ -6911,9 +6910,6 @@ ol.wp-block-rss {
 }
 
 .main-menu ul li.menu-item-has-children > a:hover:after {
-    content: "\f106";
-    -webkit-transform: rotate(180deg);
-    -ms-transform: rotate(180deg);
     transform: rotate(180deg);
     color: var(--theme-color);
 }
@@ -6999,7 +6995,6 @@ ol.wp-block-rss {
 }
 
 .main-menu ul.sub-menu li a:before {
-    content: "\f44b";
     position: absolute;
     top: 6px;
     left: 10px;
@@ -13003,7 +12998,6 @@ table.woocommerce-product-attributes {
     .select2-selection--single
     .select2-selection__arrow
     b:before {
-    content: "\f107";
     font-family: var(--icon-font);
 }
 
