@@ -1,13 +1,6 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
-
-interface Event {
-    name: string;
-    startDate: string;
-    endDate: string;
-    description: string;
-    image: string;
-}
+import { Component, OnInit } from '@angular/core';
+import { ApiService } from '../services/api.service';
 
 @Component({
     standalone: true,
@@ -16,22 +9,19 @@ interface Event {
     templateUrl: 'events.component.html',
     styleUrls: ['events.component.css'],
 })
-export class EventsComponent {
-    public events: Event[] = [
-        {
-            name: 'Event 1',
-            startDate: '2021-01-01T00:00:00',
-            endDate: '2021-01-01T23:59:59',
-            description: 'This is the first event.',
-            image: '/images/old-site/3.jpg',
-        },
-        {
-            name: 'Event 2',
-            startDate: '2021-02-01T00:00:00',
-            endDate: '2021-02-01T23:59:59',
-            description: 'This is the second event.',
-            image: '/images/old-site/2.jpg',
-        },
-    ];
-    constructor() {}
+export class EventsComponent implements OnInit {
+    public events = [];
+    constructor(private apiService: ApiService) {}
+
+    public ngOnInit(): void {
+        this.getEvents();
+    }
+
+    public getEvents(): void {
+        this.apiService
+            .getEvents()
+            .subscribe((data) => {
+                this.events = data;
+            });
+    }
 }

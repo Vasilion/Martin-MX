@@ -3,9 +3,9 @@ import { HeaderComponent } from './header/header.component';
 import { MobileNavigationComponent } from './mobile-nav/mobile-nav.component';
 import { MobileService } from './services/mobile.service';
 import { FooterComponent } from './footer/footer.component';
-import { TrackInfoComponent } from './track-info/track-info.component';
 import { RouterModule } from '@angular/router';
-import { HomeComponent } from './home/home.component';
+import { Observable } from 'rxjs';
+import { AsyncPipe, CommonModule } from '@angular/common';
 
 @Component({
     selector: 'app-root',
@@ -15,33 +15,18 @@ import { HomeComponent } from './home/home.component';
         HeaderComponent,
         MobileNavigationComponent,
         FooterComponent,
-        TrackInfoComponent,
-        HomeComponent,
+        CommonModule,
+        AsyncPipe
     ],
     templateUrl: './app.component.html',
     styleUrl: './app.component.css',
 })
 export class AppComponent {
     @ViewChild('container') public containerElement!: ElementRef;
-    public isMobileMenuActive: boolean = false;
+    public isMobile$: Observable<boolean>;
 
     constructor(private mobileService: MobileService) {
-        this.listenToIsMobileNavigationActive();
+        this.isMobile$ = this.mobileService.isHandset();
     }
 
-    private listenToIsMobileNavigationActive(): void {
-        this.mobileService.isMobileMenuActive$
-            .pipe()
-            .subscribe((isActive: boolean): void => {
-                if (isActive) {
-                    this.containerElement?.nativeElement.classList.add(
-                        'd-none'
-                    );
-                } else {
-                    this.containerElement?.nativeElement.classList.remove(
-                        'd-none'
-                    );
-                }
-            });
-    }
 }

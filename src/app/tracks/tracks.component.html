@@ -31,11 +31,11 @@
                         class="scrolling-picture"
                         *ngFor="let p of mainTrackPictures"
                     >
-                        <img [src]="p.src" alt="img" />
+                        <img [src]="p.image?.data[0]?.attributes?.url" alt="img" />
                     </div>
                 </div>
             </div>
-            <div class="page-content">
+            <div class="page-content mt-30">
                 <h2 class="sec-title page-title fw-semibold">
                     The Junior Track
                 </h2>
@@ -53,6 +53,14 @@
                     priority while learning their skills on one of our practice
                     tracks.
                 </p>
+                <div class="scrolling-pictures-container">
+                    <div
+                        class="scrolling-picture"
+                        *ngFor="let p of youthTrackPictures"
+                    >
+                        <img [src]="p.image?.data[0]?.attributes?.url" alt="img" />
+                    </div>
+                </div>
             </div>
         </div>
     </div>

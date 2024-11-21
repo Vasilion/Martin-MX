@@ -1,6 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
-import { MobileService } from '../services/mobile.service';
+import { Component, ElementRef, ViewChild } from '@angular/core';
 
 @Component({
     imports: [CommonModule],
@@ -10,11 +9,14 @@ import { MobileService } from '../services/mobile.service';
     styleUrls: ['mobile-nav.component.css'],
 })
 export class MobileNavigationComponent {
-    constructor(private mobileService: MobileService) {}
 
-    public toggleMenu(): void {
-        const isActive: boolean =
-            this.mobileService.isMobileMenuActive$.getValue();
-        this.mobileService.isMobileMenuActive$.next(!isActive);
+    @ViewChild('mobileLinks') public mobileLinks!: ElementRef;
+    public showMobileNav: boolean = false;
+
+    constructor() {}
+
+    public toggleMobileNav(): void {
+        this.showMobileNav = !this.showMobileNav;
+        this.mobileLinks.nativeElement.classList.toggle('show');
     }
 }

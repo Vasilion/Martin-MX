@@ -5,9 +5,11 @@
     </div>
 </div>
 
-<!-- <app-mobile-nav></app-mobile-nav> -->
-
-<app-header></app-header>
+<app-header
+        *ngIf="!(isMobile$ | async)"
+></app-header>
+<app-mobile-nav
+    *ngIf="isMobile$ | async"></app-mobile-nav>
 
 <router-outlet></router-outlet>
 
