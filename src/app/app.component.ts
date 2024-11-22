@@ -24,7 +24,6 @@ import { AsyncPipe, CommonModule } from '@angular/common';
 export class AppComponent {
     @ViewChild('container') public containerElement!: ElementRef;
     public isMobile$: Observable<boolean>;
-
     constructor(private mobileService: MobileService) {
         this.isMobile$ = this.mobileService.isHandset();
     }

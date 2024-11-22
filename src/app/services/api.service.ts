@@ -8,14 +8,8 @@ import { environment } from '../../environments/environment';
     providedIn: 'root',
 })
 export class ApiService {
-    constructor(private http: HttpClient) {
-        console.log('ApiService');
-    }
+    constructor(private http: HttpClient) { }
 
-    public getAbout(): Observable<any> {
-        let url = environment.strapiBaseUrl + '/martin-about' + '?populate=*';
-        return this.http.get(url);
-    }
 
     public getEvents(): Observable<any> {
         let url = environment.strapiBaseUrl + '/martin-events' + '?populate=*';
@@ -39,5 +33,30 @@ export class ApiService {
             '?populate=*';
         return this.http.get(url).pipe(
             map((data: any) => data.data.map((data: any) => data.attributes)));
+    }
+
+    public getGallery(): Observable<any> {
+        let url =
+            environment.strapiBaseUrl +
+            '/martin-galleries' +
+            '?populate=*';
+        return this.http.get(url).pipe(
+            map((data: any) => data.data.map((data: any) => data.attributes)));
+    }
+
+    public getOpenSignUp(): Observable<any> {
+        let url =
+            environment.strapiBaseUrl +
+            '/martin-open-practice' +
+            '?populate=*';
+        return this.http.get(url);
+    }
+
+    public getYearlySignUp(): Observable<any> {
+        let url =
+            environment.strapiBaseUrl +
+            '/martin-yearly-sign-up' +
+            '?populate=*';
+        return this.http.get(url);
     }
 }

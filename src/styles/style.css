@@ -35,7 +35,7 @@ Version: 1.0.0
     3.8. Text Color
     3.9. Overlay
     3.10. Animation
-    
+
 04. Template Style
     4.1. Widget
     4.2. Header
@@ -45,7 +45,7 @@ Version: 1.0.0
     4.6. Blog
     4.7. Comments
     4.8. Hero Area
-    4.9. Error    
+    4.9. Error
     4.00. Popup Search
     4.00. Popup Side Menu
     4.00. Wocommerce
@@ -1875,66 +1875,6 @@ input::-webkit-inner-spin-button {
 /* Firefox */
 input[type="number"] {
     -moz-appearance: textfield;
-}
-
-input[type="checkbox"] {
-    visibility: hidden;
-    opacity: 0;
-    display: inline-block;
-    vertical-align: middle;
-    width: 0;
-    height: 0;
-    display: none;
-}
-
-input[type="checkbox"]:checked ~ label:before {
-    content: "\f00c";
-    color: var(--white-color);
-    background-color: var(--theme-color);
-    border-color: var(--theme-color);
-}
-
-input[type="checkbox"] ~ label {
-    position: relative;
-    padding-left: 30px;
-    cursor: pointer;
-    display: block;
-}
-
-input[type="checkbox"] ~ label:before {
-    content: "";
-    font-family: var(--icon-font);
-    font-weight: 700;
-    position: absolute;
-    left: 0px;
-    top: 3.5px;
-    background-color: var(--white-color);
-    border: 1px solid var(--th-border-color);
-    height: 18px;
-    width: 18px;
-    line-height: 18px;
-    text-align: center;
-    font-size: 12px;
-}
-
-input[type="checkbox"].style2 ~ label {
-    color: #8b929c;
-    padding-left: 23px;
-    margin-bottom: -0.5em;
-}
-
-input[type="checkbox"].style2 ~ label:before {
-    background-color: rgba(255, 255, 255, 0.1);
-    border: 1px solid #8b929c;
-    height: 14px;
-    width: 14px;
-    line-height: 14px;
-    border-radius: 3px;
-    top: 6px;
-}
-
-input[type="checkbox"].style2:checked ~ label:before {
-    color: var(--theme-color);
 }
 
 input[type="radio"] {
@@ -19844,19 +19784,6 @@ span.select2-selection.select2-selection--single:focus {
 }
 
 .gallery-card2:after {
-    content: "";
-    position: absolute;
-    inset: 40px;
-    background: rgba(244, 30, 30, 0.15);
-    border: 1px solid rgba(244, 30, 30, 0.5);
-    -webkit-backdrop-filter: blur(8.1px);
-    backdrop-filter: blur(8.1px);
-    border-radius: 20px;
-    -webkit-transition: 0.4s;
-    transition: 0.4s;
-    -webkit-transform: scale(0);
-    -ms-transform: scale(0);
-    transform: scale(0);
 }
 
 .gallery-card2 .gallery-img img {

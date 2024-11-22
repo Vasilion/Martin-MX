@@ -1,0 +1,8 @@
+section.space {
+    padding-top: 150px;
+}
+
+section.space > div.container {
+    display: flex;
+    flex-direction: column;
+}

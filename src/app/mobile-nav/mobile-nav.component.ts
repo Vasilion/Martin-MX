@@ -1,8 +1,9 @@
 import { CommonModule } from '@angular/common';
 import { Component, ElementRef, ViewChild } from '@angular/core';
+import { RouterModule } from '@angular/router';
 
 @Component({
-    imports: [CommonModule],
+    imports: [CommonModule, RouterModule],
     standalone: true,
     selector: 'app-mobile-nav',
     templateUrl: 'mobile-nav.component.html',

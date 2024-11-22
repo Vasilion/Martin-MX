@@ -14,6 +14,7 @@ export class EventsComponent implements OnInit {
     constructor(private apiService: ApiService) {}
 
     public ngOnInit(): void {
+
         this.getEvents();
     }
 
