@@ -1,4 +1,5 @@
 <section
+    id="events"
     class="overflow-hidden space"
     data-bg-src="/images/bg/schedule_bg_1_1.png"
     *ngIf="events && events.length > 0"
@@ -19,22 +20,26 @@
     </div>
     <div class="container">
         <div class="title-area text-center">
-            <span class="sub-title">Our Events</span>
+            <span class="sub-title">Upcoming Events</span>
         </div>
         <div class="events-container">
-            <div class="event" *ngFor="let event of events">
-                <div class="event-img">
-                    <img [src]="event.image" alt="img" />
-                </div>
-                <div class="event-content">
-                    <h3>{{ event.name }}</h3>
-                    <div>
-                        {{ event.startDate | date }} -
-                        {{ event.endDate | date }}
-                    </div>
-                    <div>{{ event.description }}</div>
-                </div>
-            </div>
+                <ng-container *ngFor="let event of events">
+                    <ng-container *ngIf="event.isActive">
+                        <div class="event">
+                                <div class="event-img">
+                                    <img [src]="event?.image?.data?.attributes?.url" alt="img" />
+                                </div>
+                                <div class="event-content">
+                                    <h3>{{ event.name }}</h3>
+                                    <div>
+                                        {{ event.startDate | date }} -
+                                        {{ event.endDate | date }}
+                                    </div>
+                                    <div>{{ event.description }}</div>
+                                </div>
+                        </div>
+                    </ng-container>
+                </ng-container>
         </div>
     </div>
 </section>

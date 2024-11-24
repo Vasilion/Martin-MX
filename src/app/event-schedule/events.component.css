@@ -1,3 +1,7 @@
+section {
+    scroll-margin-top: 100px;
+}
+
 td {
     color: white;
     min-height: 10vh;
@@ -31,7 +35,16 @@ td {
     justify-content: space-between;
     align-items: flex-end;
     width: 70%;
+    margin-left: 15px;
     color: #000;
+
+    text-align: right;
+    word-wrap: break-word;
+    white-space: normal;
+}
+
+.event-content h2 {
+    margin-bottom: 10px;
 }
 
 .event-img {
@@ -39,9 +52,16 @@ td {
 }
 
 @media only screen and (max-width: 768px) {
+    .container {
+        width: 100%;
+    }
+
     .event,
     .events-container {
+        width: 100%;
         flex-direction: column;
+        align-items: center;
+        justify-content: center;
     }
     .event {
         width: 70vw;
@@ -49,5 +69,6 @@ td {
     .event-content {
         align-items: center;
         justify-content: center;
+        text-align: center;
     }
 }

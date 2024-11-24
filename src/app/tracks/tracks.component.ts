@@ -1,9 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
+import { ApiService } from '../services/api.service';
 
-interface ScrollPicture {
-    src: string;
-}
 @Component({
     standalone: true,
     imports: [CommonModule],
@@ -12,33 +10,16 @@ interface ScrollPicture {
     styleUrls: ['tracks.component.css'],
 })
 export class TracksComponent {
-    public mainTrackPictures: ScrollPicture[] = [
-        { src: '/images/old-site/3.jpg' },
-        { src: '/images/old-site/3.jpg' },
-        { src: '/images/old-site/3.jpg' },
-        { src: '/images/old-site/3.jpg' },
-        { src: '/images/old-site/3.jpg' },
-        { src: '/images/old-site/3.jpg' },
-        { src: '/images/old-site/3.jpg' },
-        { src: '/images/old-site/3.jpg' },
-        { src: '/images/old-site/3.jpg' },
-        { src: '/images/old-site/3.jpg' },
-        { src: '/images/old-site/3.jpg' },
-    ];
-    public youthTrackPictures: ScrollPicture[] = [
-        { src: '/images/old-site/3.jpg' },
-        { src: '/images/old-site/3.jpg' },
-        { src: '/images/old-site/3.jpg' },
-        { src: '/images/old-site/3.jpg' },
-        { src: '/images/old-site/3.jpg' },
-        { src: '/images/old-site/3.jpg' },
-        { src: '/images/old-site/3.jpg' },
-        { src: '/images/old-site/3.jpg' },
-        { src: '/images/old-site/3.jpg' },
-        { src: '/images/old-site/3.jpg' },
-        { src: '/images/old-site/3.jpg' },
-        { src: '/images/old-site/3.jpg' },
-        { src: '/images/old-site/3.jpg' },
-    ];
-    constructor() {}
+    public mainTrackPictures: any[] = [];
+    public youthTrackPictures: any[] = [];
+    constructor(private service: ApiService) {
+        this.service.getMainTrackPhotos().subscribe((data) => {
+            this.mainTrackPictures = data;
+        });
+        this.service.getYouthTrackPhotos().subscribe((data) => {
+            this.youthTrackPictures = data;
+        });
+    }
+
+
 }

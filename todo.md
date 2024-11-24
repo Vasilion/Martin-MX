@@ -64,3 +64,15 @@ NO BLOG
 
 1. all static and dynamic content and waivers, rules etc
 2. Online sign up and memberships
+
+
+
+
+
+
+
+pricing in header/mobile nav
+api to feed
+pricing and discrptions
+on component load scroll to top
+

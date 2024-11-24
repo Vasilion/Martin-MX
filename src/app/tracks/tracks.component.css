@@ -1,5 +1,6 @@
 .our-tracks-container {
     background-color: #000;
+    scroll-margin-top: 100px;
 }
 
 .our-tracks-container > .container > .page-single > .page-content > * {
@@ -9,22 +10,26 @@
 .scrolling-pictures-container {
     display: flex;
     flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    flex-wrap: wrap;
-    margin: 0 auto;
-    padding: 0 10px;
-    max-width: 1200px;
 }
 
 .scrolling-pictures-container > .scrolling-picture {
-    border: 3px solid var(--theme-color2);
-    border-radius: 10px;
-    margin: 10px 0;
-    padding: 10px;
-    width: 25%;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
+    margin: 10px;
+}
+
+@media only screen and (max-width: 768px) {
+    .scrolling-pictures-container {
+        display: flex;
+        flex-direction: row;
+        max-width: 500px;
+        overflow: scroll;
+        scroll-snap-type: x mandatory;
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+    }
+
+    .scrolling-pictures-container > .scrolling-picture {
+        min-width: 250px;
+        margin: 0px 10px 0px 10px;
+        scroll-snap-align: center;
+    }
 }

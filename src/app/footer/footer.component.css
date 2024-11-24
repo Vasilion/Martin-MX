@@ -1,5 +1,6 @@
 svg {
-    width: 20vw;
+    width: 46vw;
+    height: 13vh;
 }
 
 .footer-layout1 .footer-wrap1 {
@@ -17,4 +18,10 @@ svg {
     margin-top: 30px;
     border-radius: 126px;
     margin-left: 20px;
+}
+@media only screen and (max-width: 768px) {
+svg {
+    width: 81vw;
+  height: 13vh;
+}
 }

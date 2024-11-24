@@ -1,20 +1,23 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
-import { MobileService } from '../services/mobile.service';
+import { Component, ElementRef, ViewChild } from '@angular/core';
+import { RouterModule } from '@angular/router';
 
 @Component({
-    imports: [CommonModule],
+    imports: [CommonModule, RouterModule],
     standalone: true,
     selector: 'app-mobile-nav',
     templateUrl: 'mobile-nav.component.html',
     styleUrls: ['mobile-nav.component.css'],
 })
 export class MobileNavigationComponent {
-    constructor(private mobileService: MobileService) {}
 
-    public toggleMenu(): void {
-        const isActive: boolean =
-            this.mobileService.isMobileMenuActive$.getValue();
-        this.mobileService.isMobileMenuActive$.next(!isActive);
+    @ViewChild('mobileLinks') public mobileLinks!: ElementRef;
+    public showMobileNav: boolean = false;
+
+    constructor() {}
+
+    public toggleMobileNav(): void {
+        this.showMobileNav = !this.showMobileNav;
+        this.mobileLinks.nativeElement.classList.toggle('show');
     }
 }

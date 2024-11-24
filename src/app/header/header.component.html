@@ -55,7 +55,6 @@
             <div class="container">
                 <div class="d-flex align-items-center justify-content-between">
                     <div class="header-logo clickable" routerLink="/">
-                        <a href="index.html"></a>
                         <svg
                             class="martin-logo"
                             version="1.1"
@@ -94,15 +93,48 @@
                                 d="M531.568 208.599h-81.41l5.899-29.261h-49.554l-24.542 29.261h-76.69L442.134 63.24h109.728l-20.294 145.359zm-96.276-63.948h27.844l9.203-44.127-37.047 44.127zM782.403 141.819c-10.383 10.383-23.126 15.102-44.363 16.518l32.328 50.262h-88.017l-24.306-45.778-24.069 45.778h-87.31L624.065 63.24h134.268c22.182 0 32.329 4.012 38.935 10.619 4.956 4.955 7.08 10.618 7.08 18.878 0 18.405-11.327 38.464-21.945 49.082zm-78.816-41.767h-12.978l-19.35 35.16h16.754c8.966 0 13.686-4.483 17.934-12.271l4.247-7.788c1.417-2.595 2.361-5.191 2.361-8.023 0-3.539-1.888-7.078-8.968-7.078zM1001.617 100.288H957.49l-57.814 108.311h-92.028l57.813-108.311h-49.79l19.821-37.048h185.946l-19.821 37.048zM1057.066 208.599h-92.029l77.398-145.359h92.03l-77.399 145.359zM1287.37 208.599h-79.522l-14.631-67.488-34.924 67.488h-71.971L1163.72 63.24h83.299l13.687 62.297 32.091-62.297h71.972l-77.399 145.359z"
                             />
                         </svg>
+
                     </div>
                     <div class="desktop-navigation">
                         <nav
                             class="main-menu d-none d-lg-inline-block"
-                            *ngIf="!(isMobile$ | async)"
                         >
                             <ul>
-                                <li class="">
-                                    <a href="index.html">Our Tracks</a>
+                                <li class="waiver-menu menu-item-has-children">
+                                    <a href="#">Membership</a>
+                                    <ul class="sub-menu">
+                                        <li>
+                                            <a
+                                                routerLink="/pricing"
+                                                >Pricing</a
+                                            >
+                                        </li>
+                                        <li>
+                                            <a
+                                                routerLink="/membership-signup"
+                                                >Yearly Sign Up</a
+                                            >
+                                        </li>
+                                        <li>
+                                            <a
+                                                routerLink="/daily-signup"
+                                                >Daily Sign Up</a
+                                            >
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li class="waiver-menu menu-item-has-children">
+                                    <a href="#">Tracks</a>
+                                    <ul class="sub-menu">
+                                        <li class="">
+                                            <a href="/#ourTracks">Our Tracks</a>
+                                        </li>
+                                        <li>
+                                            <a routerLink="/track-info"
+                                                >Track Information</a
+                                            >
+                                        </li>
+                                    </ul>
                                 </li>
                                 <li class="waiver-menu menu-item-has-children">
                                     <a href="#">Waivers</a>
@@ -130,16 +162,14 @@
                                         </li>
                                     </ul>
                                 </li>
-                                <li>
-                                    <a routerLink="/track-info"
-                                        >Track Information</a
-                                    >
-                                </li>
                                 <li class="">
-                                    <a href="#">Track Status</a>
+                                    <a href="/#events">Events</a>
                                 </li>
                                 <li>
-                                    <a href="contact.html">Track Schedule</a>
+                                    <a href="/#contact">Contact</a>
+                                </li>
+                                <li>
+                                    <a href="/gallery">Gallery</a>
                                 </li>
                             </ul>
                         </nav>
@@ -148,8 +178,9 @@
                             type="button"
                             class="icon-btn sideMenuInfo"
                             *ngIf="isMobile$ | async"
+(click)="toggleMobileNav()"
                         >
-                            <i class="fa-solid fa-bars"></i>
+                            <i  class="fa-solid fa-bars"></i>
                         </button>
                     </div>
                 </div>

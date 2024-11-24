@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormGroup, FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @Component({
     standalone: true,
@@ -10,7 +10,7 @@ import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
     styleUrls: ['contact.component.css'],
 })
 export class ContactComponent {
-    public contactForm;
+    public contactForm: FormGroup;
 
     constructor(private fb: FormBuilder) {
         this.contactForm = this.fb.group({
