@@ -14,10 +14,9 @@
     font-weight: bold;
 }
 
-.th-social {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.social-icons > a > svg {
+    height: 34px;
+    margin: 13px;
 }
 
 .th-social a {

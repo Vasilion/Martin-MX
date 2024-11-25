@@ -10,7 +10,7 @@ import { ApiService } from '../services/api.service';
     styleUrls: ['events.component.css'],
 })
 export class EventsComponent implements OnInit {
-    public events = [];
+    public eventsResponse = [];
     constructor(private apiService: ApiService) {}
 
     public ngOnInit(): void {
@@ -22,7 +22,7 @@ export class EventsComponent implements OnInit {
         this.apiService
             .getEvents()
             .subscribe((data) => {
-                this.events = data;
+                this.eventsResponse = data;
             });
     }
 }

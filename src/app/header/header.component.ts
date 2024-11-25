@@ -23,7 +23,7 @@ export class HeaderComponent {
 
     public showMobileNav: boolean = false;
 
-    constructor(private mobileService: MobileService) {}
+    constructor(private mobileService: MobileService) { }
 
     public get isMobile$(): Observable<boolean> {
         return this.mobileService.isHandset();

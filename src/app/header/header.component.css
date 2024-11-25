@@ -3,6 +3,12 @@
     height: 5vh;
 }
 
+.social-icons > a > svg {
+    filter: invert(1);
+    height: 14px;
+    margin: 13px;
+}
+
 .navigation {
     width: 67vw;
     display: flex;

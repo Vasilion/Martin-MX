@@ -1,11 +1,24 @@
-svg {
+.martin-logo {
     width: 46vw;
     height: 13vh;
+}
+
+.twitter-svg {
+    border-radius: 103%;
+    background: white;
+    fill: #1d2229;
+}
+
+.social-icons > a > svg {
+    filter: invert(1);
+    height: 48px;
+    margin: 20px;
 }
 
 .footer-layout1 .footer-wrap1 {
     padding: 0px;
 }
+
 .footer-layout1 {
     padding-top: 0px;
     margin-top: 0px;
@@ -20,8 +33,9 @@ svg {
     margin-left: 20px;
 }
 @media only screen and (max-width: 768px) {
-svg {
-    width: 81vw;
-  height: 13vh;
-}
+    .social-icons > a > svg {
+        filter: invert(1);
+        height: 28px;
+        margin: 20px;
+    }
 }
