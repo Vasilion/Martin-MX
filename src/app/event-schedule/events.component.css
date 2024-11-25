@@ -19,6 +19,7 @@ td {
 
 .event {
     border: 3px solid var(--theme-color2);
+    background-color: black;
     border-radius: 10px;
     margin: 10px 0;
     padding: 10px;
@@ -36,19 +37,32 @@ td {
     align-items: flex-end;
     width: 70%;
     margin-left: 15px;
-    color: #000;
-
+    color: white;
     text-align: right;
     word-wrap: break-word;
     white-space: normal;
 }
 
-.event-content h2 {
+.event-content > div:nth-child(2) {
+    font-weight: bold;
+    font-size: 95%;
+    margin-bottom: 5px;
+}
+
+.event-content .event-header {
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-top: 15px;
     margin-bottom: 10px;
+    color: var(--theme-color);
 }
 
 .event-img {
     max-width: 250px;
+}
+
+.event-img img {
+    border-radius: 10px;
 }
 
 @media only screen and (max-width: 768px) {

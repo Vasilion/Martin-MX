@@ -1,45 +1,47 @@
-<section
-    id="events"
-    class="overflow-hidden space"
-    data-bg-src="/images/bg/schedule_bg_1_1.png"
-    *ngIf="events && events.length > 0"
->
-    <div
-        class="shape-mockup schedule-shape1-1 jump-reverse d-xl-block d-none"
-        data-top="0"
-        data-right="0"
+<div #events>
+    <section
+        id="events"
+        class="overflow-hidden space"
+        data-bg-src="/images/bg/schedule_bg_1_1.png"
+        *ngIf="eventsResponse && eventsResponse.length > 0"
     >
-        <img src="/images/shape/shape-1-1.png" alt="img" />
-    </div>
-    <div
-        class="shape-mockup schedule-shape1-2 jump d-xl-block d-none"
-        data-bottom="0"
-        data-left="0"
-    >
-        <img src="/images/shape/shape-1-2.png" alt="img" />
-    </div>
-    <div class="container">
-        <div class="title-area text-center">
-            <span class="sub-title">Upcoming Events</span>
+        <div
+            class="shape-mockup schedule-shape1-1 jump-reverse d-xl-block d-none"
+            data-top="0"
+            data-right="0"
+        >
+            <img src="/images/shape/shape-1-1.png" alt="img" />
         </div>
-        <div class="events-container">
-                <ng-container *ngFor="let event of events">
+        <div
+            class="shape-mockup schedule-shape1-2 jump d-xl-block d-none"
+            data-bottom="0"
+            data-left="0"
+        >
+            <img src="/images/shape/shape-1-2.png" alt="img" />
+        </div>
+        <div class="container">
+            <div class="title-area text-center">
+                <span class="sub-title">Upcoming Events</span>
+            </div>
+            <div class="events-container">
+                <ng-container *ngFor="let event of eventsResponse">
                     <ng-container *ngIf="event.isActive">
                         <div class="event">
-                                <div class="event-img">
-                                    <img [src]="event?.image?.data?.attributes?.url" alt="img" />
+                            <div class="event-img">
+                                <img [src]="event?.image?.data?.attributes?.url" alt="img" />
+                            </div>
+                            <div class="event-content">
+                                <div class="event-header">{{ event.name }}</div>
+                                <div>
+                                    {{ event.startDate | date }} -
+                                    {{ event.endDate | date }}
                                 </div>
-                                <div class="event-content">
-                                    <h3>{{ event.name }}</h3>
-                                    <div>
-                                        {{ event.startDate | date }} -
-                                        {{ event.endDate | date }}
-                                    </div>
-                                    <div>{{ event.description }}</div>
-                                </div>
+                                <div>{{ event.description }}</div>
+                            </div>
                         </div>
                     </ng-container>
                 </ng-container>
+            </div>
         </div>
-    </div>
-</section>
+    </section>
+</div>
