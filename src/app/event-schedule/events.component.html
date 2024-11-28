@@ -30,12 +30,12 @@
                             <div class="event-img">
                                 <img [src]="event?.image?.data?.attributes?.url" alt="img" />
                             </div>
-                            <div class="event-content">
-                                <div class="event-header">{{ event.name }}</div>
-                                <div>
+                            <div class="event-header">{{ event.name }}</div>
+                            <div class="event-date">
                                     {{ event.startDate | date }} -
                                     {{ event.endDate | date }}
-                                </div>
+                            </div>
+                            <div class="event-content">
                                 <div>{{ event.description }}</div>
                             </div>
                         </div>
