@@ -22,10 +22,12 @@ import { AsyncPipe, CommonModule } from '@angular/common';
     styleUrl: './app.component.css',
 })
 export class AppComponent {
+
     @ViewChild('container') public containerElement!: ElementRef;
     public isMobile$: Observable<boolean>;
+
     constructor(private mobileService: MobileService) {
-        this.isMobile$ = this.mobileService.isHandset();
+        this.isMobile$ = this.mobileService.showMobileMenu$();
     }
 
 }

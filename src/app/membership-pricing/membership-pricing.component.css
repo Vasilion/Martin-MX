@@ -6,3 +6,17 @@ section.space > div.container {
     display: flex;
     flex-direction: column;
 }
+
+@media (max-width: 375px) {
+    .mobile-pricing-nav-small {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    }
+
+    .mobile-pricing-nav-small > button {
+        width: 80vw;
+        margin: 10px;
+    }
+}

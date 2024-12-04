@@ -4,16 +4,14 @@ import {
     BreakpointState,
 } from '@angular/cdk/layout';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, map, Observable } from 'rxjs';
+import { map, Observable } from 'rxjs';
 
 @Injectable({
     providedIn: 'root',
 })
 export class MobileService {
-    public isMobileMenuActive$: BehaviorSubject<boolean> =
-        new BehaviorSubject<boolean>(false);
     /*
-    Luke is a little slut 
+    Luke is a little slut
     */
     constructor(private breakpointObserver: BreakpointObserver) {}
 
@@ -25,5 +23,10 @@ export class MobileService {
 
     public isMobile(): boolean {
         return this.breakpointObserver.isMatched('(max-width: 768px)');
+    }
+
+    public showMobileMenu$(): Observable<boolean> {
+        return this.breakpointObserver.observe('(max-width: 992px')
+            .pipe(map((result: BreakpointState): boolean => result.matches));
     }
 }
