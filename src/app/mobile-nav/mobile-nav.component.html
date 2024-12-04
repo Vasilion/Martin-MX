@@ -2,7 +2,7 @@
     <div class="">
         <div class="mobile-menu-container-wrapper">
             <div class="mobile-menu-container" routerLink="/">
-                <a href="index.html"></a>
+                <a href="#"></a>
                 <svg
                     class="martin-logo"
                     version="1.1"
@@ -45,7 +45,7 @@
                 <button
                     type="button"
                     class="icon-btn sideMenuInfo"
-                    (click)="toggleMobileNav()"
+                    (click)="$event.stopPropagation(); toggleMobileNav()"
                 >
                     <i  class="fa-solid fa-bars"></i>
                 </button>

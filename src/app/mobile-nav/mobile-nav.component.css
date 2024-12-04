@@ -24,7 +24,7 @@ a {
 .mobile-menu-container > svg {
     width: 60vw;
     height: 5vh;
-    margin-left: -81px;
+    margin-left: 10%;
 }
 
 .mobile-menu-container > button {
@@ -101,3 +101,27 @@ hr {
     padding-bottom: 15px;
     font-size: 0.7rem;
 }
+
+
+
+@media (max-width: 375px) {
+
+    .mobile-menu-container > svg {
+        margin-left: 2%;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
