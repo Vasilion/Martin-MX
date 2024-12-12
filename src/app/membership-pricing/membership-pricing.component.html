@@ -44,7 +44,7 @@
                                 </div>
                             </div>
                             <div class="btn-wrap">
-                                <a routerLink="/membership-signup" class="th-btn style3 w-100">Sign up Now</a>
+                                <a [href]="yearlyMembershipStripeLink" target="_blank" class="th-btn style3 w-100">Sign up Now</a>
                             </div>
                         </div>
                     </div>
@@ -80,7 +80,7 @@
                                 </div>
                             </div>
                             <div class="btn-wrap">
-                                <a routerLink="/daily-signup" class="th-btn style3 w-100">Sign up Now</a>
+                                <a [href]="openPracticeStripeLink" target="_blank" class="th-btn style3 w-100">Sign up Now</a>
                             </div>
                         </div>
                         <div class="price-card" *ngIf="!openPractice || !openPractice.isActive">
