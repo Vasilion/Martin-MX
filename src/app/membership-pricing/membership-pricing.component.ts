@@ -14,12 +14,13 @@ import { RouterModule } from "@angular/router";
 export class MembershipPricingComponent {
     /*
      * YOU TALKING ABOUT PRACTICE??
-    * */
+     */
     public openPractice: any;
     public yearlySignUp: any;
+    public yearlyMembershipStripeLink = 'https://buy.stripe.com/test_9AQ00hcTV8we06I9AA';
+    public openPracticeStripeLink = 'https://buy.stripe.com/test_00g8wN3jl13M5r2dQR';
 
   constructor(private  apiServivce: ApiService) {
-
       this.getPricing();
   }
 
