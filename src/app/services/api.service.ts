@@ -11,8 +11,18 @@ export class ApiService {
     constructor(private http: HttpClient) { }
 
 
-    public getEvents(): Observable<any> {
-        let url = environment.strapiBaseUrl + '/martin-events' + '?populate=*';
+    public getSponsors(): Observable<any> {
+        let url = environment.strapiBaseUrl +
+            '/martin-sponsors' +
+            '?populate=*';
+        return this.http.get(url).pipe(
+            map((data: any) => data.data.map((data: any) => data.attributes)));
+    }
+
+    public getSchedule(): Observable<any> {
+        let url = environment.strapiBaseUrl +
+            '/martin-schedules' +
+            '?populate=*';
         return this.http.get(url).pipe(
             map((data: any) => data.data.map((data: any) => data.attributes)));
     }
@@ -52,10 +62,10 @@ export class ApiService {
         return this.http.get(url);
     }
 
-    public getYearlySignUp(): Observable<any> {
+    public getUnlimitedSignUp(): Observable<any> {
         let url =
             environment.strapiBaseUrl +
-            '/martin-yearly-sign-up' +
+            '/martin-unlimited-sign-up' +
             '?populate=*';
         return this.http.get(url);
     }

@@ -11,7 +11,7 @@
                 <div class="sec-btn">
                     <div class="nav tab-menu1 price-tab-btn mobile-pricing-nav-small" role="tablist">
                         <button class="tab-btn th-btn active" id="price-one-tab" data-bs-toggle="tab" data-bs-target="#price-one" role="tab" aria-controls="price-one" aria-selected="true">
-                            Yearly
+                            Unlimited Membership
                         </button>
                         <button class="tab-btn th-btn" id="price-two-tab" data-bs-toggle="tab" data-bs-target="#price-two" role="tab" aria-controls="price-two" aria-selected="false">
                             Open Practice
@@ -62,26 +62,43 @@
 
                     <div class="col-xl-12 col-lg-6" >
                         <div class="price-card" *ngIf="openPractice && openPractice.isActive">
-                            <div class="price-title-wrap">
-                                <h3 class="box-title">Open Practice</h3>
-                                <h4 class="price-card_price"><span class="currency">$</span>{{ openPractice.price }}<span class="duration"> / Day</span></h4>
+                            <div
+                                *ngIf="openPractice.isCancelled"
+                                class="price-title-wrap">
+                                <h2 class="box-title">Practice is Cancelled</h2>
+                                <h4 class="box-title"
+                                    *ngIf="openPractice.isCancelled && openPractice.reasonForCancel">
+                                    Due to: {{ openPractice.reasonForCancel }}
+                                </h4>
                             </div>
-                            <div class="price-card_content">
-                                <div class="row gy-4">
-                                    <div class="checklist-container">
-                                        <div class="checklist style3">
-                                            <ul>
-                                                <li><i class="far fa-circle-check" *ngIf="openPractice.description1"></i> {{openPractice.description1}}</li>
-                                                <li><i class="far fa-circle-check" *ngIf="openPractice.description1"></i> {{openPractice.description2}}</li>
-                                                <li><i class="far fa-circle-check" *ngIf="openPractice.description1"></i>{{openPractice.description3}}</li>
-                                            </ul>
+                            <ng-container
+                                    *ngIf="!openPractice.isCancelled && openPractice.isActive"
+                            >
+                                <div class="price-title-wrap">
+                                    <h3 class="box-title">Open Practice</h3>
+                                    <h4 class="price-card_price"><span class="currency">$</span>{{ openPractice.price }}<span class="duration"> / Day</span></h4>
+                                </div>
+                                <div class="price-card_content">
+                                    <div class="row gy-4">
+                                        <div class="checklist-container">
+                                            <div class="checklist style3">
+                                                <ul>
+                                                    <li><i class="far fa-circle-check" *ngIf="openPractice.description1"></i> {{openPractice.description1}}</li>
+                                                    <li><i class="far fa-circle-check" *ngIf="openPractice.description1"></i> {{openPractice.description2}}</li>
+                                                    <li><i class="far fa-circle-check" *ngIf="openPractice.description1"></i>{{openPractice.description3}}</li>
+                                                </ul>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="btn-wrap">
-                                <a [href]="openPracticeStripeLink" target="_blank" class="th-btn style3 w-100">Sign up Now</a>
-                            </div>
+                                <div class="btn-wrap" *ngIf="!openPractice.isCashOnly">
+                                    <a
+                                        [href]="openPracticeStripeLink" target="_blank" class="th-btn style3 w-100">Sign up Now</a>
+                                </div>
+                                <div class="price-title-wrap" *ngIf="openPractice.isCashOnly">
+                                    <h2 class="box-title">Accepting Cash Only</h2>
+                                </div>
+                            </ng-container>
                         </div>
                         <div class="price-card" *ngIf="!openPractice || !openPractice.isActive">
                             <div class="price-title-wrap">

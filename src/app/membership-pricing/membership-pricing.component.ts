@@ -31,7 +31,7 @@ export class MembershipPricingComponent {
         }
         this.openPractice = response.data.attributes;
     });
-    this.apiServivce.getYearlySignUp().subscribe((response: any) => {
+    this.apiServivce.getUnlimitedSignUp().subscribe((response: any) => {
         if (!response) {
             return;
         }
