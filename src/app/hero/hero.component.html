@@ -51,7 +51,9 @@
                                         is located just off US 131, in Martin,
                                         Michigan.
                                     </p>
+
                                     <div
+                                        *ngIf="!openPractice || !openPractice.isActive"
                                         class="btn-wrap"
                                         data-ani="slideinup"
                                         data-ani-delay="0.7s"
@@ -62,7 +64,7 @@
                                         <div class="hero-counter-wrap">
                                             <div class="counter-number-wrap">
                                                 <div class="counter-number">
-                                                    20
+                                                    60
                                                 </div>
                                                 k
                                                 <span class="fw-light">+</span>
@@ -72,6 +74,26 @@
                                             </h4>
                                         </div>
                                     </div>
+
+                                    <div
+                                        *ngIf="openPractice && openPractice.isActive"
+                                        class="btn-wrap"
+                                        data-ani="slideinup"
+                                        data-ani-delay="0.7s"
+                                    >
+                                        <div class="hero-counter-wrap">
+                                            <h4 class="counter-title" *ngIf="!openPractice.isCancelled">Practice is Open</h4>
+                                            <ng-container *ngIf="openPractice.isCancelled">
+                                                <h4 class="counter-title">Practice is Cancelled for Today</h4>
+                                                <ng-container *ngIf="openPractice.reasonForCancel">
+                                                    <br />
+                                                    <h4 class="counter-title">Due to: {{ openPractice.reasonForCancel }}</h4>
+                                                </ng-container>
+                                            </ng-container>
+                                        </div>
+                                        <a routerLink="/pricing" class="th-btn" *ngIf="!openPractice.isCancelled">Sign Up Now</a>
+                                    </div>
+
                                 </div>
                             </div>
                         </div>

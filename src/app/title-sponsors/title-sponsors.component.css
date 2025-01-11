@@ -1,0 +1,51 @@
+.sponsors-section {
+    background-color: #f8f9fa;
+    padding-top: 150px;
+    padding-bottom: 100px;
+}
+
+.sponsor-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 200px;
+    margin-top: 50px;
+}
+
+.sponsor-card:hover {
+    transform: translateY(-5px);
+}
+
+.sponsor-card img {
+    max-height: 150px;
+    width: auto;
+    transition: transform 0.3s ease;
+}
+
+.sponsor-card:hover img {
+    transform: scale(1.05);
+}
+
+@media (max-width: 768px) {
+    .sponsor-card {
+        min-height: 180px;
+    }
+
+    .sponsor-card img {
+        max-height: 120px;
+    }
+}
+
+@media (max-width: 480px) {
+    .sponsors-section {
+        padding-top: 100px;
+    }
+
+    .sponsor-card {
+        min-height: 150px;
+    }
+
+    .sponsor-card img {
+        max-height: 100px;
+    }
+}
