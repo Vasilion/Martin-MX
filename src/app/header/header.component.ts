@@ -4,6 +4,8 @@ import { Observable } from 'rxjs';
 import { CommonModule } from '@angular/common';
 import { RouterOutlet, RouterLink, RouterLinkActive } from '@angular/router';
 import { MobileNavigationComponent } from '../mobile-nav/mobile-nav.component';
+import { ApiService } from '../services/api.service';
+import { Sponsor } from '../interfaces/responses';
 
 @Component({
     standalone: true,
@@ -22,8 +24,28 @@ import { MobileNavigationComponent } from '../mobile-nav/mobile-nav.component';
 export class HeaderComponent {
 
     public showMobileNav: boolean = false;
+    public isSponsorsVisible: boolean = false;
 
-    constructor(private mobileService: MobileService) { }
+    constructor(
+        private mobileService: MobileService,
+        private apiService: ApiService
+    ) {
+        this.apiService.getSponsors().subscribe((data: Sponsor[]) => {
+            if (!data || data.length === 0) {
+                this.isSponsorsVisible = false;
+                return;
+            } else {
+                const activeSponsors = data.filter((sponsor: Sponsor) => sponsor.isActive);
+                if (activeSponsors.length === 0) {
+                    this.isSponsorsVisible = false;
+                    return;
+                } else {
+                    this.isSponsorsVisible = true;
+                }
+            }
+
+        });
+    }
 
     public get isMobile$(): Observable<boolean> {
         return this.mobileService.isHandset();

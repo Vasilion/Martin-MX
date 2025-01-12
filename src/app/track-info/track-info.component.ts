@@ -1,76 +1,45 @@
-import {
-    Component,
-    ElementRef,
-    HostListener,
-    OnInit,
-    Renderer2,
-} from '@angular/core';
+import { Component, AfterViewInit, ViewChildren, QueryList, ElementRef } from '@angular/core';
 
 @Component({
     standalone: true,
     selector: 'app-track-info',
     templateUrl: 'track-info.component.html',
-    styleUrls: ['track-info.component.css'],
+    styleUrls: ['track-info.component.scss'],
 })
-export class TrackInfoComponent implements OnInit {
-    private overlayElement!: HTMLElement;
+export class TrackInfoComponent implements AfterViewInit {
+    @ViewChildren('animatedSection') animatedSections!: QueryList<ElementRef>;
+    private observer: IntersectionObserver;
 
-    constructor(private renderer: Renderer2, private el: ElementRef) {}
-
-    public ngOnInit(): void {
-        this.overlayElement = this.renderer.createElement('div');
-        this.renderer.appendChild(
-            this.el.nativeElement.querySelector('.parallax-container'),
-            this.overlayElement
-        );
-
-        this.renderer.setStyle(this.overlayElement, 'position', 'absolute');
-        this.renderer.setStyle(this.overlayElement, 'top', '0');
-        this.renderer.setStyle(this.overlayElement, 'left', '0');
-        this.renderer.setStyle(this.overlayElement, 'width', '100%');
-        this.renderer.setStyle(this.overlayElement, 'height', '100%');
-        this.renderer.setStyle(
-            this.overlayElement,
-            'background',
-            'rgba(0, 0, 0, 0)'
-        );
-        this.renderer.setStyle(this.overlayElement, 'pointer-events', 'none');
-        this.renderer.setStyle(
-            this.overlayElement,
-            'transition',
-            'background 0.1s ease-out'
+    constructor() {
+        this.observer = new IntersectionObserver(
+            (entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            },
+            {
+                threshold: 0.2,
+                rootMargin: '0px'
+            }
         );
     }
 
-    @HostListener('window:scroll', [])
-    public onWindowScroll(): void {
-        const parallaxElement =
-            this.el.nativeElement.querySelector('.parallax-image');
-        if (parallaxElement) {
-            const scrollPosition = window.pageYOffset;
+    ngAfterViewInit(): void {
+        setTimeout(() => {
+            this.animatedSections.forEach(section => {
+                if (section.nativeElement) {
+                    section.nativeElement.classList.add('fade-in-section');
+                    this.observer.observe(section.nativeElement);
+                }
+            });
+        });
+    }
 
-            this.renderer.setStyle(
-                parallaxElement,
-                'transform',
-                `translateY(${scrollPosition * 0.2}px)`
-            );
-
-            const maxDarkness = 0.95;
-            const calculatedOpacity = Math.min(
-                scrollPosition / 1000,
-                maxDarkness
-            );
-            this.renderer.setStyle(
-                this.overlayElement,
-                'background',
-                `rgba(0, 0, 0, ${calculatedOpacity})`
-            );
-
-            this.renderer.setStyle(
-                this.overlayElement,
-                'transform',
-                `translateY(${scrollPosition * 0.2}px)`
-            );
+    ngOnDestroy(): void {
+        if (this.observer) {
+            this.observer.disconnect();
         }
     }
 }

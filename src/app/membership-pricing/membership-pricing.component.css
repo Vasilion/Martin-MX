@@ -7,7 +7,7 @@ section.space > div.container {
     flex-direction: column;
 }
 
-@media (max-width: 375px) {
+@media (max-width: 412px) {
     .mobile-pricing-nav-small {
         display: flex;
         justify-content: center;
@@ -18,5 +18,7 @@ section.space > div.container {
     .mobile-pricing-nav-small > button {
         width: 80vw;
         margin: 10px;
+        margin-bottom: 20px;
     }
+
 }

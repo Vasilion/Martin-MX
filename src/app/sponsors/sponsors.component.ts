@@ -2,12 +2,8 @@ import { CommonModule } from "@angular/common";
 import { ApiService } from "../services/api.service";
 import { Component } from "@angular/core";
 import { RouterModule } from "@angular/router";
+import { Sponsor } from "../interfaces/responses";
 
-interface Sponsor {
-    name: string;
-    photo?: string;
-    link?: string;
-}
 
 @Component({
     standalone: true,
@@ -17,7 +13,7 @@ interface Sponsor {
     styleUrls: ['sponsors.component.css'],
 })
 export class SponsorsComponent {
-  public sponsors: Sponsor[] = [];
+    public sponsors: Sponsor[] = [];
 
     constructor(private apiService: ApiService) {
         this.getSponsors();
@@ -29,14 +25,16 @@ export class SponsorsComponent {
                 return;
             }
 
-            this.sponsors = data.map((data: any): Sponsor => {
-
-                return {
-                    name: data.name,
-                    photo: data?.photo?.data[0]?.attributes?.url,
-                    link: data.link,
-                };
-            });
+            this.sponsors = data
+                .filter((sponsor: Sponsor) => sponsor.isActive)
+                .map((data: any): Sponsor => {
+                    return {
+                        name: data.name,
+                        photo: data?.photo?.data[0]?.attributes?.url,
+                        link: data.link,
+                        isActive: data.isActive,
+                    };
+                });
         });
     }
 }
