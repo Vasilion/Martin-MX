@@ -13,3 +13,11 @@ export interface Image {
         };
     };
 }
+
+export interface Sponsor {
+    name: string;
+    photo?: string;
+    link?: string;
+    isActive?: boolean;
+    isTitle?: boolean;
+}
