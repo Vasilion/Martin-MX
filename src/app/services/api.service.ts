@@ -4,27 +4,41 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs';
 import { environment } from '../../environments/environment';
 
+export const CLASSES = { C: 'C', AB: 'AB', Mini: 'Mini' };
+
+export interface PracticeSpotsLeft {
+    class: string;
+    spotsLeft: number;
+}
+
 @Injectable({
-    providedIn: 'root',
+    providedIn: 'root'
 })
 export class ApiService {
-    constructor(private http: HttpClient) { }
-
+    constructor(private http: HttpClient) {}
 
     public getSponsors(): Observable<any> {
-        let url = environment.strapiBaseUrl +
-            '/martin-sponsors' +
-            '?populate=*';
-        return this.http.get(url).pipe(
-            map((data: any) => data.data.map((data: any) => data.attributes)));
+        let url =
+            environment.strapiBaseUrl + '/martin-sponsors' + '?populate=*';
+        return this.http
+            .get(url)
+            .pipe(
+                map((data: any) =>
+                    data.data.map((data: any) => data.attributes)
+                )
+            );
     }
 
     public getSchedule(): Observable<any> {
-        let url = environment.strapiBaseUrl +
-            '/martin-schedules' +
-            '?populate=*';
-        return this.http.get(url).pipe(
-            map((data: any) => data.data.map((data: any) => data.attributes)));
+        let url =
+            environment.strapiBaseUrl + '/martin-schedules' + '?populate=*';
+        return this.http
+            .get(url)
+            .pipe(
+                map((data: any) =>
+                    data.data.map((data: any) => data.attributes)
+                )
+            );
     }
 
     public getMainTrackPhotos(): Observable<any> {
@@ -32,8 +46,13 @@ export class ApiService {
             environment.strapiBaseUrl +
             '/martin-main-track-photos' +
             '?populate=*';
-        return this.http.get(url).pipe(
-            map((data: any) => data.data.map((data: any) => data.attributes)));
+        return this.http
+            .get(url)
+            .pipe(
+                map((data: any) =>
+                    data.data.map((data: any) => data.attributes)
+                )
+            );
     }
 
     public getYouthTrackPhotos(): Observable<any> {
@@ -41,24 +60,95 @@ export class ApiService {
             environment.strapiBaseUrl +
             '/martin-youth-track-photos' +
             '?populate=*';
-        return this.http.get(url).pipe(
-            map((data: any) => data.data.map((data: any) => data.attributes)));
+        return this.http
+            .get(url)
+            .pipe(
+                map((data: any) =>
+                    data.data.map((data: any) => data.attributes)
+                )
+            );
     }
 
     public getGallery(): Observable<any> {
         let url =
-            environment.strapiBaseUrl +
-            '/martin-galleries' +
-            '?populate=*';
-        return this.http.get(url).pipe(
-            map((data: any) => data.data.map((data: any) => data.attributes)));
+            environment.strapiBaseUrl + '/martin-galleries' + '?populate=*';
+        return this.http
+            .get(url)
+            .pipe(
+                map((data: any) =>
+                    data.data.map((data: any) => data.attributes)
+                )
+            );
     }
 
-    public getOpenSignUp(): Observable<any> {
+    public getOpenClassABSpotsLeft(): Observable<PracticeSpotsLeft> {
         let url =
             environment.strapiBaseUrl +
-            '/martin-open-practice' +
+            '/martin-open-practice-ab' +
             '?populate=*';
+        return this.http
+            .get(url)
+            .pipe(map((data: any) => data.data.attributes));
+    }
+
+    public getOpenClassCSpotsLeft(): Observable<PracticeSpotsLeft> {
+        let url =
+            environment.strapiBaseUrl +
+            '/martin-open-practice-c' +
+            '?populate=*';
+        return this.http
+            .get(url)
+            .pipe(map((data: any) => data.data.attributes));
+    }
+
+    public getOpenClassMiniSpotsLeft(): Observable<PracticeSpotsLeft> {
+        let url =
+            environment.strapiBaseUrl +
+            '/martin-open-practice-mini' +
+            '?populate=*';
+        return this.http
+            .get(url)
+            .pipe(map((data: any) => data.data.attributes));
+    }
+
+    public updateOpenClassABSpotsLeft(
+        request: any
+    ): Observable<PracticeSpotsLeft> {
+        let url =
+            environment.strapiBaseUrl +
+            '/martin-open-practice-ab' +
+            '?populate=*';
+        return this.http
+            .post(url, request)
+            .pipe(map((data: any) => data.data.attributes));
+    }
+
+    public updateOpenClassCSpotsLeft(
+        request: any
+    ): Observable<PracticeSpotsLeft> {
+        let url =
+            environment.strapiBaseUrl +
+            '/martin-open-practice-c' +
+            '?populate=*';
+        return this.http
+            .post(url, request)
+            .pipe(map((data: any) => data.data.attributes));
+    }
+
+    public updateOpenClassMiniSpotsLeft(
+        request: any
+    ): Observable<PracticeSpotsLeft> {
+        let url =
+            environment.strapiBaseUrl +
+            '/martin-open-practice-mini' +
+            '?populate=*';
+        return this.http
+            .post(url, request)
+            .pipe(map((data: any) => data.data.attributes));
+    }
+    public getOpenSignUp(): Observable<any> {
+        let url =
+            environment.strapiBaseUrl + '/martin-open-practice' + '?populate=*';
         return this.http.get(url);
     }
 
