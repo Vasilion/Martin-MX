@@ -1,0 +1,29 @@
+{
+    "tabWidth": 4,
+    "useTabs": false,
+    "singleQuote": true,
+    "printWidth": 80,
+    "bracketSpacing": true,
+    "arrowParens": "avoid",
+    "trailingComma": "none",
+    "semi": true,
+    "overrides": [
+        {
+            "files": ["*.component.html"],
+            "options": {
+                "parser": "angular",
+                "bracketSameLine": true,
+                "singleAttributePerLine": false,
+                "htmlWhitespaceSensitivity": "ignore",
+                "bracketSpacing": false
+            }
+        },
+        {
+            "files": ["*.ts"],
+            "options": {
+                "parser": "typescript"
+            }
+        }
+    ],
+    "endOfLine": "auto"
+}
