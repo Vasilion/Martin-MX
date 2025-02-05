@@ -21,7 +21,7 @@ export const routes: Routes = [
     { path: 'schedule', component: EventsComponent },
     { path: 'sponsors', component: SponsorsComponent },
     {
-        path: 'update-spots-left',
+        path: 'spots',
         component: UpdateSpotsLeftComponent,
         canActivate: [MembershipPricingGuard]
     }

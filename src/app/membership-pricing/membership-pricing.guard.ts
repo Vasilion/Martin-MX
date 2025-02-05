@@ -74,11 +74,35 @@ export class MembershipPricingGuard implements CanActivate {
         console.log('Fetching spots left for class:', classType);
         switch (classType) {
             case CLASSES.AB:
-                return this.apiService.getOpenClassABSpotsLeft();
+                return this.apiService.getOpenClassABSpotsLeft().pipe(
+                    map(data => {
+                        console.log('Data:', data);
+                        return {
+                            class: CLASSES.AB,
+                            spotsLeft: data.numberOfSpotsLeft
+                        };
+                    })
+                );
             case CLASSES.C:
-                return this.apiService.getOpenClassCSpotsLeft();
+                return this.apiService.getOpenClassCSpotsLeft().pipe(
+                    map(data => {
+                        return {
+                            class: CLASSES.C,
+                            spotsLeft: data.numberOfSpotsLeft
+                        };
+                    })
+                );
+
             case CLASSES.Mini:
-                return this.apiService.getOpenClassMiniSpotsLeft();
+                return this.apiService.getOpenClassMiniSpotsLeft().pipe(
+                    map(data => {
+                        return {
+                            class: CLASSES.Mini,
+                            spotsLeft: data.numberOfSpotsLeft
+                        };
+                    })
+                );
+
             default:
                 throw new Error(`Invalid class type: ${classType}`);
         }
@@ -89,13 +113,20 @@ export class MembershipPricingGuard implements CanActivate {
         spotsData: PracticeSpotsLeft
     ): Observable<PracticeSpotsLeft> {
         console.log('Updating spots left for class:', classType);
+        console.log('New spots left:', spotsData.spotsLeft);
         switch (classType) {
             case CLASSES.AB:
-                return this.apiService.updateOpenClassABSpotsLeft(spotsData);
+                return this.apiService.updateOpenClassABSpotsLeft(
+                    spotsData.spotsLeft
+                );
             case CLASSES.C:
-                return this.apiService.updateOpenClassCSpotsLeft(spotsData);
+                return this.apiService.updateOpenClassCSpotsLeft(
+                    spotsData.spotsLeft
+                );
             case CLASSES.Mini:
-                return this.apiService.updateOpenClassMiniSpotsLeft(spotsData);
+                return this.apiService.updateOpenClassMiniSpotsLeft(
+                    spotsData.spotsLeft
+                );
             default:
                 throw new Error(`Invalid class type: ${classType}`);
         }

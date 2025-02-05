@@ -81,7 +81,7 @@ export class ApiService {
             );
     }
 
-    public getOpenClassABSpotsLeft(): Observable<PracticeSpotsLeft> {
+    public getOpenClassABSpotsLeft(): Observable<any> {
         let url =
             environment.strapiBaseUrl +
             '/martin-open-practice-ab' +
@@ -91,7 +91,7 @@ export class ApiService {
             .pipe(map((data: any) => data.data.attributes));
     }
 
-    public getOpenClassCSpotsLeft(): Observable<PracticeSpotsLeft> {
+    public getOpenClassCSpotsLeft(): Observable<any> {
         let url =
             environment.strapiBaseUrl +
             '/martin-open-practice-c' +
@@ -101,7 +101,7 @@ export class ApiService {
             .pipe(map((data: any) => data.data.attributes));
     }
 
-    public getOpenClassMiniSpotsLeft(): Observable<PracticeSpotsLeft> {
+    public getOpenClassMiniSpotsLeft(): Observable<any> {
         let url =
             environment.strapiBaseUrl +
             '/martin-open-practice-mini' +
@@ -112,38 +112,53 @@ export class ApiService {
     }
 
     public updateOpenClassABSpotsLeft(
-        request: any
+        spotsLeft: number
     ): Observable<PracticeSpotsLeft> {
         let url =
             environment.strapiBaseUrl +
             '/martin-open-practice-ab' +
             '?populate=*';
+        const request = {
+            data: {
+                numberOfSpotsLeft: spotsLeft
+            }
+        };
         return this.http
-            .post(url, request)
+            .put(url, request)
             .pipe(map((data: any) => data.data.attributes));
     }
 
     public updateOpenClassCSpotsLeft(
-        request: any
+        spotsLeft: number
     ): Observable<PracticeSpotsLeft> {
         let url =
             environment.strapiBaseUrl +
             '/martin-open-practice-c' +
             '?populate=*';
+        const request = {
+            data: {
+                numberOfSpotsLeft: spotsLeft
+            }
+        };
         return this.http
-            .post(url, request)
+            .put(url, request)
             .pipe(map((data: any) => data.data.attributes));
     }
 
     public updateOpenClassMiniSpotsLeft(
-        request: any
+        spotsLeft: number
     ): Observable<PracticeSpotsLeft> {
         let url =
             environment.strapiBaseUrl +
             '/martin-open-practice-mini' +
             '?populate=*';
+        const request = {
+            data: {
+                numberOfSpotsLeft: spotsLeft
+            }
+        };
         return this.http
-            .post(url, request)
+            .put(url, request)
             .pipe(map((data: any) => data.data.attributes));
     }
     public getOpenSignUp(): Observable<any> {
