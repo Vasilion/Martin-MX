@@ -91,6 +91,35 @@ export class MembershipPricingComponent {
                 return;
             }
             this.openPractice = response.data.attributes;
+            const today = new Date().toISOString().split('T')[0]; // Get today's date
+
+            if (typeof this.openPractice.startTime === 'string') {
+                const startTime = new Date(
+                    `${today}T${this.openPractice.startTime}`
+                );
+                this.openPractice.startTime = startTime.toLocaleTimeString(
+                    undefined,
+                    {
+                        hour: 'numeric',
+                        minute: '2-digit',
+                        hour12: true
+                    }
+                );
+            }
+
+            if (typeof this.openPractice.endTime === 'string') {
+                const endTime = new Date(
+                    `${today}T${this.openPractice.endTime}`
+                );
+                this.openPractice.endTime = endTime.toLocaleTimeString(
+                    undefined,
+                    {
+                        hour: 'numeric',
+                        minute: '2-digit',
+                        hour12: true
+                    }
+                );
+            }
         });
         this.apiServivce.getUnlimitedSignUp().subscribe((response: any) => {
             if (!response) {

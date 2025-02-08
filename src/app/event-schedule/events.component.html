@@ -2,31 +2,39 @@
     <div class="text-center mb-12">
         <!--<h1 class="cl-black text-4xl font-bold mb-2">j</h1>-->
         <div class="title-area text-center">
-            <span class="sub-title">{{scheduleYear}} Race Schedule</span>
+            <span class="sub-title">{{ scheduleYear }} Schedule</span>
         </div>
-
     </div>
     <ng-container *ngIf="monthsGrouped && monthsGrouped.length > 0">
         <div class="monthsGrid">
             <div *ngFor="let month of monthsGrouped" class="mb-8">
-                <h2 class="text-center cl-black text-2xl font-semibold mb-4 pb-2 border-b border-gray-200">{{month.name}}</h2>
+                <h2
+                    class="text-center cl-black text-2xl font-semibold mb-4 pb-2 border-b border-gray-200">
+                    {{ month.name }}
+                </h2>
                 <div class="space-y-3">
-                    <div *ngFor="let event of month.events"
+                    <div
+                        *ngFor="let event of month.events"
                         class="day-container transition-all">
-                        <div [ngClass]="{'background-red': event.isCancelled}"
+                        <div
+                            [ngClass]="{'background-red': event.isCancelled}"
                             class="schedule-day">
                             <div class="flex flex-col">
                                 <span class="text-sm text-gray-500">
-                                    {{ event.date | date:'EEEE' }}
+                                    {{ event.date | date : 'EEEE' }}
                                 </span>
                                 <span class="text-base font-medium">
-                                    {{ event.date | date:'h:mma MM/dd/y' }}
+                                    {{ event.date | date : 'h:mma MM/dd/y' }}
                                 </span>
                                 <div class="mt-1">
-                                    <span *ngIf="event.title" class="text-sm font-medium">
-                                        {{event.title}}
+                                    <span
+                                        *ngIf="event.title"
+                                        class="text-sm font-medium">
+                                        {{ event.title }}
                                     </span>
-                                    <span *ngIf="event.isCancelled" class="text-red-600 text-sm font-medium ml-2">
+                                    <span
+                                        *ngIf="event.isCancelled"
+                                        class="text-red-600 text-sm font-medium ml-2">
                                         (Cancelled)
                                     </span>
                                 </div>

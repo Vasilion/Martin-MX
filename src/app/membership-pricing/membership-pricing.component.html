@@ -3,9 +3,9 @@
         <div class="row justify-content-between align-items-center">
             <div class="col-lg-6">
                 <div class="title-area text-lg-start text-center">
-                    <span class="sub-title after-lg-none"
-                        >Practice and Membership</span
-                    >
+                    <span class="sub-title after-lg-none"></span>
+                    Practice and Membership
+
                     <h2 class="sec-title">Register to ride</h2>
                 </div>
             </div>
@@ -57,12 +57,9 @@
                             <div class="price-title-wrap">
                                 <h3 class="box-title">Yearly</h3>
                                 <h4 class="price-card_price">
-                                    <span class="currency">$</span
-                                    >{{yearlySignUp.price}}<span
-                                        class="duration"
-                                    >
-                                        / Year</span
-                                    >
+                                    <span class="currency">$</span>
+                                    {{ yearlySignUp.price }}
+                                    <span class="duration">/ Year</span>
                                 </h4>
                             </div>
                             <div class="price-card_content">
@@ -70,26 +67,60 @@
                                     <div class="checklist-container">
                                         <div class="checklist style3">
                                             <ul>
-                                                <li>
+                                                <li
+                                                    *ngIf="
+                                                        yearlySignUp.description1
+                                                    "
+                                                >
                                                     <i
                                                         class="far fa-circle-check"
-                                                        *ngIf="yearlySignUp.description1"
                                                     ></i>
-                                                    {{yearlySignUp.description1}}
+                                                    {{ yearlySignUp.description1
+                                                    }}
                                                 </li>
-                                                <li>
+                                                <li
+                                                    *ngIf="
+                                                        yearlySignUp.description2
+                                                    "
+                                                >
                                                     <i
                                                         class="far fa-circle-check"
-                                                        *ngIf="yearlySignUp.description1"
                                                     ></i>
-                                                    {{yearlySignUp.description2}}
+                                                    {{ yearlySignUp.description2
+                                                    }}
                                                 </li>
-                                                <li>
+                                                <li
+                                                    *ngIf="
+                                                        yearlySignUp.description3
+                                                    "
+                                                >
                                                     <i
                                                         class="far fa-circle-check"
-                                                        *ngIf="yearlySignUp.description1"
-                                                    ></i
-                                                    >{{yearlySignUp.description3}}
+                                                    ></i>
+                                                    {{ yearlySignUp.description3
+                                                    }}
+                                                </li>
+                                                <li
+                                                    *ngIf="
+                                                        yearlySignUp.description5
+                                                    "
+                                                >
+                                                    <i
+                                                        class="far fa-circle-check"
+                                                    ></i>
+                                                    {{ yearlySignUp.description4
+                                                    }}
+                                                </li>
+                                                <li
+                                                    *ngIf="
+                                                        yearlySignUp.description5
+                                                    "
+                                                >
+                                                    <i
+                                                        class="far fa-circle-check"
+                                                    ></i>
+                                                    {{ yearlySignUp.description5
+                                                    }}
                                                 </li>
                                             </ul>
                                         </div>
@@ -139,23 +170,42 @@
                                 <h2 class="box-title">Practice is Cancelled</h2>
                                 <h4
                                     class="box-title"
-                                    *ngIf="openPractice.isCancelled && openPractice.reasonForCancel"
+                                    *ngIf="
+                                        openPractice.isCancelled &&
+                                        openPractice.reasonForCancel
+                                    "
                                 >
                                     Due to: {{ openPractice.reasonForCancel }}
                                 </h4>
                             </div>
                             <ng-container
-                                *ngIf="!openPractice.isCancelled && openPractice.isActive"
+                                *ngIf="
+                                    !openPractice.isCancelled &&
+                                    openPractice.isActive
+                                "
                             >
                                 <div class="price-title-wrap">
                                     <h3 class="box-title">Open Practice</h3>
                                     <h4 class="price-card_price">
-                                        <span class="currency">$</span>{{
-                                        openPractice.price }}<span
-                                            class="duration"
-                                        >
-                                            / Day</span
-                                        >
+                                        <span class="currency">$</span>
+                                        {{ openPractice.price }}
+                                        <span class="duration">/ Day</span>
+                                    </h4>
+                                    <hr />
+                                    <h4 class="price-card_price">
+                                        Date
+                                        <span class="duration">
+                                            {{ openPractice.Date | date :
+                                            'dd/MM/yyyy' }}
+                                        </span>
+                                    </h4>
+                                    <hr />
+                                    <h4 class="price-card_price">
+                                        Time
+                                        <span class="duration">
+                                            {{ openPractice.startTime }} - {{
+                                            openPractice.endTime }}
+                                        </span>
                                     </h4>
                                 </div>
                                 <div class="price-card_content">
@@ -163,26 +213,65 @@
                                         <div class="checklist-container">
                                             <div class="checklist style3">
                                                 <ul>
-                                                    <li>
+                                                    <li
+                                                        *ngIf="
+                                                            openPractice.description1
+                                                        "
+                                                    >
                                                         <i
                                                             class="far fa-circle-check"
-                                                            *ngIf="openPractice.description1"
                                                         ></i>
-                                                        {{openPractice.description1}}
+                                                        {{
+                                                        openPractice.description1
+                                                        }}
                                                     </li>
-                                                    <li>
+                                                    <li
+                                                        *ngIf="
+                                                            openPractice.description2
+                                                        "
+                                                    >
                                                         <i
                                                             class="far fa-circle-check"
-                                                            *ngIf="openPractice.description1"
                                                         ></i>
-                                                        {{openPractice.description2}}
+                                                        {{
+                                                        openPractice.description2
+                                                        }}
                                                     </li>
-                                                    <li>
+                                                    <li
+                                                        *ngIf="
+                                                            openPractice.description3
+                                                        "
+                                                    >
                                                         <i
                                                             class="far fa-circle-check"
-                                                            *ngIf="openPractice.description1"
-                                                        ></i
-                                                        >{{openPractice.description3}}
+                                                        ></i>
+                                                        {{
+                                                        openPractice.description3
+                                                        }}
+                                                    </li>
+                                                    <li
+                                                        *ngIf="
+                                                            openPractice.description4
+                                                        "
+                                                    >
+                                                        <i
+                                                            class="far fa-circle-check"
+                                                        ></i>
+                                                        {{
+                                                        openPractice.description4
+                                                        }}
+                                                    </li>
+                                                    <li
+                                                        *ngIf="
+                                                            openPractice.description5
+                                                        "
+                                                    >
+                                                        <i
+                                                            class="far fa-circle-check"
+                                                        ></i>
+                                                        {{
+                                                        openPractice.description5
+                                                        }}
                                                     </li>
                                                 </ul>
                                             </div>
@@ -197,9 +286,10 @@
                                         (click)="redirectToCheckoutAB()"
                                         target="_blank"
                                         class="th-btn style3 w-100"
-                                        >Remaining Spots in AB: {{
-                                        spotsLeftClassAB }}</a
                                     >
+                                        Remaining Spots in AB: {{
+                                        spotsLeftClassAB }}
+                                    </a>
                                 </div>
                                 <!--<div-->
                                 <!--    class="btn-wrap"-->
