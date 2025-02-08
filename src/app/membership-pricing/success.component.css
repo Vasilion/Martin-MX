@@ -7,10 +7,6 @@ section.space > div.container {
     flex-direction: column;
 }
 
-.btn-wrap > a {
-    cursor: pointer;
-}
-
 @media (max-width: 412px) {
     .mobile-pricing-nav-small {
         display: flex;
@@ -24,4 +20,5 @@ section.space > div.container {
         margin: 10px;
         margin-bottom: 20px;
     }
+
 }

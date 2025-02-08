@@ -1,11 +1,9 @@
 import { CommonModule } from '@angular/common';
-import {
-    ApiService,
-    CLASSES,
-    PracticeSpotsLeft
-} from '../services/api.service';
+import { ApiService } from '../services/api.service';
 import { Component } from '@angular/core';
 import { RouterModule } from '@angular/router';
+import { StripeService } from '../services/stripe.service';
+import { CLASSES, PracticeSpotsLeft } from '../interfaces/responses';
 
 @Component({
     standalone: true,
@@ -20,27 +18,35 @@ export class MembershipPricingComponent {
      */
     public openPractice: any;
     public yearlySignUp: any;
-    public yearlyMembershipStripeLink =
-        'https://buy.stripe.com/7sI0081086Xr4so4gh';
-    public openPracticeStripeLink = 'https://buy.stripe.com/6oEcMUgZ6chLe2Y288';
+    //public yearlyMembershipStripeLink =
+    //    'https://buy.stripe.com/7sI0081086Xr4so4gh';
+    //public openPracticeStripeLink = 'https://buy.stripe.com/6oEcMUgZ6chLe2Y288';
 
     private classes: PracticeSpotsLeft[] = [];
 
-    constructor(private apiServivce: ApiService) {
+    constructor(
+        private apiServivce: ApiService,
+        private stripeService: StripeService
+    ) {
         this.getPricing();
         this.getSpotsLeft();
     }
 
     public get spotsLeftClassAB(): number {
-        return this.classes?.find(c => c.class === CLASSES.AB)?.spotsLeft;
+        return this.classes?.find(c => c.class === CLASSES.AB.name)?.spotsLeft;
     }
 
     public get spotsLeftClassC(): number {
-        return this.classes?.find(c => c.class === CLASSES.C)?.spotsLeft;
+        return this.classes?.find(c => c.class === CLASSES.C.name)?.spotsLeft;
     }
 
     public get spotsLeftClassMini(): number {
-        return this.classes?.find(c => c.class === CLASSES.Mini)?.spotsLeft;
+        return this.classes?.find(c => c.class === CLASSES.MINI.name)
+            ?.spotsLeft;
+    }
+
+    public redirectToCheckoutAB() {
+        this.stripeService.redirectToForm(CLASSES.AB.name);
     }
 
     private getSpotsLeft() {
@@ -51,7 +57,7 @@ export class MembershipPricingComponent {
                     return;
                 }
                 this.classes.push({
-                    class: CLASSES.AB,
+                    class: CLASSES.AB.name,
                     spotsLeft: response.numberOfSpotsLeft
                 });
             });
@@ -61,7 +67,7 @@ export class MembershipPricingComponent {
                 return;
             }
             this.classes.push({
-                class: CLASSES.C,
+                class: CLASSES.C.name,
                 spotsLeft: response.numberOfSpotsLeft
             });
         });
@@ -73,7 +79,7 @@ export class MembershipPricingComponent {
                     return;
                 }
                 this.classes.push({
-                    class: CLASSES.Mini,
+                    class: CLASSES.MINI.name,
                     spotsLeft: response.numberOfSpotsLeft
                 });
             });
