@@ -97,12 +97,12 @@
                                 </div>
                             </div>
                             <div class="btn-wrap">
-                                <a
-                                    [href]="yearlyMembershipStripeLink"
-                                    target="_blank"
-                                    class="th-btn style3 w-100"
-                                    >Sign up Now</a
-                                >
+                                <!--<a-->
+                                <!--    [href]="yearlyMembershipStripeLink"-->
+                                <!--    target="_blank"-->
+                                <!--    class="th-btn style3 w-100"-->
+                                <!--    >Sign up Now</a-->
+                                <!-->-->
                             </div>
                         </div>
                     </div>
@@ -194,7 +194,7 @@
                                     *ngIf="!openPractice.isCashOnly"
                                 >
                                     <a
-                                        [href]="openPracticeStripeLink"
+                                        (click)="redirectToCheckoutAB()"
                                         target="_blank"
                                         class="th-btn style3 w-100"
                                         >Remaining Spots in AB: {{

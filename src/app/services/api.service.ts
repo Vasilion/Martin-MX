@@ -3,13 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs';
 import { environment } from '../../environments/environment';
-
-export const CLASSES = { C: 'C', AB: 'AB', Mini: 'Mini' };
-
-export interface PracticeSpotsLeft {
-    class: string;
-    spotsLeft: number;
-}
+import { PracticeSpotsLeft } from '../interfaces/responses';
 
 @Injectable({
     providedIn: 'root'

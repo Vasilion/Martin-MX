@@ -1,0 +1,8 @@
+<section class="space">
+    <div class="container">
+        <div *ngIf="selectedClass">
+            Payment successful for {{ selectedClass }} class
+        </div>
+        <div *ngIf="!selectedClass">Invalid class type detected</div>
+    </div>
+</section>
