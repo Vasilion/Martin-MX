@@ -26,6 +26,10 @@ export class PaymentSuccessComponent implements OnInit {
     ) {}
 
     public ngOnInit() {
+        // TODO this is running twice,
+        // because of the subscribe inside of subscribe
+        // this could be refactored to use a switchMap
+        // and it might work with a takeOne operator
         this.route.queryParams.subscribe(params => {
             const classParam = params['class'];
             if (this.isValidClassType(classParam)) {
