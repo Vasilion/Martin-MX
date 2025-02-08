@@ -1,7 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, RouterModule } from '@angular/router';
-import { ApiService } from '../services/api.service';
 import { HttpClient } from '@angular/common/http';
 import { CLASSES } from '../interfaces/responses';
 
