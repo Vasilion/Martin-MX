@@ -7,8 +7,12 @@
             <div class="col-md-6 col-xl-6" *ngFor="let img of images">
                 <div class="gallery-card2" (click)="selectImage(img)">
                     <div class="gallery-img">
-                        <img [src]="img.url" alt="gallery image">
-                        <a (click)="selectImage(img)" class="icon-btn popup-image"><i class="fas fa-eye"></i></a>
+                        <img [src]="img.url" alt="gallery image" />
+                        <a
+                            (click)="selectImage(img)"
+                            class="icon-btn popup-image"
+                            ><i class="fas fa-eye"></i
+                        ></a>
                     </div>
                 </div>
             </div>
@@ -24,18 +28,14 @@
 >
     <div class="container">
         <div class="bmi-calculator-form">
-        <div class="popup-gallery-img">
-            <img [src]="selectedImage.url" alt="gallery image">
-        </div>
-                    <div class="col-12">
-                        <div class="th-btn">
-                            <input
-                                type="button"
-                                value="Close"
-                                (click)="closeImage()"
-                            />
-                        </div>
-                    </div>
+            <div class="popup-gallery-img">
+                <img [src]="selectedImage.url" alt="gallery image" />
+            </div>
+            <div class="col-12">
+                <div class="th-btn">
+                    <input type="button" value="Close" (click)="closeImage()" />
+                </div>
+            </div>
         </div>
     </div>
 </div>

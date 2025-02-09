@@ -1,8 +1,61 @@
 <section class="space">
     <div class="container">
-        <div *ngIf="selectedClass">
-            Payment successful for {{ selectedClass }} class
+        <div class="row justify-content-center">
+            <div class="col-xl-8">
+                <div class="price-card text-center">
+                    <div class="price-title-wrap mb-4">
+                        <div class="title-area text-center">
+                            <span class="sub-title">Payment Confirmed</span>
+                        </div>
+                        <h2 class="box-title">You're Ready to Ride</h2>
+                        <ng-container *ngIf="selectedClass">
+                            <div class="price-card_content mt-4">
+                                <h3 class="success-class-title">
+                                    Class {{ selectedClass }}
+                                </h3>
+                                <div class="track-details mt-4">
+                                    <div class="checklist style3">
+                                        <ul>
+                                            <li>
+                                                <i class="far fa-clock"></i>
+                                                Please arrive 30 minutes before
+                                                your session
+                                            </li>
+                                            <li>
+                                                <i class="far fa-id-card"></i>
+                                                Bring your confirmation email
+                                                and ID
+                                            </li>
+                                            <li>
+                                                <i
+                                                    class="far fa-shield-check"
+                                                ></i>
+                                                Safety gear is mandatory
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="btn-wrap mt-4">
+                                <a routerLink="/" class="th-btn style3">
+                                    <i class="far fa-home me-2"></i>Back to Home
+                                </a>
+                                <a routerLink="/track-info" class="th-btn">
+                                    <i class="far fa-map me-2"></i>Track
+                                    Information
+                                </a>
+                            </div>
+                        </ng-container>
+                        <ng-container *ngIf="!selectedClass">
+                            <div class="alert alert-danger mt-4">
+                                <i class="far fa-exclamation-triangle me-2"></i>
+                                Invalid class type detected. Please contact
+                                support.
+                            </div>
+                        </ng-container>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div *ngIf="!selectedClass">Invalid class type detected</div>
     </div>
 </section>

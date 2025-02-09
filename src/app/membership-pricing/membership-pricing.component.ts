@@ -18,10 +18,6 @@ export class MembershipPricingComponent {
      */
     public openPractice: any;
     public yearlySignUp: any;
-    //public yearlyMembershipStripeLink =
-    //    'https://buy.stripe.com/7sI0081086Xr4so4gh';
-    //public openPracticeStripeLink = 'https://buy.stripe.com/6oEcMUgZ6chLe2Y288';
-
     private classes: PracticeSpotsLeft[] = [];
 
     constructor(

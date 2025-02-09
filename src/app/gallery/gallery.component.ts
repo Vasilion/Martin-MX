@@ -7,7 +7,7 @@ import { CommonModule } from '@angular/common';
     imports: [CommonModule],
     selector: 'app-gallery',
     templateUrl: 'gallery.component.html',
-    styleUrls: ['gallery.component.css'],
+    styleUrls: ['gallery.component.css']
 })
 export class GalleryComponent {
     public images: any;
@@ -15,25 +15,26 @@ export class GalleryComponent {
     constructor(private apiService: ApiService) {
         this.getImages();
     }
-     @HostListener('document:keydown', ['$event'])
-      public handleKeyDown(event: KeyboardEvent) {
+    @HostListener('document:keydown', ['$event'])
+    public handleKeyDown(event: KeyboardEvent) {
         // Check if the pressed key is 'Escape' or 'Esc'
         if (event.key === 'Escape' || event.key === 'Esc') {
-          this.closeImage();
+            this.closeImage();
         }
-      }
+    }
 
     private getImages() {
         this.apiService.getGallery().subscribe((data: any) => {
             if (!data || data.length === 0) {
                 return;
             }
-            this.images = data[0].images.data.map((data: any) => data.attributes);
+            this.images = data[0].images.data.map(
+                (data: any) => data.attributes
+            );
         });
     }
 
     public selectImage(image: any) {
-        console.log(image);
         this.selectedImage = image;
     }
 
