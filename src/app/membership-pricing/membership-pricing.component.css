@@ -7,6 +7,13 @@ section.space > div.container {
     flex-direction: column;
 }
 
+.btn-wrap {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
 .btn-wrap > a {
     cursor: pointer;
 }

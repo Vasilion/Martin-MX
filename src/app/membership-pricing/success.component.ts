@@ -1,8 +1,9 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, RouterModule } from '@angular/router';
+import { AfterViewInit, Component } from '@angular/core';
+import { ActivatedRoute, Params, RouterModule } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { CLASSES } from '../interfaces/responses';
+import { Observable, of, switchMap, take } from 'rxjs';
 
 enum ClassType {
     AB = 'AB',
@@ -17,40 +18,44 @@ enum ClassType {
     templateUrl: 'success.component.html',
     styleUrls: ['success.component.css']
 })
-export class PaymentSuccessComponent implements OnInit {
+export class PaymentSuccessComponent implements AfterViewInit {
     public selectedClass: ClassType | null = null;
+    public loading = true;
 
     constructor(
         private route: ActivatedRoute,
         private http: HttpClient
     ) {}
 
-    public ngOnInit() {
-        // TODO this is running twice,
-        // because of the subscribe inside of subscribe
-        // this could be refactored to use a switchMap
-        // and it might work with a takeOne operator
-        this.route.queryParams.subscribe(params => {
-            const classParam = params['class'];
-            if (this.isValidClassType(classParam)) {
-                this.selectedClass = classParam as ClassType;
-                this.decrementSpotsLeft(this.selectedClass);
-            }
-        });
+    public ngAfterViewInit(): void {
+        this.route.queryParams
+            .pipe(
+                take(1),
+                switchMap((params: Params): Observable<any> => {
+                    const classParam = params['class'];
+                    if (this.isValidClassType(classParam)) {
+                        this.selectedClass = classParam as ClassType;
+                        return this.http.post(
+                            CLASSES[this.selectedClass].strapiEndpoint,
+                            {}
+                        );
+                    }
+                    return of(null);
+                })
+            )
+            .subscribe({
+                next: (response: any): void => {
+                    console.log('response:', response);
+                    this.loading = false;
+                },
+                error: (error: any): void => {
+                    console.error('Error:', error);
+                    this.loading = false;
+                }
+            });
     }
 
     private isValidClassType(classType: string): boolean {
         return Object.values(ClassType).includes(classType as ClassType);
-    }
-
-    private decrementSpotsLeft(classType: ClassType) {
-        const endpoint = CLASSES[classType].strapiEndpoint;
-        this.http.post(endpoint, {}).subscribe((response: any): void => {
-            console.log(
-                'Successfully decremented spots left for class:',
-                classType
-            );
-            console.log('Response:', response);
-        });
     }
 }
