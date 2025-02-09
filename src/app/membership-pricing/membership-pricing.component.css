@@ -18,6 +18,11 @@ section.space > div.container {
     cursor: pointer;
 }
 
+.btn-wrap > .disabled {
+    pointer-events: none !important;
+    opacity: 0.5;
+}
+
 @media (max-width: 412px) {
     .mobile-pricing-nav-small {
         display: flex;

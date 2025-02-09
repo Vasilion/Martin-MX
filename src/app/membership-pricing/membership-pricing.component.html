@@ -450,7 +450,8 @@
                             <ng-container
                                 *ngIf="
                                     !openPractice.isCancelled &&
-                                    openPractice.isActive
+                                    openPractice.isActive &&
+                                    !openPractice.isCashOnly
                                 "
                             >
                                 <div
@@ -460,30 +461,71 @@
                                     <a
                                         (click)="redirectToCheckoutAB()"
                                         target="_blank"
+                                        [ngClass]="{'disabled': spotsLeftClassAB <= 0}"
                                         class="th-btn style3 w-30"
                                     >
-                                        Click to sign up for class AB <br />
-                                        Spots Remaining: {{ spotsLeftClassAB }}
-                                    </a>
-                                    <a
-                                        (click)="redirectToCheckoutAB()"
-                                        target="_blank"
-                                        class="th-btn style3 w-30"
-                                    >
-                                        Click to sign up for class C <br />
-                                        Spots Remaining: {{ spotsLeftClassC }}
-                                    </a>
-                                    <a
-                                        (click)="redirectToCheckoutAB()"
-                                        target="_blank"
-                                        class="th-btn style3 w-30"
-                                    >
-                                        Click to sign up for class Mini <br />
                                         <ng-container
-                                            *ngIf="spotsLeftClassMini <= 6"
+                                            *ngIf="spotsLeftClassAB > 0"
+                                        >
+                                            Click to sign up for class AB <br />
+                                        </ng-container>
+                                        <ng-container
+                                            *ngIf="spotsLeftClassAB <= 6 && spotsLeftClassAB > 0"
+                                        >
+                                            Spots Remaining: {{ spotsLeftClassAB
+                                            }}
+                                        </ng-container>
+                                        <ng-container
+                                            *ngIf="spotsLeftClassAB <= 0"
+                                        >
+                                            No Spots Remaining for Class AB
+                                        </ng-container>
+                                    </a>
+                                    <a
+                                        (click)="redirectToCheckoutAB()"
+                                        target="_blank"
+                                        [ngClass]="{'disabled': spotsLeftClassC <= 0}"
+                                        class="th-btn style3 w-30"
+                                    >
+                                        <ng-container
+                                            *ngIf="spotsLeftClassC > 0"
+                                        >
+                                            Click to sign up for class C <br />
+                                        </ng-container>
+                                        <ng-container
+                                            *ngIf="spotsLeftClassC <= 6 && spotsLeftClassC > 0"
+                                        >
+                                            Spots Remaining: {{ spotsLeftClassC
+                                            }}
+                                        </ng-container>
+                                        <ng-container
+                                            *ngIf="spotsLeftClassC <= 0"
+                                        >
+                                            No Spots Remaining for Class C
+                                        </ng-container>
+                                    </a>
+                                    <a
+                                        (click)="redirectToCheckoutAB()"
+                                        target="_blank"
+                                        [ngClass]="{'disabled': spotsLeftClassMini <= 0}"
+                                        class="th-btn style3 w-30"
+                                    >
+                                        <ng-container
+                                            *ngIf="spotsLeftClassMini > 0"
+                                        >
+                                            Click to sign up for class Mini
+                                            <br />
+                                        </ng-container>
+                                        <ng-container
+                                            *ngIf="spotsLeftClassMini <= 6 && spotsLeftClassMini > 0"
                                         >
                                             Spots Remaining: {{
                                             spotsLeftClassMini }}
+                                        </ng-container>
+                                        <ng-container
+                                            *ngIf="spotsLeftClassMini <= 0"
+                                        >
+                                            No Spots Remaining for Class Mini
                                         </ng-container>
                                     </a>
                                 </div>
@@ -498,15 +540,13 @@
                                 <!--        >Sign up Now</a-->
                                 <!--    >-->
                                 <!--</div>-->
-                                <div
-                                    class="price-title-wrap"
-                                    *ngIf="openPractice.isCashOnly"
-                                >
-                                    <h2 class="box-title">
-                                        Accepting Cash Only
-                                    </h2>
-                                </div>
                             </ng-container>
+                            <div
+                                class="price-title-wrap"
+                                *ngIf="openPractice?.isCashOnly"
+                            >
+                                <h2 class="box-title">Accepting Cash Only</h2>
+                            </div>
                         </div>
                         <div
                             class="price-card"
