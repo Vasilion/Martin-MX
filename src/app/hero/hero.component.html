@@ -58,13 +58,15 @@
                                         data-ani="slideinup"
                                         data-ani-delay="0.7s"
                                     >
-                                        <a routerLink="/track-info" class="th-btn"
+                                        <a
+                                            routerLink="/track-info"
+                                            class="th-btn"
                                             >VIEW Track Info</a
                                         >
                                         <div class="hero-counter-wrap">
                                             <div class="counter-number-wrap">
                                                 <div class="counter-number">
-                                                    60
+                                                    200
                                                 </div>
                                                 k
                                                 <span class="fw-light">+</span>
@@ -82,18 +84,45 @@
                                         data-ani-delay="0.7s"
                                     >
                                         <div class="hero-counter-wrap">
-                                            <h4 class="counter-title" *ngIf="!openPractice.isCancelled">Practice is Open</h4>
-                                            <ng-container *ngIf="openPractice.isCancelled">
-                                                <h4 class="counter-title">Practice is Cancelled for Today</h4>
-                                                <ng-container *ngIf="openPractice.reasonForCancel">
+                                            <h4
+                                                class="counter-title"
+                                                *ngIf="!openPractice.isCancelled"
+                                            >
+                                                Practice is Open
+                                                <ng-container
+                                                    *ngIf="openPractice.Date && openPractice.startTime"
+                                                    >{{
+                                                    openPractice.combinedDateTime
+                                                    | date: 'short'
+                                                    }}</ng-container
+                                                >
+                                            </h4>
+                                            <ng-container
+                                                *ngIf="openPractice.isCancelled"
+                                            >
+                                                <h4 class="counter-title">
+                                                    Practice is Cancelled for
+                                                    Today
+                                                </h4>
+                                                <ng-container
+                                                    *ngIf="openPractice.reasonForCancel"
+                                                >
                                                     <br />
-                                                    <h4 class="counter-title">Due to: {{ openPractice.reasonForCancel }}</h4>
+                                                    <h4 class="counter-title">
+                                                        Due to: {{
+                                                        openPractice.reasonForCancel
+                                                        }}
+                                                    </h4>
                                                 </ng-container>
                                             </ng-container>
                                         </div>
-                                        <a routerLink="/pricing" class="th-btn" *ngIf="!openPractice.isCancelled">Sign Up Now</a>
+                                        <a
+                                            routerLink="/pricing"
+                                            class="th-btn"
+                                            *ngIf="!openPractice.isCancelled"
+                                            >Sign Up Now</a
+                                        >
                                     </div>
-
                                 </div>
                             </div>
                         </div>

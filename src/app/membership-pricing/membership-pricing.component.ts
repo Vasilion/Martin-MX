@@ -41,8 +41,19 @@ export class MembershipPricingComponent {
             ?.spotsLeft;
     }
 
+    public redirectToCheckoutC() {
+        console.log('clicked c');
+        this.stripeService.redirectToForm(CLASSES.C.name);
+    }
+
+    public redirectToCheckoutMini() {
+        console.log('clicked mini');
+        this.stripeService.redirectToForm(CLASSES.MINI.name);
+    }
+
     public redirectToCheckoutAB() {
-        this.stripeService.redirectToForm(CLASSES.AB.name);
+        console.log('clicked ab');
+        this.stripeService.redirectToForm('AB');
     }
 
     private getSpotsLeft() {

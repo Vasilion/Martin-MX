@@ -6,7 +6,7 @@ import { CLASSES } from '../interfaces/responses';
 import { Observable, of, switchMap, take } from 'rxjs';
 
 enum ClassType {
-    AB = 'AB',
+    AB = 'A/B',
     C = 'C',
     MINI = 'MINI'
 }
