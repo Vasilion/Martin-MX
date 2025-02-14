@@ -28,19 +28,19 @@ const API_URL =
 
 export const CLASSES = {
     C: {
-        formLink: 'https://buy.stripe.com/fZecMUbEM81vcYU7sw',
+        formLink: 'https://buy.stripe.com/8wM5ks24ca9D1gc6oq',
         strapiEndpoint: `${API_URL}/C`,
         name: 'C'
     },
     MINI: {
         formLink: 'https://buy.stripe.com/dR66ow108a9Df72eUX',
         strapiEndpoint: `${API_URL}/MINI`,
-        name: 'Mini'
+        name: 'MINI'
     },
     AB: {
-        formLink: 'https://buy.stripe.com/8wM5ks24ca9D1gc6oq',
+        formLink: 'https://buy.stripe.com/fZecMUbEM81vcYU7sw',
         strapiEndpoint: `${API_URL}/AB`,
-        name: 'AB'
+        name: 'A/B'
     }
 } as const;
 

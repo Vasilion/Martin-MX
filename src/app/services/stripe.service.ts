@@ -9,9 +9,10 @@ import { CLASSES, ClassType } from '../interfaces/responses';
 export class StripeService {
     constructor(private http: HttpClient) {}
 
-    redirectToForm(classType: ClassType) {
+    public redirectToForm(classType: ClassType) {
         const config = CLASSES[classType];
-        window.location.href = config.formLink;
+        console.log('redirecting to form:', config);
+        window.open(config.formLink, '_blank');
     }
 
     async updateSpotAvailability(classType: ClassType) {

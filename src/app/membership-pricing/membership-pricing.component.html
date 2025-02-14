@@ -278,38 +278,6 @@
                                         </div>
                                     </div>
                                 </div>
-                                <!--<div-->
-                                <!--    class="btn-wrap"-->
-                                <!--    *ngIf="!openPractice.isCashOnly"-->
-                                <!-->-->
-                                <!--    <a-->
-                                <!--        (click)="redirectToCheckoutAB()"-->
-                                <!--        target="_blank"-->
-                                <!--        class="th-btn style3 w-100"-->
-                                <!--    >-->
-                                <!--        Remaining Spots in AB: {{-->
-                                <!--        spotsLeftClassAB }}-->
-                                <!--    </a>-->
-                                <!--</div>-->
-                                <!--<div-->
-                                <!--    class="btn-wrap"-->
-                                <!--    *ngIf="!openPractice.isCashOnly"-->
-                                <!-->-->
-                                <!--    <a-->
-                                <!--        [href]="openPracticeStripeLink"-->
-                                <!--        target="_blank"-->
-                                <!--        class="th-btn style3 w-100"-->
-                                <!--        >Sign up Now</a-->
-                                <!--    >-->
-                                <!--</div>-->
-                                <!--<div-->
-                                <!--    class="price-title-wrap"-->
-                                <!--    *ngIf="openPractice.isCashOnly"-->
-                                <!-->-->
-                                <!--    <h2 class="box-title">-->
-                                <!--        Accepting Cash Only-->
-                                <!--    </h2>-->
-                                <!--</div>-->
                             </ng-container>
                         </div>
                         <div
@@ -467,7 +435,8 @@
                                         <ng-container
                                             *ngIf="spotsLeftClassAB > 0"
                                         >
-                                            Click to sign up for class AB <br />
+                                            Click to sign up for class A/B
+                                            <br />
                                         </ng-container>
                                         <ng-container
                                             *ngIf="spotsLeftClassAB <= 6 && spotsLeftClassAB > 0"
@@ -478,11 +447,11 @@
                                         <ng-container
                                             *ngIf="spotsLeftClassAB <= 0"
                                         >
-                                            No Spots Remaining for Class AB
+                                            No Spots Remaining for Class A/B
                                         </ng-container>
                                     </a>
                                     <a
-                                        (click)="redirectToCheckoutAB()"
+                                        (click)="redirectToCheckoutC()"
                                         target="_blank"
                                         [ngClass]="{'disabled': spotsLeftClassC <= 0}"
                                         class="th-btn style3 w-30"
@@ -505,7 +474,7 @@
                                         </ng-container>
                                     </a>
                                     <a
-                                        (click)="redirectToCheckoutAB()"
+                                        (click)="redirectToCheckoutMini()"
                                         target="_blank"
                                         [ngClass]="{'disabled': spotsLeftClassMini <= 0}"
                                         class="th-btn style3 w-30"
@@ -529,17 +498,6 @@
                                         </ng-container>
                                     </a>
                                 </div>
-                                <!--<div-->
-                                <!--    class="btn-wrap"-->
-                                <!--    *ngIf="!openPractice.isCashOnly"-->
-                                <!-->-->
-                                <!--    <a-->
-                                <!--        [href]="openPracticeStripeLink"-->
-                                <!--        target="_blank"-->
-                                <!--        class="th-btn style3 w-100"-->
-                                <!--        >Sign up Now</a-->
-                                <!--    >-->
-                                <!--</div>-->
                             </ng-container>
                             <div
                                 class="price-title-wrap"

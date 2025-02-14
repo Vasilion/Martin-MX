@@ -8,12 +8,12 @@ import { CommonModule } from '@angular/common';
     imports: [RouterModule, CommonModule],
     selector: 'app-hero',
     templateUrl: 'hero.component.html',
-    styleUrls: ['hero.component.css'],
+    styleUrls: ['hero.component.css']
 })
 export class HeroComponent {
     public openPractice: any;
 
-    constructor(private  apiServivce: ApiService) {
+    constructor(private apiServivce: ApiService) {
         this.getPricing();
     }
 
@@ -22,7 +22,26 @@ export class HeroComponent {
             if (!response) {
                 return;
             }
-            this.openPractice = response.data.attributes;
+            const attributes = response.data.attributes;
+
+            let combinedDateTime = null;
+            if (attributes.Date && attributes.startTime) {
+                const [year, month, day] = attributes.Date?.split('-');
+                const [hours, minutes] = attributes.startTime?.split(':');
+
+                combinedDateTime = new Date(
+                    year,
+                    month - 1,
+                    day,
+                    hours,
+                    minutes
+                );
+            }
+
+            this.openPractice = {
+                ...attributes,
+                combinedDateTime
+            };
         });
     }
 }
