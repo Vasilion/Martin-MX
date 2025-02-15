@@ -7,6 +7,7 @@ import { GalleryComponent } from './gallery/gallery.component';
 import { EventsComponent } from './event-schedule/events.component';
 import { SponsorsComponent } from './sponsors/sponsors.component';
 import { PaymentSuccessComponent } from './membership-pricing/success.component';
+import { PrintListComponent } from './print-list/print-list.component';
 
 export const routes: Routes = [
     { path: '', component: HomeComponent },
@@ -19,5 +20,6 @@ export const routes: Routes = [
     { path: 'gallery', component: GalleryComponent },
     { path: 'schedule', component: EventsComponent },
     { path: 'payment-success', component: PaymentSuccessComponent },
-    { path: 'sponsors', component: SponsorsComponent }
+    { path: 'sponsors', component: SponsorsComponent },
+    { path: 'print', component: PrintListComponent }
 ];
