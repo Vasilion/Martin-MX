@@ -37,10 +37,24 @@ export class HeroComponent {
                     minutes
                 );
             }
+            let combinedDateTime2 = null;
+            if (attributes.Date2 && attributes.startTime2) {
+                const [year, month, day] = attributes.Date2?.split('-');
+                const [hours, minutes] = attributes.startTime2?.split(':');
+
+                combinedDateTime2 = new Date(
+                    year,
+                    month - 1,
+                    day,
+                    hours,
+                    minutes
+                );
+            }
 
             this.openPractice = {
                 ...attributes,
-                combinedDateTime
+                combinedDateTime,
+                combinedDateTime2
             };
         });
     }
