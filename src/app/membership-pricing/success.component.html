@@ -11,7 +11,7 @@
                         <ng-container *ngIf="selectedClass">
                             <div class="price-card_content mt-4">
                                 <h3 class="success-class-title">
-                                    Class {{ selectedClass }}
+                                    {{ selectedClass }} Practice
                                 </h3>
                                 <div class="track-details mt-4">
                                     <div class="checklist style3">
@@ -28,8 +28,7 @@
                                             </li>
                                             <li>
                                                 <i
-                                                    class="far fa-shield-check"
-                                                ></i>
+                                                    class="far fa-shield-check"></i>
                                                 Safety gear is mandatory
                                             </li>
                                         </ul>
@@ -38,11 +37,12 @@
                             </div>
                             <div class="btn-wrap mt-4">
                                 <a routerLink="/" class="th-btn style3">
-                                    <i class="far fa-home me-2"></i>Back to Home
+                                    <i class="far fa-home me-2"></i>
+                                    Back to Home
                                 </a>
                                 <a routerLink="/track-info" class="th-btn">
-                                    <i class="far fa-map me-2"></i>Track
-                                    Information
+                                    <i class="far fa-map me-2"></i>
+                                    Track Information
                                 </a>
                             </div>
                         </ng-container>

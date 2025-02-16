@@ -1,13 +1,19 @@
 import { CommonModule } from '@angular/common';
 import { ApiService } from '../services/api.service';
-import { Component } from '@angular/core';
+import { ChangeDetectorRef, Component } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { StripeService } from '../services/stripe.service';
 import { CLASSES, PracticeSpotsLeft } from '../interfaces/responses';
+import {
+    FormBuilder,
+    FormGroup,
+    Validators,
+    ReactiveFormsModule
+} from '@angular/forms';
 
 @Component({
     standalone: true,
-    imports: [CommonModule, RouterModule],
+    imports: [CommonModule, RouterModule, ReactiveFormsModule],
     selector: 'app-membership-pricing',
     templateUrl: 'membership-pricing.component.html',
     styleUrls: ['membership-pricing.component.css']
@@ -16,16 +22,28 @@ export class MembershipPricingComponent {
     /*
      * YOU TALKIN' BOUT PRACTICE??
      */
+    public signUpForm: FormGroup;
     public openPractice: any;
     public yearlySignUp: any;
+    public showForm: boolean = false;
+    public payLink: string;
     private classes: PracticeSpotsLeft[] = [];
 
     constructor(
         private apiServivce: ApiService,
-        private stripeService: StripeService
+        private stripeService: StripeService,
+        private fb: FormBuilder,
+        private cdr: ChangeDetectorRef
     ) {
         this.getPricing();
         this.getSpotsLeft();
+        this.signUpForm = this.fb.group({
+            email: ['', [Validators.required, Validators.email]],
+            riderName: ['', Validators.required],
+            bikeSize: ['', [Validators.required]],
+            riderNumber: ['', Validators.required],
+            dropdown: ['', Validators.required]
+        });
     }
 
     public get spotsLeftClassAB(): number {
@@ -39,6 +57,56 @@ export class MembershipPricingComponent {
     public get spotsLeftClassMini(): number {
         return this.classes?.find(c => c.class === CLASSES.MINI.name)
             ?.spotsLeft;
+    }
+
+    public get spotsLeftClassJr(): number {
+        return this.classes?.find(c => c.class === CLASSES.JR.name)?.spotsLeft;
+    }
+
+    public submit(): void {
+        if (this.signUpForm.valid) {
+            this.determinePayLink(this.signUpForm.get('dropdown').value);
+            console.log(this.payLink);
+
+            // Save each field to local storage as an individual item
+            localStorage.setItem('email', this.signUpForm.get('email').value);
+            localStorage.setItem(
+                'riderName',
+                this.signUpForm.get('riderName').value
+            );
+            localStorage.setItem(
+                'bikeSize',
+                this.signUpForm.get('bikeSize').value
+            );
+            localStorage.setItem(
+                'riderNumber',
+                this.signUpForm.get('riderNumber').value
+            );
+            localStorage.setItem(
+                'dropdown',
+                this.signUpForm.get('dropdown').value
+            );
+
+            window.open(this.payLink, '_blank');
+            this.signUpForm.reset();
+        } else {
+            alert('Please fill in all required fields.');
+        }
+    }
+
+    public determinePayLink(classString: string): void {
+        if (classString.includes('A/B')) {
+            this.payLink = CLASSES.AB.formLink;
+        }
+        if (classString.includes('C')) {
+            this.payLink = CLASSES.C.formLink;
+        }
+        if (classString.includes('Mini')) {
+            this.payLink = CLASSES.MINI.formLink;
+        }
+        if (classString.includes('Jr')) {
+            this.payLink = CLASSES.JR.formLink;
+        }
     }
 
     public redirectToCheckoutC() {
@@ -98,6 +166,9 @@ export class MembershipPricingComponent {
                 return;
             }
             this.openPractice = response.data.attributes;
+            if (this.openPractice.isActive) {
+                this.showForm = true;
+            }
             const today = new Date().toISOString().split('T')[0]; // Get today's date
 
             if (typeof this.openPractice.startTime === 'string') {

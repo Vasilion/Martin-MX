@@ -1,0 +1,30 @@
+<div class="container pt-40">
+    <div class="title-area text-center">
+        <span class="sub-title">Rider List</span>
+    </div>
+    <div class="table-responsive">
+        <table class="table table-striped rider-table">
+            <thead>
+                <tr>
+                    <th>Rider Name</th>
+                    <th>Rider Number</th>
+                    <th>Class</th>
+                    <th>Date</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let rider of riders">
+                    <td>{{ rider.Name }}</td>
+                    <td>{{ rider.Number }}</td>
+                    <td>{{ rider.Class }}</td>
+                    <td>{{ rider.Date | date : 'mediumDate' }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="text-center mt-4">
+        <button class="th-btn print-btn" (click)="printRiderList()">
+            Print List
+        </button>
+    </div>
+</div>

@@ -23,6 +23,20 @@ export class ApiService {
             );
     }
 
+    public getRiderList(): Observable<any> {
+        let url =
+            environment.strapiBaseUrl +
+            '/martin-rider-sign-up-lists' +
+            '?populate=*';
+        return this.http
+            .get(url)
+            .pipe(
+                map((data: any) =>
+                    data.data.map((data: any) => data.attributes)
+                )
+            );
+    }
+
     public getSchedule(): Observable<any> {
         let url =
             environment.strapiBaseUrl + '/martin-schedules' + '?populate=*';
