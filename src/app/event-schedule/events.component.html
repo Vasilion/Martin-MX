@@ -36,19 +36,30 @@
                                         - {{ event.endDate | date : 'h:mma' }}
                                     </ng-container>
                                 </div>
-                                <div class="mt-1 flex items-center">
-                                    <span
-                                        *ngIf="event.title"
-                                        class="text-sm font-medium"
+
+                                <div
+                                    class="mt-1 flex items-center justify-between"
+                                >
+                                    <div>
+                                        <span
+                                            *ngIf="event.title"
+                                            class="text-sm font-medium"
+                                        >
+                                            {{ event.title }}
+                                        </span>
+                                        <span
+                                            *ngIf="event.isCancelled"
+                                            class="text-red-600 text-sm font-medium ml-2"
+                                        >
+                                            (Cancelled)
+                                        </span>
+                                    </div>
+                                    <a
+                                        routerLink="/pricing"
+                                        class="th-btn"
+                                        *ngIf="event.isOpenPractice && !event.isCancelled"
+                                        >Sign Up Now</a
                                     >
-                                        {{ event.title }}
-                                    </span>
-                                    <span
-                                        *ngIf="event.isCancelled"
-                                        class="text-red-600 text-sm font-medium ml-2"
-                                    >
-                                        (Cancelled)
-                                    </span>
                                 </div>
                             </div>
                         </div>

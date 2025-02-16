@@ -88,12 +88,21 @@
                                                 class="counter-title"
                                                 *ngIf="!openPractice.isCancelled"
                                             >
-                                                Practice is Open
+                                                Practice is Open <br />
                                                 <ng-container
                                                     *ngIf="openPractice.Date && openPractice.startTime"
                                                     >{{
                                                     openPractice.combinedDateTime
-                                                    | date: 'short'
+                                                    | date: 'medium'
+                                                    }}</ng-container
+                                                >
+                                                <ng-container
+                                                    *ngIf="openPractice.Date2 && openPractice.startTime2"
+                                                >
+                                                    <br />
+                                                    {{
+                                                    openPractice.combinedDateTime2
+                                                    | date: 'medium'
                                                     }}</ng-container
                                                 >
                                             </h4>
