@@ -7,6 +7,7 @@
             <thead>
                 <tr>
                     <th>Rider Name</th>
+                    <th>Rider Number</th>
                     <th>Class</th>
                     <th>Date</th>
                 </tr>
@@ -14,8 +15,9 @@
             <tbody>
                 <tr *ngFor="let rider of riders">
                     <td>{{ rider.Name }}</td>
+                    <td>{{ rider.Number }}</td>
                     <td>{{ rider.Class }}</td>
-                    <td>{{ rider.Date }}</td>
+                    <td>{{ rider.Date | date : 'mediumDate' }}</td>
                 </tr>
             </tbody>
         </table>

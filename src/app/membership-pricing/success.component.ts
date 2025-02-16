@@ -67,7 +67,8 @@ export class PaymentSuccessComponent implements AfterViewInit {
             data: {
                 Name: localStorage.getItem('riderName'),
                 Date: new Date(date),
-                Class: riderClass
+                Class: riderClass,
+                Number: localStorage.getItem('riderNumber')
             }
         };
 

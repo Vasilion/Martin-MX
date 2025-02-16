@@ -44,7 +44,7 @@ export const CLASSES = {
     },
     JR: {
         formLink: 'https://buy.stripe.com/fZe5ks1085Tn9MI9AF',
-        strapiEndpoint: `${TEST}/JR`,
+        strapiEndpoint: `${API_URL}/JR`,
         name: 'Jr Track'
     }
 } as const;

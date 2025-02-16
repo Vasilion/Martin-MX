@@ -57,7 +57,7 @@
                                     <span class="duration">/ Year</span>
                                 </h4>
                             </div>
-                            <div class="price-card_content">
+                            <div class="price-card_content w-100">
                                 <div class="row gy-4">
                                     <div class="checklist-container">
                                         <div class="checklist style3">
@@ -118,12 +118,12 @@
                                 </div>
                             </div>
                             <div class="btn-wrap">
-                                <!--<a-->
-                                <!--    [href]="yearlyMembershipStripeLink"-->
-                                <!--    target="_blank"-->
-                                <!--    class="th-btn style3 w-100"-->
-                                <!--    >Sign up Now</a-->
-                                <!-->-->
+                                <a
+                                    href="https://buy.stripe.com/7sI0081086Xr4so4gh"
+                                    target="_blank"
+                                    class="th-btn style3 w-100">
+                                    Sign Up Now!
+                                </a>
                             </div>
                         </div>
                     </div>
@@ -324,7 +324,7 @@
                                                 </li>
                                                 <li
                                                     *ngIf="
-                                                        yearlySignUp.description5
+                                                        yearlySignUp.description4
                                                     ">
                                                     <i
                                                         class="far fa-circle-check"></i>
@@ -347,14 +347,14 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="btn-wrap">
-                                <!--<a-->
-                                <!--    [href]="yearlyMembershipStripeLink"-->
-                                <!--    target="_blank"-->
-                                <!--    class="th-btn style3 w-100"-->
-                                <!--    >Sign up Now</a-->
-                                <!-->-->
-                            </div>
+                        </div>
+                        <div class="btn-wrap">
+                            <a
+                                href="https://buy.stripe.com/7sI0081086Xr4so4gh"
+                                target="_blank"
+                                class="th-btn style3 w-130">
+                                Sign Up Now!
+                            </a>
                         </div>
                     </div>
                     <div
@@ -370,7 +370,7 @@
                     </div>
                 </div>
             </div>
-            <div
+            <!-- <div
                 class="tab-pane fade show active"
                 id="price-two"
                 role="tabpanel"
@@ -483,19 +483,19 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> -->
         </div>
     </div>
 </section>
 
-<section>
+<section *ngIf="showForm">
     <div
         id="sign-up"
         class="overflow-hidden space-bottom bg-black2 pt-40"
         data-mask-src="/images/hero/hero_bg-shape-mask.png">
         <div class="container">
             <div class="title-area text-center">
-                <span class="sub-title">Sign Up</span>
+                <span class="sub-title">Practice - Sign Up</span>
             </div>
             <div class="bmi-calculator-form">
                 <form
@@ -558,7 +558,10 @@
                                         Select an Option
                                     </option>
                                     <option
-                                        *ngIf="openPractice.Date"
+                                        *ngIf="
+                                            openPractice.Date &&
+                                            spotsLeftClassAB > 0
+                                        "
                                         [value]="
                                             'A/B - ' +
                                             (openPractice.Date
@@ -569,9 +572,20 @@
                                             openPractice.Date
                                                 | date : 'mediumDate'
                                         }}
+                                        <span
+                                            *ngIf="
+                                                spotsLeftClassAB <= 6 &&
+                                                spotsLeftClassAB > 0
+                                            ">
+                                            - {{ spotsLeftClassAB }} spots
+                                            remaining.
+                                        </span>
                                     </option>
                                     <option
-                                        *ngIf="openPractice.Date"
+                                        *ngIf="
+                                            openPractice.Date &&
+                                            spotsLeftClassC > 0
+                                        "
                                         [value]="
                                             'C - ' +
                                             (openPractice.Date
@@ -582,9 +596,20 @@
                                             openPractice.Date
                                                 | date : 'mediumDate'
                                         }}
+                                        <span
+                                            *ngIf="
+                                                spotsLeftClassC <= 6 &&
+                                                spotsLeftClassC > 0
+                                            ">
+                                            - {{ spotsLeftClassC }} spots
+                                            remaining.
+                                        </span>
                                     </option>
                                     <option
-                                        *ngIf="openPractice.Date"
+                                        *ngIf="
+                                            openPractice.Date &&
+                                            spotsLeftClassMini > 0
+                                        "
                                         [value]="
                                             'Mini - ' +
                                             (openPractice.Date
@@ -595,9 +620,20 @@
                                             openPractice.Date
                                                 | date : 'mediumDate'
                                         }}
+                                        <span
+                                            *ngIf="
+                                                spotsLeftClassMini <= 6 &&
+                                                spotsLeftClassMini > 0
+                                            ">
+                                            - {{ spotsLeftClassMini }} spots
+                                            remaining.
+                                        </span>
                                     </option>
                                     <option
-                                        *ngIf="openPractice.Date"
+                                        *ngIf="
+                                            openPractice.Date &&
+                                            spotsLeftClassJr > 0
+                                        "
                                         [value]="
                                             'Jr Track - ' +
                                             (openPractice.Date
@@ -608,10 +644,19 @@
                                             openPractice.Date
                                                 | date : 'mediumDate'
                                         }}
+                                        <span
+                                            *ngIf="
+                                                spotsLeftClassJr <= 6 &&
+                                                spotsLeftClassJr > 0
+                                            ">
+                                            - {{ spotsLeftClassJr }} spots
+                                            remaining.
+                                        </span>
                                     </option>
 
                                     <hr *ngIf="openPractice.Date2" />
 
+                                    <!-- This Section needs a seperate spots counter... -->
                                     <option
                                         *ngIf="openPractice.Date2"
                                         [value]="

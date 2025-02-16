@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { ApiService } from '../services/api.service';
-import { Component } from '@angular/core';
+import { ChangeDetectorRef, Component } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { StripeService } from '../services/stripe.service';
 import { CLASSES, PracticeSpotsLeft } from '../interfaces/responses';
@@ -25,13 +25,15 @@ export class MembershipPricingComponent {
     public signUpForm: FormGroup;
     public openPractice: any;
     public yearlySignUp: any;
+    public showForm: boolean = false;
     public payLink: string;
     private classes: PracticeSpotsLeft[] = [];
 
     constructor(
         private apiServivce: ApiService,
         private stripeService: StripeService,
-        private fb: FormBuilder
+        private fb: FormBuilder,
+        private cdr: ChangeDetectorRef
     ) {
         this.getPricing();
         this.getSpotsLeft();
@@ -55,6 +57,10 @@ export class MembershipPricingComponent {
     public get spotsLeftClassMini(): number {
         return this.classes?.find(c => c.class === CLASSES.MINI.name)
             ?.spotsLeft;
+    }
+
+    public get spotsLeftClassJr(): number {
+        return this.classes?.find(c => c.class === CLASSES.JR.name)?.spotsLeft;
     }
 
     public submit(): void {
@@ -82,9 +88,8 @@ export class MembershipPricingComponent {
             );
 
             window.open(this.payLink, '_blank');
-            this.signUpForm.reset(); // Optional: Reset the form after submission
+            this.signUpForm.reset();
         } else {
-            console.log('Form is invalid');
             alert('Please fill in all required fields.');
         }
     }
@@ -161,7 +166,9 @@ export class MembershipPricingComponent {
                 return;
             }
             this.openPractice = response.data.attributes;
-            console.log(this.openPractice);
+            if (this.openPractice.isActive) {
+                this.showForm = true;
+            }
             const today = new Date().toISOString().split('T')[0]; // Get today's date
 
             if (typeof this.openPractice.startTime === 'string') {
