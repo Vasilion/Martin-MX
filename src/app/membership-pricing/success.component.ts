@@ -35,8 +35,13 @@ export class PaymentSuccessComponent implements AfterViewInit {
                 take(1),
                 switchMap((params: Params): Observable<any> => {
                     const classParam = params['class'];
+                    const riderName = localStorage.getItem('riderName');
+                    if (!riderName) {
+                        return of(null);
+                    }
                     if (this.isValidClassType(classParam)) {
                         this.selectedClass = classParam as ClassType;
+                        this.writeRiderDataToStrapi();
                         return this.http.post(
                             CLASSES[this.selectedClass].strapiEndpoint,
                             {}
@@ -53,7 +58,6 @@ export class PaymentSuccessComponent implements AfterViewInit {
                     this.loading = false;
                 }
             });
-        this.writeRiderDataToStrapi();
     }
 
     private isValidClassType(classType: string): boolean {
@@ -66,6 +70,7 @@ export class PaymentSuccessComponent implements AfterViewInit {
         const riderName = localStorage.getItem('riderName');
 
         if (!riderName) {
+            console.log('No rider found');
             return;
         }
 
