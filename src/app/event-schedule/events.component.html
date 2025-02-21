@@ -4,9 +4,11 @@
             <span class="sub-title">{{ scheduleYear }} Schedule</span>
         </div>
     </div>
-    <ng-container *ngIf="monthsGrouped && monthsGrouped.length > 0">
+    <ng-container
+        *ngIf="(monthsGrouped$ | async) && (monthsGrouped$ | async).length > 0"
+    >
         <div class="monthsGrid">
-            <div *ngFor="let month of monthsGrouped" class="mb-8">
+            <div *ngFor="let month of monthsGrouped$ | async" class="mb-8">
                 <h2
                     class="text-center cl-black text-2xl font-semibold mb-4 pb-2 border-b border-gray-200"
                 >
@@ -68,7 +70,9 @@
             </div>
         </div>
     </ng-container>
-    <ng-container *ngIf="!monthsGrouped || monthsGrouped.length === 0">
+    <ng-container
+        *ngIf="!(monthsGrouped$ | async) || (monthsGrouped$ | async).length === 0"
+    >
         <div class="text-center text-gray-500">Schedule not available</div>
     </ng-container>
 </div>

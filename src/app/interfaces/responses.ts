@@ -66,3 +66,23 @@ export interface PracticeSpotsLeft {
     class: string;
     spotsLeft: number;
 }
+
+export interface OpenPractice {
+    Date?: string;
+    Date2?: string;
+    startTime?: string;
+    startTime2?: string;
+    endTime?: string;
+    isActive?: boolean;
+    isCancelled?: boolean;
+    isCashOnly?: boolean;
+    price?: number;
+    description1?: string;
+    description2?: string;
+    description3?: string;
+    description4?: string;
+    description5?: string;
+    reasonForCancel?: string;
+    combinedDateTime?: Date | null;
+    combinedDateTime2?: Date | null;
+}

@@ -1,15 +1,19 @@
 import { CommonModule } from '@angular/common';
+import { Component } from '@angular/core';
 import {
-    Component,
-} from '@angular/core';
-import { FormsModule, ReactiveFormsModule, FormGroup, FormBuilder, Validators } from '@angular/forms';
+    FormsModule,
+    ReactiveFormsModule,
+    FormGroup,
+    FormBuilder,
+    Validators
+} from '@angular/forms';
 
 @Component({
     standalone: true,
     imports: [ReactiveFormsModule, CommonModule, FormsModule],
     selector: 'app-daily',
     templateUrl: 'daily.component.html',
-    styleUrls: ['daily.component.css'],
+    styleUrls: ['daily.component.css']
 })
 export class DailyComponent {
     public form: FormGroup;
@@ -18,10 +22,8 @@ export class DailyComponent {
             firstName: [''],
             lastName: [''],
             email: [''],
-            acceptTerms: [false, [Validators.requiredTrue]],
+            acceptTerms: [false, [Validators.requiredTrue]]
         });
     }
-    public save() {
-        console.log(this.form.value);
-    }
+    public save() {}
 }

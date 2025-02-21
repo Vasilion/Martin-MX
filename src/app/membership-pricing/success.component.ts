@@ -24,7 +24,10 @@ export class PaymentSuccessComponent implements AfterViewInit {
     public selectedClass: ClassType | null = null;
     public loading = true;
 
-    constructor(private route: ActivatedRoute, private http: HttpClient) {}
+    constructor(
+        private route: ActivatedRoute,
+        private http: HttpClient
+    ) {}
 
     public ngAfterViewInit(): void {
         this.route.queryParams
@@ -32,8 +35,13 @@ export class PaymentSuccessComponent implements AfterViewInit {
                 take(1),
                 switchMap((params: Params): Observable<any> => {
                     const classParam = params['class'];
+                    const riderName = localStorage.getItem('riderName');
+                    if (!riderName) {
+                        return of(null);
+                    }
                     if (this.isValidClassType(classParam)) {
                         this.selectedClass = classParam as ClassType;
+                        this.writeRiderDataToStrapi();
                         return this.http.post(
                             CLASSES[this.selectedClass].strapiEndpoint,
                             {}
@@ -43,16 +51,13 @@ export class PaymentSuccessComponent implements AfterViewInit {
                 })
             )
             .subscribe({
-                next: (response: any): void => {
-                    console.log('response:', response);
+                next: (): void => {
                     this.loading = false;
                 },
-                error: (error: any): void => {
-                    console.error('Error:', error);
+                error: (): void => {
                     this.loading = false;
                 }
             });
-        this.writeRiderDataToStrapi();
     }
 
     private isValidClassType(classType: string): boolean {
@@ -62,6 +67,12 @@ export class PaymentSuccessComponent implements AfterViewInit {
     private writeRiderDataToStrapi(): void {
         const dropdownValue = localStorage.getItem('dropdown') || '';
         const [riderClass, date] = dropdownValue.split(' - ');
+        const riderName = localStorage.getItem('riderName');
+
+        if (!riderName) {
+            console.log('No rider found');
+            return;
+        }
 
         const payload = {
             data: {
@@ -72,12 +83,13 @@ export class PaymentSuccessComponent implements AfterViewInit {
             }
         };
 
-        console.log('Payload:', payload);
         this.http
             .post(
                 environment.strapiBaseUrl + '/martin-rider-sign-up-lists',
                 payload
             )
-            .subscribe(res => ({}));
+            .subscribe((): void => {
+                localStorage.clear();
+            });
     }
 }

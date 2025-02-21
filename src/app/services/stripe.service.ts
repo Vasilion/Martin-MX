@@ -11,7 +11,6 @@ export class StripeService {
 
     public redirectToForm(classType: ClassType) {
         const config = CLASSES[classType];
-        console.log('redirecting to form:', config);
         window.open(config.formLink, '_blank');
     }
 
