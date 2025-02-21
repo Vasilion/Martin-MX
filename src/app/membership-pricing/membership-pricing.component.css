@@ -23,6 +23,17 @@ section.space > div.container {
     opacity: 0.5;
 }
 
+.invalid-feedback {
+    display: block;
+    color: #dc3545;
+    font-size: 0.875rem;
+    margin-top: 0.25rem;
+}
+
+.form-control.is-invalid {
+    border-color: #dc3545;
+}
+
 @media (max-width: 412px) {
     .mobile-pricing-nav-small {
         display: flex;

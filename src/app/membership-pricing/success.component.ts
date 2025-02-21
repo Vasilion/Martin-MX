@@ -24,7 +24,10 @@ export class PaymentSuccessComponent implements AfterViewInit {
     public selectedClass: ClassType | null = null;
     public loading = true;
 
-    constructor(private route: ActivatedRoute, private http: HttpClient) {}
+    constructor(
+        private route: ActivatedRoute,
+        private http: HttpClient
+    ) {}
 
     public ngAfterViewInit(): void {
         this.route.queryParams
@@ -72,7 +75,6 @@ export class PaymentSuccessComponent implements AfterViewInit {
             }
         };
 
-        console.log('Payload:', payload);
         this.http
             .post(
                 environment.strapiBaseUrl + '/martin-rider-sign-up-lists',
