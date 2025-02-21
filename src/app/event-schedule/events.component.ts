@@ -1,7 +1,9 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ApiService } from '../services/api.service';
 import { RouterModule } from '@angular/router';
+import { OpenPracticeCacheService } from '../services/open-practice.service';
+import { BehaviorSubject, combineLatest, Subject, takeUntil } from 'rxjs';
 
 interface Event {
     date: string;
@@ -30,80 +32,86 @@ interface MonthGroup {
     templateUrl: 'events.component.html',
     styleUrls: ['events.component.css']
 })
-export class EventsComponent implements OnInit {
-    public monthsGrouped: MonthGroup[] = [];
+export class EventsComponent implements OnInit, OnDestroy {
+    private destroy$ = new Subject<void>();
+    private scheduleData$ = new BehaviorSubject<Event[]>([]);
+    private openPracticeDates$ = new BehaviorSubject<string[]>([]);
+
+    public monthsGrouped$ = new BehaviorSubject<MonthGroup[]>([]);
+    public isScheduleLoading$ = new BehaviorSubject<boolean>(true);
     public scheduleYear: number = new Date().getFullYear();
-    public openPractice: any;
 
-    constructor(private apiService: ApiService) {}
+    constructor(
+        private apiService: ApiService,
+        private openPracticeCacheService: OpenPracticeCacheService
+    ) {}
 
-    public ngOnInit(): void {
-        this.getEvents();
+    ngOnInit(): void {
+        this.loadOpenPractice();
+        this.loadSchedule();
+
+        combineLatest([this.scheduleData$, this.openPracticeDates$])
+            .pipe(takeUntil(this.destroy$))
+            .subscribe(([schedule, openPracticeDates]) => {
+                if (schedule.length > 0) {
+                    const processedEvents = this.processEvents(
+                        schedule,
+                        openPracticeDates
+                    );
+                    this.monthsGrouped$.next(
+                        this.groupScheduleByMonth(processedEvents)
+                    );
+                }
+            });
     }
 
-    public getEvents(): void {
-        let openPracticeDates: string[] = [];
+    ngOnDestroy(): void {
+        this.destroy$.next();
+        this.destroy$.complete();
+    }
 
-        this.apiService.getOpenSignUp().subscribe(response => {
-            if (!response) {
-                return;
-            }
-            this.openPractice = response.data.attributes;
+    private loadOpenPractice(): void {
+        this.openPracticeCacheService
+            .getOpenPractice()
+            .pipe(takeUntil(this.destroy$))
+            .subscribe({
+                next: response => {
+                    if (!response) return;
 
-            if (this.openPractice.Date) {
-                openPracticeDates.push(this.openPractice.Date);
-            }
-            if (this.openPractice.Date2) {
-                openPracticeDates.push(this.openPractice.Date2);
-            }
+                    const dates: string[] = [];
+                    if (response.Date) dates.push(response.Date);
+                    if (response.Date2) dates.push(response.Date2);
 
-            const today = new Date().toISOString().split('T')[0];
+                    this.openPracticeDates$.next(dates);
+                },
+                error: error => {
+                    console.error('Error loading open practice dates:', error);
+                    this.openPracticeDates$.next([]);
+                }
+            });
+    }
 
-            if (typeof this.openPractice.startTime === 'string') {
-                const startTime = new Date(
-                    `${today}T${this.openPractice.startTime}`
-                );
-                this.openPractice.startTime = startTime.toLocaleTimeString(
-                    undefined,
-                    {
-                        hour: 'numeric',
-                        minute: '2-digit',
-                        hour12: true
-                    }
-                );
-            }
-
-            if (typeof this.openPractice.endTime === 'string') {
-                const endTime = new Date(
-                    `${today}T${this.openPractice.endTime}`
-                );
-                this.openPractice.endTime = endTime.toLocaleTimeString(
-                    undefined,
-                    {
-                        hour: 'numeric',
-                        minute: '2-digit',
-                        hour12: true
-                    }
-                );
-            }
-
-            this.apiService.getSchedule().subscribe(data => {
-                if (data && data.length > 0) {
-                    if (data[0].date) {
+    private loadSchedule(): void {
+        this.apiService
+            .getSchedule()
+            .pipe(takeUntil(this.destroy$))
+            .subscribe({
+                next: data => {
+                    if (data?.[0]?.date) {
                         this.scheduleYear = new Date(
                             data[0].date
                         ).getFullYear();
                     }
+                    this.scheduleData$.next(data);
+                    this.isScheduleLoading$.next(false);
+                },
+                error: error => {
+                    console.error('Error loading schedule:', error);
+                    this.isScheduleLoading$.next(false);
+                    this.scheduleData$.next([]);
                 }
-                const processedEvents = this.processEvents(
-                    data,
-                    openPracticeDates
-                );
-                this.monthsGrouped = this.groupScheduleByMonth(processedEvents);
             });
-        });
     }
-
     private processEvents(
         events: Event[],
         openPracticeDates: string[]
@@ -118,17 +126,12 @@ export class EventsComponent implements OnInit {
                 endDate.setHours(parseInt(hours), parseInt(minutes), 0);
             }
 
-            // Convert event date to YYYY-MM-DD format for comparison
             const eventDateFormatted = new Date(event.date)
                 .toISOString()
                 .split('T')[0];
 
             const isOpenPractice = openPracticeDates.some(
                 (practiceDate): boolean => {
-                    console.log('Comparing:', {
-                        eventDate: eventDateFormatted,
-                        practiceDate: practiceDate
-                    });
                     return eventDateFormatted === practiceDate;
                 }
             );

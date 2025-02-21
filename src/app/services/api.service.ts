@@ -119,6 +119,16 @@ export class ApiService {
             .pipe(map((data: any) => data.data.attributes));
     }
 
+    public getOpenClassJRSpotsLeft(): Observable<any> {
+        let url =
+            environment.strapiBaseUrl +
+            '/martin-open-practice-jr-track' +
+            '?populate=*';
+        return this.http
+            .get(url)
+            .pipe(map((data: any) => data.data.attributes));
+    }
+
     public updateOpenClassABSpotsLeft(
         spotsLeft: number
     ): Observable<PracticeSpotsLeft> {
@@ -169,6 +179,7 @@ export class ApiService {
             .put(url, request)
             .pipe(map((data: any) => data.data.attributes));
     }
+
     public getOpenSignUp(): Observable<any> {
         let url =
             environment.strapiBaseUrl + '/martin-open-practice' + '?populate=*';

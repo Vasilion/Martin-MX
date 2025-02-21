@@ -1,8 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { ApiService } from '../services/api.service';
-import { ChangeDetectorRef, Component } from '@angular/core';
+import { Component } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { StripeService } from '../services/stripe.service';
 import { CLASSES, PracticeSpotsLeft } from '../interfaces/responses';
 import {
     FormBuilder,
@@ -10,6 +9,7 @@ import {
     Validators,
     ReactiveFormsModule
 } from '@angular/forms';
+import { OpenPracticeCacheService } from '../services/open-practice.service';
 
 @Component({
     standalone: true,
@@ -31,7 +31,7 @@ export class MembershipPricingComponent {
 
     constructor(
         private apiServivce: ApiService,
-        private stripeService: StripeService,
+        private openPracticeCacheService: OpenPracticeCacheService,
         private fb: FormBuilder
     ) {
         this.getPricing();
@@ -153,18 +153,6 @@ export class MembershipPricingComponent {
         }
     }
 
-    public redirectToCheckoutC() {
-        this.stripeService.redirectToForm(CLASSES.C.name);
-    }
-
-    public redirectToCheckoutMini() {
-        this.stripeService.redirectToForm(CLASSES.MINI.name);
-    }
-
-    public redirectToCheckoutAB() {
-        this.stripeService.redirectToForm('AB');
-    }
-
     private getSpotsLeft() {
         this.apiServivce
             .getOpenClassABSpotsLeft()
@@ -199,47 +187,61 @@ export class MembershipPricingComponent {
                     spotsLeft: response.numberOfSpotsLeft
                 });
             });
+
+        this.apiServivce
+            .getOpenClassJRSpotsLeft()
+            .subscribe((response: any) => {
+                if (!response) {
+                    return;
+                }
+                this.classes.push({
+                    class: CLASSES.JR.name,
+                    spotsLeft: response.numberOfSpotsLeft
+                });
+            });
     }
 
     private getPricing() {
-        this.apiServivce.getOpenSignUp().subscribe((response: any) => {
-            if (!response) {
-                return;
-            }
-            this.openPractice = response.data.attributes;
-            if (this.openPractice.isActive) {
-                this.showForm = true;
-            }
-            const today = new Date().toISOString().split('T')[0]; // Get today's date
+        this.openPracticeCacheService
+            .getOpenPractice()
+            .subscribe((response: any) => {
+                if (!response) {
+                    return;
+                }
+                this.openPractice = response;
+                if (this.openPractice.isActive) {
+                    this.showForm = true;
+                }
+                const today = new Date().toISOString().split('T')[0];
 
-            if (typeof this.openPractice.startTime === 'string') {
-                const startTime = new Date(
-                    `${today}T${this.openPractice.startTime}`
-                );
-                this.openPractice.startTime = startTime.toLocaleTimeString(
-                    undefined,
-                    {
-                        hour: 'numeric',
-                        minute: '2-digit',
-                        hour12: true
-                    }
-                );
-            }
+                if (typeof this.openPractice.startTime === 'string') {
+                    const startTime = new Date(
+                        `${today}T${this.openPractice.startTime}`
+                    );
+                    this.openPractice.startTime = startTime.toLocaleTimeString(
+                        undefined,
+                        {
+                            hour: 'numeric',
+                            minute: '2-digit',
+                            hour12: true
+                        }
+                    );
+                }
 
-            if (typeof this.openPractice.endTime === 'string') {
-                const endTime = new Date(
-                    `${today}T${this.openPractice.endTime}`
-                );
-                this.openPractice.endTime = endTime.toLocaleTimeString(
-                    undefined,
-                    {
-                        hour: 'numeric',
-                        minute: '2-digit',
-                        hour12: true
-                    }
-                );
-            }
-        });
+                if (typeof this.openPractice.endTime === 'string') {
+                    const endTime = new Date(
+                        `${today}T${this.openPractice.endTime}`
+                    );
+                    this.openPractice.endTime = endTime.toLocaleTimeString(
+                        undefined,
+                        {
+                            hour: 'numeric',
+                            minute: '2-digit',
+                            hour12: true
+                        }
+                    );
+                }
+            });
         this.apiServivce.getUnlimitedSignUp().subscribe((response: any) => {
             if (!response) {
                 return;

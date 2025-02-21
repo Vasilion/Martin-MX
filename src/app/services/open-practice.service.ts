@@ -11,7 +11,7 @@ import { environment } from '../../environments/environment';
 export class OpenPracticeCacheService {
     private readonly CACHE_KEY = 'openPracticeData';
     private readonly TIMESTAMP_KEY = 'openPracticeTimestamp';
-    private readonly CACHE_DURATION = 60 * 60 * 1000;
+    private readonly CACHE_DURATION = 5 * 60 * 1000;
 
     private openPracticeSubject = new BehaviorSubject<OpenPractice | null>(
         null

@@ -46,12 +46,10 @@ export class PaymentSuccessComponent implements AfterViewInit {
                 })
             )
             .subscribe({
-                next: (response: any): void => {
-                    console.log('response:', response);
+                next: (): void => {
                     this.loading = false;
                 },
-                error: (error: any): void => {
-                    console.error('Error:', error);
+                error: (): void => {
                     this.loading = false;
                 }
             });
@@ -65,6 +63,11 @@ export class PaymentSuccessComponent implements AfterViewInit {
     private writeRiderDataToStrapi(): void {
         const dropdownValue = localStorage.getItem('dropdown') || '';
         const [riderClass, date] = dropdownValue.split(' - ');
+        const riderName = localStorage.getItem('riderName');
+
+        if (!riderName) {
+            return;
+        }
 
         const payload = {
             data: {
@@ -80,6 +83,8 @@ export class PaymentSuccessComponent implements AfterViewInit {
                 environment.strapiBaseUrl + '/martin-rider-sign-up-lists',
                 payload
             )
-            .subscribe(res => ({}));
+            .subscribe((): void => {
+                localStorage.clear();
+            });
     }
 }
