@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { BehaviorSubject, Observable } from 'rxjs';
-import { map, tap, shareReplay } from 'rxjs/operators';
+import { BehaviorSubject, Observable, of } from 'rxjs';
+import { map, switchMap, tap, shareReplay } from 'rxjs/operators';
 import { OpenPractice } from '../interfaces/responses';
 import { environment } from '../../environments/environment';
 
@@ -11,7 +11,7 @@ import { environment } from '../../environments/environment';
 export class OpenPracticeCacheService {
     private readonly CACHE_KEY = 'openPracticeData';
     private readonly TIMESTAMP_KEY = 'openPracticeTimestamp';
-    private readonly CACHE_DURATION = 5 * 60 * 1000;
+    private readonly CACHE_DURATION = 5 * 60 * 1000; // 5 minutes in milliseconds
 
     private openPracticeSubject = new BehaviorSubject<OpenPractice | null>(
         null
@@ -29,6 +29,7 @@ export class OpenPracticeCacheService {
             const parsedData = JSON.parse(cachedData);
             const parsedTimestamp = parseInt(timestamp, 10);
 
+            // Check if the cache is still valid (less than 5 minutes old)
             if (Date.now() - parsedTimestamp <= this.CACHE_DURATION) {
                 if (parsedData.combinedDateTime) {
                     parsedData.combinedDateTime = new Date(
@@ -102,29 +103,31 @@ export class OpenPracticeCacheService {
     }
 
     public getOpenPractice(): Observable<OpenPractice> {
-        if (this.shouldFetchNewData()) {
-            const url = `${environment.strapiBaseUrl}/martin-open-practice?populate=*`;
-
-            this.http
-                .get<any>(url)
-                .pipe(
-                    map(response => this.processOpenPracticeData(response)),
-                    tap(data => {
-                        this.openPracticeSubject.next(data);
-                        this.saveToSessionStorage(data);
-                    }),
-                    shareReplay(1)
-                )
-                .subscribe();
+        // Check if we need to fetch new data
+        if (this.shouldFetchNewData() || !this.openPracticeSubject.getValue()) {
+            return this.fetchOpenPracticeData();
         }
 
         return this.openPracticeSubject.asObservable().pipe(
-            map(data => {
+            switchMap(data => {
                 if (!data) {
-                    throw new Error('No open practice data available');
+                    return this.fetchOpenPracticeData();
                 }
-                return data;
+                return of(data);
             })
+        );
+    }
+
+    private fetchOpenPracticeData(): Observable<OpenPractice> {
+        const url = `${environment.strapiBaseUrl}/martin-open-practice?populate=*`;
+
+        return this.http.get<any>(url).pipe(
+            map(response => this.processOpenPracticeData(response)),
+            tap(data => {
+                this.openPracticeSubject.next(data);
+                this.saveToSessionStorage(data);
+            }),
+            shareReplay(1)
         );
     }
 
