@@ -626,7 +626,7 @@
                                     class="form-control"
                                     [ngClass]="{'is-invalid': signUpForm.get('riderNumber')?.errors && signUpForm.get('riderNumber')?.touched}"
                                     placeholder="Rider Number"
-                                    type="number"
+                                    type="text"
                                     name="riderNumber"
                                     (blur)="signUpForm.get('riderNumber')?.markAsTouched()"
                                     required
