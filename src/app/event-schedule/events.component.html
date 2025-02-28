@@ -1,42 +1,55 @@
 <div class="mobile-calendar" *ngIf="currentMonth$ | async">
-    <div class="calendar-header">
-        <div class="title-area">
-            <span class="sub-title">{{ scheduleYear }} Schedule</span>
-            <h1 *ngIf="currentMonth$ | async">
-                {{ (currentMonth$ | async)?.name }} {{ (currentMonth$ |
-                async)?.year }}
-            </h1>
+    <!-- Header and Legend Container -->
+    <div class="header-legend-container">
+        <!-- Calendar Header (no longer sticky) -->
+        <div class="calendar-header">
+            <div class="title-area">
+                <span class="sub-title">{{ scheduleYear }} Schedule</span>
+                <h1 *ngIf="currentMonth$ | async">
+                    {{ (currentMonth$ | async)?.name }} {{ (currentMonth$ |
+                    async)?.year }}
+                </h1>
+            </div>
+            <div class="calendar-controls">
+                <button (click)="goToToday()" class="today-btn">Today</button>
+                <button (click)="prevMonth()" class="nav-btn">&larr;</button>
+                <button (click)="nextMonth()" class="nav-btn">&rarr;</button>
+            </div>
         </div>
-        <div class="calendar-controls">
-            <button (click)="goToToday()" class="today-btn">Today</button>
-            <button (click)="prevMonth()" class="nav-btn">&larr;</button>
-            <button (click)="nextMonth()" class="nav-btn">&rarr;</button>
-        </div>
-    </div>
 
-    <!-- Calendar Legend -->
-    <div class="calendar-legend">
-        <div class="legend-item">
-            <div class="legend-color" style="background-color: #007bff"></div>
-            <span>Scheduled Practice</span>
-        </div>
-        <div class="legend-item">
-            <div class="legend-color" style="background-color: #28a745"></div>
-            <span>Registration Open</span>
-        </div>
-        <div class="legend-item">
-            <div class="legend-color" style="background-color: #dc3545"></div>
-            <span>Cancelled</span>
-        </div>
-        <div class="legend-item">
-            <div
-                class="legend-color"
-                style="
-                    border: 2px solid #007bff;
-                    background-color: rgba(0, 123, 255, 0.05);
-                "
-            ></div>
-            <span>Selected Day</span>
+        <!-- Calendar Legend (now side by side with header) -->
+        <div class="calendar-legend">
+            <div class="legend-item">
+                <div
+                    class="legend-color"
+                    style="background-color: #007bff"
+                ></div>
+                <span>Scheduled Practice</span>
+            </div>
+            <div class="legend-item">
+                <div
+                    class="legend-color"
+                    style="background-color: #28a745"
+                ></div>
+                <span>Registration Open</span>
+            </div>
+            <div class="legend-item">
+                <div
+                    class="legend-color"
+                    style="background-color: #dc3545"
+                ></div>
+                <span>Cancelled</span>
+            </div>
+            <div class="legend-item">
+                <div
+                    class="legend-color"
+                    style="
+                        border: 2px solid #007bff;
+                        background-color: rgba(0, 123, 255, 0.05);
+                    "
+                ></div>
+                <span>Selected Day</span>
+            </div>
         </div>
     </div>
 

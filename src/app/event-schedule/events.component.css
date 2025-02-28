@@ -1,5 +1,5 @@
 .mobile-calendar {
-    padding-top: 120px;
+    padding-top: 120px; /* Reduced from 120px since header is no longer sticky */
 }
 
 .calendar-container {
@@ -9,33 +9,45 @@
 }
 
 .calendar-header {
-    position: sticky;
-    top: 0;
-    z-index: 10;
+    width: 100%;
     background-color: white;
     padding: 16px;
     border-bottom: 1px solid rgba(37, 100, 0, 0.2);
     box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+.header-legend-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
     margin-bottom: 24px;
+    flex-wrap: wrap;
+    gap: 20px;
 }
 
 .title-area {
     text-align: center;
     margin-bottom: 15px;
+    flex: 1;
+    min-width: 250px;
 }
 
 .sub-title {
-    display: block;
     margin-bottom: 5px;
-}
-
-.calendar-legend {
     display: flex;
     justify-content: center;
-    gap: 20px;
-    margin: 0 auto 20px auto;
-    max-width: 900px;
-    padding: 15px;
+}
+
+/* Adjust calendar legend to work in flex layout */
+.calendar-legend {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 10px;
+    flex: 1;
+    min-width: 250px;
+    max-width: 450px;
+    padding: 10px;
     background-color: #f8f9fa;
     border-radius: 8px;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
@@ -347,7 +359,11 @@
 @media (max-width: 768px) {
     .calendar-container {
         padding: 10px;
-        margin-top: 80px;
+        margin-top: 20px; /* Reduced from 80px since header is no longer sticky */
+    }
+
+    .header-legend-container {
+        flex-direction: column;
     }
 
     .calendar-header {
@@ -365,6 +381,10 @@
 
     .sub-title {
         font-size: 0.9rem;
+    }
+
+    .calendar-legend {
+        max-width: 100%;
     }
 }
 
