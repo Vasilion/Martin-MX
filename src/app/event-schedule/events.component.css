@@ -1,58 +1,645 @@
-section {
-    scroll-margin-top: 100px;
+.mobile-calendar {
+    padding-top: 150px;
 }
 
-.schedule-container {
-    min-height: 69vh;
+.calendar-container {
+    margin-top: 200px;
+    scroll-margin-top: 100px;
+    min-height: 80vh;
     padding-top: 125px;
     padding-bottom: 125px;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
 }
 
-.cl-black {
-    color: black !important;
+.calendar-header {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    background-color: white;
+    padding: 16px;
+    border-bottom: 1px solid rgba(37, 100, 0, 0.2);
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    margin-bottom: 24px;
 }
 
-.schedule-day {
+.title-area {
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+.sub-title {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.calendar-controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.calendar-controls button {
+    margin: 0 5px;
+}
+
+.today-btn {
+    background-color: #e9ecef;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.today-btn:hover {
+    background-color: #dee2e6;
+}
+
+.nav-btn {
+    background-color: #e9ecef;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.nav-btn:hover {
+    background-color: #dee2e6;
+}
+
+.calendar-grid {
+    background-color: white;
+    border: 1px solid rgba(37, 100, 0, 0.2);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+.weekday-header {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    border-bottom: 1px solid rgba(37, 100, 0, 0.2);
+}
+
+.weekday-header div {
+    padding: 10px;
+    text-align: center;
+    font-weight: 500;
+    color: #495057;
+    border-right: 1px solid rgba(37, 100, 0, 0.1);
+}
+
+.weekday-header div:last-child {
+    border-right: none;
+}
+
+.calendar-week {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    border-bottom: 1px solid rgba(37, 100, 0, 0.2);
+}
+
+.calendar-week:last-child {
+    border-bottom: none;
+}
+
+.calendar-day {
+    min-height: 100px;
+    padding-bottom: 4px;
+    transition: background-color 0.2s ease;
+    border-right: 1px solid rgba(37, 100, 0, 0.1);
+    position: relative;
+    cursor: pointer;
+}
+
+.calendar-day:last-child {
+    border-right: none;
+}
+
+.calendar-day:hover {
+    background-color: rgba(37, 100, 0, 0.05);
+}
+
+.day-number {
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    height: 28px;
+    width: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+}
+
+.other-month {
+    color: #adb5bd;
+    background-color: #f8f9fa;
+}
+
+.today-number {
+    background-color: #007bff;
+    color: white;
+    border-radius: 50%;
+}
+
+.event-container {
+    padding-top: 32px;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+.event {
+    font-size: 0.75rem;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+    transition: all 0.2s ease;
+    margin-bottom: 4px;
+    padding: 4px 6px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.event:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+.event.open-practice {
+    background-color: rgba(16, 185, 129, 0.2);
+    border-left: 3px solid rgba(16, 185, 129, 0.7);
+}
+
+.event.open-practice:hover {
+    background-color: rgba(16, 185, 129, 0.3);
+}
+
+.event.cancelled {
+    background-color: rgba(239, 68, 68, 0.2);
+    border-left: 3px solid rgba(239, 68, 68, 0.7);
+    text-decoration: line-through;
+    opacity: 0.8;
+}
+
+.event.normal {
+    background-color: rgba(59, 130, 246, 0.2);
+    border-left: 3px solid rgba(59, 130, 246, 0.7);
+}
+
+.event-dot {
+    height: 8px;
+    width: 8px;
+    border-radius: 50%;
+    display: inline-block;
+    margin-right: 4px;
+}
+
+.event-dot.red {
+    background-color: #dc3545;
+}
+
+.event-dot.green {
+    background-color: #28a745;
+}
+
+.event-dot.blue {
+    background-color: #007bff;
+}
+
+.event-time {
+    font-weight: 500;
+}
+
+.event-title {
+    font-weight: 500;
+}
+
+.sign-up-button {
+    background-color: rgb(37, 100, 0);
+    color: white;
+    border-radius: 4px;
+    padding: 2px 4px;
+    font-size: 0.65rem;
+    text-align: center;
+    margin-top: 4px;
+    display: block;
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(37, 100, 0, 0.7);
+    }
+    70% {
+        box-shadow: 0 0 0 6px rgba(37, 100, 0, 0);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(37, 100, 0, 0);
+    }
+}
+
+.event-count {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    background-color: rgb(37, 100, 0);
+    color: white;
+    border-radius: 50%;
+    width: 16px;
+    height: 16px;
+    font-size: 0.65rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.selected-day {
+    border: 2px solid #007bff !important;
+}
+
+.open-practice-day {
+    border: 2px solid #28a745 !important;
+}
+
+.mobile-calendar-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 5px;
+    margin-bottom: 20px;
+}
+
+.mobile-day {
+    aspect-ratio: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 2px;
+    cursor: pointer;
+}
+
+.mobile-weekday {
+    text-align: center;
+    font-size: 12px;
+    font-weight: 600;
+    color: #495057;
+    margin-bottom: 5px;
+}
+
+.mobile-day-number {
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.mobile-event-indicators {
+    display: flex;
+    gap: 2px;
+    margin-top: 4px;
+}
+
+.mobile-event-dot {
+    height: 6px;
+    width: 6px;
+    border-radius: 50%;
+}
+
+.mobile-event-list {
+    margin-top: 24px;
+    border-top: 1px solid #ddd;
+    padding-top: 16px;
+}
+
+.mobile-day-title {
+    text-align: center;
+    margin-bottom: 16px;
+    font-weight: 600;
+}
+
+.mobile-event-card {
+    padding: 16px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-bottom: 12px;
+}
+
+.mobile-event-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.mobile-event-time {
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.mobile-cancelled-badge {
+    background-color: #dc3545;
+    color: white;
+    border-radius: 20px;
+    padding: 4px 8px;
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.mobile-event-title {
+    font-size: 18px;
+    font-weight: 500;
+    margin-top: 8px;
+}
+
+.mobile-signup-button {
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 8px 16px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.mobile-signup-button:hover {
+    background-color: #218838;
+}
+
+.mobile-event-footer {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 12px;
+}
+
+.no-events-message {
+    text-align: center;
+    color: #6c757d;
+    padding: 32px 0;
+}
+
+.loading-spinner {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 64px;
+    margin: 32px 0;
+}
+
+.spinner {
+    border: 4px solid rgba(0, 0, 0, 0.1);
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    border-left-color: #28a745;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+@media (max-width: 768px) {
+    .desktop-calendar {
+        display: none;
+    }
+
+    .calendar-day {
+        min-height: 80px;
+    }
+
+    .event {
+        padding: 2px 4px;
+    }
+}
+
+@media (min-width: 769px) {
+    .mobile-calendar {
+        display: none;
+    }
+
+    .title-area {
+        text-align: left;
+    }
+
+    .calendar-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .calendar-controls {
+        margin-bottom: 0;
+    }
+}
+
+@media (max-width: 640px) {
+    .calendar-grid {
+        font-size: 0.75rem;
+    }
+
+    .calendar-day {
+        min-height: 60px;
+    }
+}
+
+@media (max-width: 768px) {
+    .calendar-container {
+        padding: 10px;
+        margin-top: 80px;
+        min-height: auto;
+    }
+
+    .calendar-header {
+        flex-direction: column;
+        padding: 10px;
+    }
+
+    .title-area {
+        margin-bottom: 10px;
+    }
+
+    h1 {
+        font-size: 1.5rem;
+        margin: 0;
+    }
+
+    .sub-title {
+        font-size: 0.9rem;
+    }
+}
+
+.mobile-calendar-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    grid-gap: 2px;
+    margin-bottom: 15px;
+}
+
+.mobile-weekday {
+    text-align: center;
+    font-size: 0.75rem;
+    font-weight: 600;
+    padding: 4px 0;
+}
+
+.mobile-day {
+    aspect-ratio: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 4px 0;
+    position: relative;
+}
+
+.mobile-day-number {
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+.mobile-event-indicators {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 2px;
+    margin-top: 2px;
+    max-width: 100%;
+}
+
+.mobile-event-dot {
+    height: 4px;
+    width: 4px;
+    border-radius: 50%;
+}
+
+.mobile-day.selected-day {
+    border: 2px solid #007bff;
+    background-color: rgba(0, 123, 255, 0.05);
+}
+
+.mobile-day.open-practice-day {
+    border: 2px solid #28a745;
+}
+
+.mobile-event-list {
+    margin-top: 15px;
+    border-top: 1px solid #ddd;
+    padding-top: 10px;
+}
+
+.mobile-day-title {
+    text-align: center;
+    margin-bottom: 12px;
+    font-weight: 600;
+    font-size: 1rem;
+}
+
+.mobile-event-card {
+    padding: 12px;
+    border-radius: 8px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    margin-bottom: 10px;
+}
+
+.mobile-event-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin: 10px 0;
-    padding: 16px;
-    border: 1px solid rgba(37, 100, 0, 0.2);
+}
+
+.mobile-event-time {
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+.mobile-cancelled-badge {
+    background-color: #dc3545;
+    color: white;
     border-radius: 12px;
-    background-color: white;
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-    transition: all 0.3s ease;
+    padding: 2px 6px;
+    font-size: 0.7rem;
+    font-weight: 700;
 }
 
-.schedule-day:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+.mobile-event-title {
+    font-size: 1rem;
+    font-weight: 500;
+    margin-top: 6px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
-.background-red {
-    background-color: #fee2e2;
-    border-color: #ef4444;
+.mobile-signup-button {
+    background-color: rgb(37, 100, 0);
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 6px 12px;
+    font-weight: 500;
+    font-size: 0.8rem;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    animation: pulse 2s infinite;
 }
 
-.monthsGrid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 2rem;
+.calendar-controls {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
 }
 
-@media only screen and (max-width: 1024px) {
-    .monthsGrid {
-        grid-template-columns: repeat(2, 1fr);
+.today-btn,
+.nav-btn {
+    padding: 8px 12px;
+    border-radius: 4px;
+    font-size: 0.9rem;
+}
+
+@media (max-width: 375px) {
+    .mobile-weekday {
+        font-size: 0.7rem;
+    }
+
+    .mobile-day-number {
+        font-size: 0.8rem;
+    }
+
+    .mobile-event-dot {
+        height: 3px;
+        width: 3px;
     }
 }
 
-@media only screen and (max-width: 768px) {
-    .monthsGrid {
-        grid-template-columns: 1fr;
-    }
+.mobile-day.other-month {
+    background-color: #f8f9fa;
+}
 
-    .schedule-day {
-        padding: 12px;
-    }
+.mobile-day.today {
+    background-color: rgba(0, 123, 255, 0.1);
+}
+
+.mobile-day-number.today-number {
+    background-color: #007bff;
+    color: white;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
