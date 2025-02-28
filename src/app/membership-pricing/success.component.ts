@@ -24,10 +24,7 @@ export class PaymentSuccessComponent implements AfterViewInit {
     public selectedClass: ClassType | null = null;
     public loading = true;
 
-    constructor(
-        private route: ActivatedRoute,
-        private http: HttpClient
-    ) {}
+    constructor(private route: ActivatedRoute, private http: HttpClient) {}
 
     public ngAfterViewInit(): void {
         this.route.queryParams
@@ -68,10 +65,19 @@ export class PaymentSuccessComponent implements AfterViewInit {
         const dropdownValue = localStorage.getItem('dropdown') || '';
         const [riderClass, date] = dropdownValue.split(' - ');
         const riderName = localStorage.getItem('riderName');
+        let isMinor = false;
 
         if (!riderName) {
             console.log('No rider found');
             return;
+        }
+
+        const minorCheck = localStorage.getItem('minorCheck');
+        console.log(minorCheck);
+
+        if (minorCheck === 'Minor') {
+            isMinor = true;
+            console.log(isMinor);
         }
 
         const payload = {
@@ -81,7 +87,8 @@ export class PaymentSuccessComponent implements AfterViewInit {
                 Class: riderClass,
                 Number: localStorage.getItem('riderNumber'),
                 Email: localStorage.getItem('email'),
-                Size: localStorage.getItem('bikeSize')
+                Size: localStorage.getItem('bikeSize'),
+                isMinor: isMinor
             }
         };
 

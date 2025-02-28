@@ -41,6 +41,7 @@ export class MembershipPricingComponent {
             riderName: ['', Validators.required],
             bikeSize: ['', [Validators.required]],
             riderNumber: ['', Validators.required],
+            minorCheck: ['', Validators.required],
             dropdown: ['', Validators.required]
         });
     }
@@ -71,6 +72,7 @@ export class MembershipPricingComponent {
                 'riderName',
                 'bikeSize',
                 'riderNumber',
+                'minorCheck',
                 'dropdown'
             ];
             formFields.forEach(field => {
@@ -114,6 +116,11 @@ export class MembershipPricingComponent {
                                 );
                             }
                             break;
+                        case 'minorCheck':
+                            if (control.errors['required']) {
+                                errors.push('Selection is required');
+                            }
+                            break;
                         case 'dropdown':
                             if (control.errors['required']) {
                                 errors.push(
@@ -151,6 +158,15 @@ export class MembershipPricingComponent {
         if (classString.includes('Jr')) {
             this.payLink = CLASSES.JR.formLink;
         }
+    }
+
+    public isDate2Earlier(): boolean {
+        if (!this.openPractice?.Date2 || !this.openPractice?.Date) {
+            return false;
+        }
+        return (
+            new Date(this.openPractice.Date2) < new Date(this.openPractice.Date)
+        );
     }
 
     private getSpotsLeft() {
@@ -214,32 +230,44 @@ export class MembershipPricingComponent {
                 }
                 const today = new Date().toISOString().split('T')[0];
 
-                if (typeof this.openPractice.startTime === 'string') {
-                    const startTime = new Date(
-                        `${today}T${this.openPractice.startTime}`
-                    );
-                    this.openPractice.startTime = startTime.toLocaleTimeString(
-                        undefined,
-                        {
-                            hour: 'numeric',
-                            minute: '2-digit',
-                            hour12: true
-                        }
-                    );
+                if (this.openPractice.startTime) {
+                    try {
+                        // Handle time in 24-hour format (HH:mm:ss)
+                        const [hours, minutes] =
+                            this.openPractice.startTime.split(':');
+                        const date = new Date();
+                        date.setHours(parseInt(hours), parseInt(minutes), 0);
+                        this.openPractice.startTime = date.toLocaleTimeString(
+                            undefined,
+                            {
+                                hour: 'numeric',
+                                minute: '2-digit',
+                                hour12: true
+                            }
+                        );
+                    } catch (e) {
+                        console.error('Error parsing startTime:', e);
+                    }
                 }
 
-                if (typeof this.openPractice.endTime === 'string') {
-                    const endTime = new Date(
-                        `${today}T${this.openPractice.endTime}`
-                    );
-                    this.openPractice.endTime = endTime.toLocaleTimeString(
-                        undefined,
-                        {
-                            hour: 'numeric',
-                            minute: '2-digit',
-                            hour12: true
-                        }
-                    );
+                if (this.openPractice.endTime) {
+                    try {
+                        // Handle time in 24-hour format (HH:mm:ss)
+                        const [hours, minutes] =
+                            this.openPractice.endTime.split(':');
+                        const date = new Date();
+                        date.setHours(parseInt(hours), parseInt(minutes), 0);
+                        this.openPractice.endTime = date.toLocaleTimeString(
+                            undefined,
+                            {
+                                hour: 'numeric',
+                                minute: '2-digit',
+                                hour12: true
+                            }
+                        );
+                    } catch (e) {
+                        console.error('Error parsing endTime:', e);
+                    }
                 }
             });
         this.apiServivce.getUnlimitedSignUp().subscribe((response: any) => {

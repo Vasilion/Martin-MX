@@ -3,16 +3,14 @@
         class="swiper th-slider hero-slider1"
         id="heroSlide1"
         data-slider-options='{"effect":"fade", "autoHeight": "true"}'
-        data-mask-src="/images/hero/hero_bg-shape-mask.png"
-    >
+        data-mask-src="/images/hero/hero_bg-shape-mask.png">
         <div class="swiper-wrapper">
             <div class="swiper-slide">
                 <div
                     class="hero-inner"
                     data-bg-src="/images/old-site/hero.jpg"
                     data-overlay="black"
-                    data-opacity="6"
-                >
+                    data-opacity="6">
                     <div class="container">
                         <div class="row">
                             <div class="col-xl-8 col-lg-6">
@@ -20,30 +18,27 @@
                                     <span
                                         class="sub-title text-theme after-none"
                                         data-ani="slideinup"
-                                        data-ani-delay="0.2s"
-                                        >Welcome to the track</span
-                                    >
+                                        data-ani-delay="0.2s">
+                                        Welcome to the track
+                                    </span>
                                     <h1 class="hero-title text-white">
                                         <span
                                             class="title1"
                                             data-ani="slideinup"
-                                            data-ani-delay="0.4s"
-                                        >
+                                            data-ani-delay="0.4s">
                                             This IS
                                         </span>
                                         <span
                                             class="title1"
                                             data-ani="slideinup"
-                                            data-ani-delay="0.4s"
-                                        >
+                                            data-ani-delay="0.4s">
                                             Motocross
                                         </span>
                                     </h1>
                                     <p
                                         class="hero-text text-white"
                                         data-ani="slideinup"
-                                        data-ani-delay="0.5s"
-                                    >
+                                        data-ani-delay="0.5s">
                                         Martin MX Park features 2 motocross
                                         tracks. We have our main track and
                                         completely reconfigured junior track for
@@ -53,16 +48,18 @@
                                     </p>
 
                                     <div
-                                        *ngIf="!openPractice || !openPractice.isActive"
+                                        *ngIf="
+                                            !openPractice ||
+                                            !openPractice.isActive
+                                        "
                                         class="btn-wrap"
                                         data-ani="slideinup"
-                                        data-ani-delay="0.7s"
-                                    >
+                                        data-ani-delay="0.7s">
                                         <a
                                             routerLink="/track-info"
-                                            class="th-btn"
-                                            >VIEW Track Info</a
-                                        >
+                                            class="th-btn">
+                                            VIEW Track Info
+                                        </a>
                                         <div class="hero-counter-wrap">
                                             <div class="counter-number-wrap">
                                                 <div class="counter-number">
@@ -78,48 +75,104 @@
                                     </div>
 
                                     <div
-                                        *ngIf="openPractice && openPractice.isActive"
+                                        *ngIf="
+                                            openPractice &&
+                                            openPractice.isActive
+                                        "
                                         class="btn-wrap"
                                         data-ani="slideinup"
-                                        data-ani-delay="0.7s"
-                                    >
+                                        data-ani-delay="0.7s">
                                         <div class="hero-counter-wrap">
                                             <h4
                                                 class="counter-title"
-                                                *ngIf="!openPractice.isCancelled"
-                                            >
-                                                Practice is Open <br />
+                                                *ngIf="
+                                                    !openPractice.isCancelled &&
+                                                    !isDate2Earlier()
+                                                ">
+                                                Registration is Open
+
                                                 <ng-container
-                                                    *ngIf="openPractice.Date && openPractice.startTime"
-                                                    >{{
-                                                    openPractice.combinedDateTime
-                                                    | date: 'EEEE MMM d, y, h:mm
-                                                    a' }}</ng-container
-                                                >
+                                                    *ngIf="
+                                                        openPractice.Date &&
+                                                        openPractice.startTime
+                                                    ">
+                                                    {{
+                                                        openPractice.combinedDateTime
+                                                            | date
+                                                                : 'EEEE MMM d, y, h:mm
+                                                    a'
+                                                    }}
+                                                </ng-container>
+                                                <br />
                                                 <ng-container
-                                                    *ngIf="openPractice.Date2 && openPractice.startTime2"
-                                                >
+                                                    *ngIf="
+                                                        openPractice.Date2 &&
+                                                        openPractice.startTime2
+                                                    ">
                                                     <br />
                                                     {{
-                                                    openPractice.combinedDateTime2
-                                                    | date: 'EEEE MMM d, y, h:mm
-                                                    a' }}</ng-container
-                                                >
+                                                        openPractice.combinedDateTime2
+                                                            | date
+                                                                : 'EEEE MMM d, y, h:mm
+                                                    a'
+                                                    }}
+                                                </ng-container>
                                             </h4>
+
+                                            <h4
+                                                class="counter-title"
+                                                *ngIf="
+                                                    !openPractice.isCancelled &&
+                                                    isDate2Earlier()
+                                                ">
+                                                Registration is Open
+                                                <br />
+
+                                                <ng-container
+                                                    *ngIf="
+                                                        openPractice.Date2 &&
+                                                        openPractice.startTime2
+                                                    ">
+                                                    <br />
+                                                    {{
+                                                        openPractice.combinedDateTime2
+                                                            | date
+                                                                : 'EEEE MMM d, y, h:mm
+                                                    a'
+                                                    }}
+                                                </ng-container>
+                                                <br />
+                                                <ng-container
+                                                    *ngIf="
+                                                        openPractice.Date &&
+                                                        openPractice.startTime
+                                                    ">
+                                                    {{
+                                                        openPractice.combinedDateTime
+                                                            | date
+                                                                : 'EEEE MMM d, y, h:mm
+                                                    a'
+                                                    }}
+                                                </ng-container>
+                                            </h4>
+
                                             <ng-container
-                                                *ngIf="openPractice.isCancelled"
-                                            >
+                                                *ngIf="
+                                                    openPractice.isCancelled
+                                                ">
                                                 <h4 class="counter-title">
                                                     Practice is Cancelled for
                                                     Today
                                                 </h4>
                                                 <ng-container
-                                                    *ngIf="openPractice.reasonForCancel"
-                                                >
+                                                    *ngIf="
+                                                        openPractice.reasonForCancel
+                                                    ">
                                                     <br />
                                                     <h4 class="counter-title">
-                                                        Due to: {{
-                                                        openPractice.reasonForCancel
+                                                        Due to:
+                                                        {{
+                                                            openPractice.reasonForCancel
                                                         }}
                                                     </h4>
                                                 </ng-container>
@@ -128,9 +181,9 @@
                                         <a
                                             routerLink="/pricing"
                                             class="th-btn"
-                                            *ngIf="!openPractice.isCancelled"
-                                            >Sign Up Now</a
-                                        >
+                                            *ngIf="!openPractice.isCancelled">
+                                            Sign Up Now
+                                        </a>
                                     </div>
                                 </div>
                             </div>
@@ -143,8 +196,7 @@
                     class="hero-inner"
                     data-bg-src="/images/hero/hero_bg_1_2.jpg"
                     data-overlay="black"
-                    data-opacity="6"
-                >
+                    data-opacity="6">
                     <div class="container">
                         <div class="row">
                             <div class="col-xl-8 col-lg-6">
@@ -152,31 +204,27 @@
                                     <span
                                         class="sub-title text-theme after-none"
                                         data-ani="slideinup"
-                                        data-ani-delay="0.2s"
-                                        >Keep Your Body Fitness With
-                                        Workouts</span
-                                    >
+                                        data-ani-delay="0.2s">
+                                        Keep Your Body Fitness With Workouts
+                                    </span>
                                     <h1 class="hero-title text-white">
                                         <span
                                             class="title1"
                                             data-ani="slideinup"
-                                            data-ani-delay="0.4s"
-                                        >
+                                            data-ani-delay="0.4s">
                                             Your Fitness
                                         </span>
                                         <span
                                             class="title1"
                                             data-ani="slideinup"
-                                            data-ani-delay="0.4s"
-                                        >
+                                            data-ani-delay="0.4s">
                                             Your Victory
                                         </span>
                                     </h1>
                                     <p
                                         class="hero-text text-white"
                                         data-ani="slideinup"
-                                        data-ani-delay="0.5s"
-                                    >
+                                        data-ani-delay="0.5s">
                                         Gym workouts are structured exercise
                                         sessions conducted in a fitness facility
                                         equipped with various exercise machines,
@@ -185,11 +233,10 @@
                                     <div
                                         class="btn-wrap"
                                         data-ani="slideinup"
-                                        data-ani-delay="0.7s"
-                                    >
-                                        <a href="schedule.html" class="th-btn"
-                                            >VIEW CLASS SCHEDULE</a
-                                        >
+                                        data-ani-delay="0.7s">
+                                        <a href="schedule.html" class="th-btn">
+                                            VIEW CLASS SCHEDULE
+                                        </a>
                                         <div class="hero-counter-wrap">
                                             <div class="counter-number-wrap">
                                                 <div class="counter-number">
@@ -209,12 +256,10 @@
                                 <div
                                     class="hero-img1"
                                     data-ani="slideinright"
-                                    data-ani-delay="0.5s"
-                                >
+                                    data-ani-delay="0.5s">
                                     <img
                                         src="/images/hero/hero_1_2.jpg"
-                                        alt="Image"
-                                    />
+                                        alt="Image" />
                                 </div>
                             </div>
                         </div>
@@ -222,8 +267,7 @@
                     <div class="hero-shadow-text">GYM</div>
                     <div
                         class="hero-bg-shape1"
-                        data-bg-src="/images/hero/hero_bg_ovarlay1_1.png"
-                    ></div>
+                        data-bg-src="/images/hero/hero_bg_ovarlay1_1.png"></div>
                 </div>
             </div>
         </div>

@@ -1,19 +1,27 @@
-import { Component, AfterViewInit, ViewChildren, QueryList, ElementRef } from '@angular/core';
+import {
+    Component,
+    AfterViewInit,
+    ViewChildren,
+    QueryList,
+    ElementRef
+} from '@angular/core';
+import { OpenPracticeCacheService } from '../services/open-practice.service';
 
 @Component({
     standalone: true,
     selector: 'app-track-info',
     templateUrl: 'track-info.component.html',
-    styleUrls: ['track-info.component.scss'],
+    styleUrls: ['track-info.component.scss']
 })
 export class TrackInfoComponent implements AfterViewInit {
     @ViewChildren('animatedSection') animatedSections!: QueryList<ElementRef>;
     private observer: IntersectionObserver;
+    public openPractice: any;
 
-    constructor() {
+    constructor(private openPracticeCacheService: OpenPracticeCacheService) {
         this.observer = new IntersectionObserver(
-            (entries) => {
-                entries.forEach((entry) => {
+            entries => {
+                entries.forEach(entry => {
                     if (entry.isIntersecting) {
                         entry.target.classList.add('visible');
                     }
@@ -24,6 +32,7 @@ export class TrackInfoComponent implements AfterViewInit {
                 rootMargin: '0px'
             }
         );
+        this.getPricing();
     }
 
     ngAfterViewInit(): void {
@@ -41,5 +50,17 @@ export class TrackInfoComponent implements AfterViewInit {
         if (this.observer) {
             this.observer.disconnect();
         }
+    }
+
+    private getPricing() {
+        this.openPracticeCacheService
+            .getOpenPractice()
+            .subscribe((response: any) => {
+                if (!response) {
+                    return;
+                }
+
+                this.openPractice = response;
+            });
     }
 }

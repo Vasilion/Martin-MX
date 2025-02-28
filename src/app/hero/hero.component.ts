@@ -18,6 +18,15 @@ export class HeroComponent {
         this.getPricing();
     }
 
+    public isDate2Earlier(): boolean {
+        if (!this.openPractice?.Date2 || !this.openPractice?.Date) {
+            return false;
+        }
+        return (
+            new Date(this.openPractice.Date2) < new Date(this.openPractice.Date)
+        );
+    }
+
     private getPricing() {
         this.openPracticeCacheService
             .getOpenPractice()
