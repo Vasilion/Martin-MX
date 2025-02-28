@@ -29,28 +29,65 @@
     margin-bottom: 5px;
 }
 
+.calendar-legend {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin: 0 auto 20px auto;
+    max-width: 900px;
+    padding: 15px;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+    color: #495057;
+}
+
+.legend-color {
+    width: 16px;
+    height: 16px;
+    border-radius: 4px;
+    margin-right: 8px;
+}
+
 .calendar-controls {
     display: flex;
     justify-content: center;
     align-items: center;
     margin-bottom: 15px;
-    gap: 8px;
+    gap: 12px;
 }
 
 .today-btn,
 .nav-btn {
     background-color: #e9ecef;
     border: none;
-    padding: 8px 12px;
+    padding: 8px 16px;
     border-radius: 4px;
     cursor: pointer;
-    transition: background-color 0.2s;
-    font-size: 0.9rem;
+    transition: all 0.2s;
+    font-size: 1rem;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .today-btn:hover,
 .nav-btn:hover {
     background-color: #dee2e6;
+    transform: translateY(-2px);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.nav-btn {
+    width: 40px;
+    height: 40px;
 }
 
 /* Mobile Calendar Grid */
@@ -80,6 +117,9 @@
     padding: 2px;
     cursor: pointer;
     position: relative;
+    transition:
+        transform 0.15s ease-in-out,
+        box-shadow 0.15s ease-in-out;
 }
 
 .mobile-day.other-month {
@@ -94,6 +134,9 @@
 .mobile-day.selected-day {
     border: 2px solid #007bff !important;
     background-color: rgba(0, 123, 255, 0.05);
+    transform: scale(1.05);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    z-index: 1;
 }
 
 .mobile-day.open-practice-day {
@@ -129,6 +172,21 @@
     height: 6px;
     width: 6px;
     border-radius: 50%;
+}
+
+/* Event day indicator */
+.has-events::after {
+    content: '';
+    position: absolute;
+    bottom: 2px;
+    width: 80%;
+    height: 3px;
+    background-color: #007bff;
+    border-radius: 2px;
+}
+
+.open-practice-day::after {
+    background-color: #28a745;
 }
 
 /* Mobile Event List */
@@ -249,7 +307,43 @@
     }
 }
 
-/* Media Queries */
+/* Media Queries for Responsive Design */
+@media (min-width: 769px) {
+    .mobile-calendar-grid {
+        max-width: 900px;
+        margin: 0 auto 20px auto;
+    }
+
+    .mobile-weekday {
+        font-size: 16px;
+        font-weight: 600;
+    }
+
+    .mobile-day {
+        min-width: 120px;
+        min-height: 120px;
+        max-width: 120px;
+        max-height: 120px;
+        margin: 0 auto;
+        border-radius: 10px;
+    }
+
+    .mobile-day-number {
+        font-size: 18px;
+        margin-bottom: 8px;
+    }
+
+    .mobile-event-dot {
+        height: 8px;
+        width: 8px;
+    }
+
+    .mobile-event-list {
+        max-width: 900px;
+        margin: 24px auto 0 auto;
+    }
+}
+
 @media (max-width: 768px) {
     .calendar-container {
         padding: 10px;

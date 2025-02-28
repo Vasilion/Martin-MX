@@ -9,12 +9,34 @@
         </div>
         <div class="calendar-controls">
             <button (click)="goToToday()" class="today-btn">Today</button>
-            <button (click)="prevMonth()" class="nav-btn">
-                <i class="fa fa-chevron-left"></i>
-            </button>
-            <button (click)="nextMonth()" class="nav-btn">
-                <i class="fa fa-chevron-right"></i>
-            </button>
+            <button (click)="prevMonth()" class="nav-btn">&larr;</button>
+            <button (click)="nextMonth()" class="nav-btn">&rarr;</button>
+        </div>
+    </div>
+
+    <!-- Calendar Legend -->
+    <div class="calendar-legend">
+        <div class="legend-item">
+            <div class="legend-color" style="background-color: #007bff"></div>
+            <span>Scheduled Practice</span>
+        </div>
+        <div class="legend-item">
+            <div class="legend-color" style="background-color: #28a745"></div>
+            <span>Registration Open</span>
+        </div>
+        <div class="legend-item">
+            <div class="legend-color" style="background-color: #dc3545"></div>
+            <span>Cancelled</span>
+        </div>
+        <div class="legend-item">
+            <div
+                class="legend-color"
+                style="
+                    border: 2px solid #007bff;
+                    background-color: rgba(0, 123, 255, 0.05);
+                "
+            ></div>
+            <span>Selected Day</span>
         </div>
     </div>
 
@@ -38,6 +60,7 @@
                     [class.selected-day]="selectedDay && isSameDay(day.date, selectedDay.date)"
                     [class.open-practice-day]="hasOpenPractice(day)"
                     [class.today]="day.isToday"
+                    [class.has-events]="day.events.length > 0"
                 >
                     <div
                         class="mobile-day-number"
