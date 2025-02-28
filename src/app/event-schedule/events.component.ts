@@ -41,7 +41,6 @@ interface CalendarMonth {
     styleUrls: ['events.component.css']
 })
 export class EventsComponent implements OnInit, OnDestroy {
-    private resizeTimeout: any;
     private touchStartX: number = 0;
     private touchEndX: number = 0;
     private destroy$ = new Subject<void>();
@@ -55,8 +54,6 @@ export class EventsComponent implements OnInit, OnDestroy {
     public currentMonthIndex = new Date().getMonth();
     public currentYear = new Date().getFullYear();
     public selectedDay: CalendarDay | null = null;
-    public showEventModal = false;
-    public selectedEvent: ProcessedEvent | null = null;
 
     public monthNames = [
         'January',
@@ -74,7 +71,6 @@ export class EventsComponent implements OnInit, OnDestroy {
     ];
 
     public weekDays = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
-    public isMobileView = window.innerWidth < 768;
 
     constructor(
         private apiService: ApiService,
@@ -82,11 +78,7 @@ export class EventsComponent implements OnInit, OnDestroy {
     ) {}
 
     ngOnInit(): void {
-        if (typeof window !== 'undefined') {
-            this.setupSwipeNavigation();
-        }
-
-        this.isMobileView = window.innerWidth < 768;
+        this.setupSwipeNavigation();
         this.loadOpenPractice();
         this.loadSchedule();
 
@@ -106,14 +98,11 @@ export class EventsComponent implements OnInit, OnDestroy {
                     this.selectToday();
                 }
             });
-
-        window.addEventListener('resize', this.handleResize.bind(this));
     }
 
     ngOnDestroy(): void {
         this.destroy$.next();
         this.destroy$.complete();
-        window.removeEventListener('resize', this.handleResize.bind(this));
     }
 
     private loadOpenPractice(): void {
@@ -336,75 +325,45 @@ export class EventsComponent implements OnInit, OnDestroy {
     }
 
     public selectDay(day: CalendarDay): void {
-        if (this.isMobileView && !day.isCurrentMonth) {
+        if (!day.isCurrentMonth) {
             return;
         }
-
         this.selectedDay = day;
 
-        if (this.isMobileView) {
-            setTimeout(() => {
-                const eventList = document.querySelector('.mobile-event-list');
-                if (eventList) {
-                    eventList.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
-            }, 100);
-        }
-    }
-
-    private handleResize(): void {
-        clearTimeout(this.resizeTimeout);
-        this.resizeTimeout = setTimeout(() => {
-            const wasMobile = this.isMobileView;
-            this.isMobileView = window.innerWidth < 768;
-
-            if (wasMobile !== this.isMobileView) {
-                const currentMonth = this.currentMonth$.value;
-                this.currentMonth$.next(null);
-                setTimeout(() => {
-                    this.currentMonth$.next(currentMonth);
-                }, 0);
+        // Scroll to event list
+        setTimeout(() => {
+            const eventList = document.querySelector('.mobile-event-list');
+            if (eventList) {
+                eventList.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
             }
-        }, 250);
-    }
-
-    public formatMobileTime(date: Date): string {
-        return date.toLocaleTimeString([], {
-            hour: 'numeric',
-            minute: '2-digit',
-            hour12: true
-        });
-    }
-
-    public isHighlightedDay(day: CalendarDay): boolean {
-        return (
-            day.isToday || this.hasOpenPractice(day) || day.events.length > 0
-        );
+        }, 100);
     }
 
     private setupSwipeNavigation(): void {
-        const calendar = document.querySelector('.mobile-calendar');
-        if (!calendar) return;
+        document.addEventListener('DOMContentLoaded', () => {
+            const calendar = document.querySelector('.mobile-calendar');
+            if (calendar) {
+                calendar.addEventListener(
+                    'touchstart',
+                    (e: TouchEvent) => {
+                        this.touchStartX = e.changedTouches[0].screenX;
+                    },
+                    { passive: true }
+                );
 
-        calendar.addEventListener(
-            'touchstart',
-            (e: TouchEvent) => {
-                this.touchStartX = e.changedTouches[0].screenX;
-            },
-            { passive: true }
-        );
-
-        calendar.addEventListener(
-            'touchend',
-            (e: TouchEvent) => {
-                this.touchEndX = e.changedTouches[0].screenX;
-                this.handleSwipe();
-            },
-            { passive: true }
-        );
+                calendar.addEventListener(
+                    'touchend',
+                    (e: TouchEvent) => {
+                        this.touchEndX = e.changedTouches[0].screenX;
+                        this.handleSwipe();
+                    },
+                    { passive: true }
+                );
+            }
+        });
     }
 
     private handleSwipe(): void {
@@ -413,26 +372,6 @@ export class EventsComponent implements OnInit, OnDestroy {
             this.nextMonth();
         } else if (this.touchEndX > this.touchStartX + threshold) {
             this.prevMonth();
-        }
-    }
-
-    public selectEvent(event: ProcessedEvent): void {
-        this.selectedEvent = event;
-        this.showEventModal = true;
-    }
-
-    public closeEventModal(): void {
-        this.showEventModal = false;
-        this.selectedEvent = null;
-    }
-
-    public getEventDot(event: ProcessedEvent): string {
-        if (event.isCancelled) {
-            return 'bg-red-500';
-        } else if (event.isOpenPractice) {
-            return 'bg-green-500';
-        } else {
-            return 'bg-blue-500';
         }
     }
 

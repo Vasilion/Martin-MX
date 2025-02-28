@@ -17,7 +17,14 @@
             </button>
         </div>
     </div>
-    <div class="mobile-calendar-grid">
+
+    <!-- Loading spinner -->
+    <div *ngIf="isScheduleLoading$ | async" class="loading-spinner">
+        <div class="spinner"></div>
+    </div>
+
+    <!-- Calendar grid -->
+    <div class="mobile-calendar-grid" *ngIf="!(isScheduleLoading$ | async)">
         <ng-container *ngFor="let day of weekDays">
             <div class="mobile-weekday">{{ day }}</div>
         </ng-container>
@@ -31,7 +38,6 @@
                     [class.selected-day]="selectedDay && isSameDay(day.date, selectedDay.date)"
                     [class.open-practice-day]="hasOpenPractice(day)"
                     [class.today]="day.isToday"
-                    [style.opacity]="day.isCurrentMonth ? '1' : '0.5'"
                 >
                     <div
                         class="mobile-day-number"
@@ -64,6 +70,7 @@
         </ng-container>
     </div>
 
+    <!-- Event list for selected day -->
     <div class="mobile-event-list" *ngIf="selectedDay">
         <div class="mobile-day-title">
             {{ selectedDay.date | date:'EEEE, MMMM d' }}
