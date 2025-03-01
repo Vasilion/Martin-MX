@@ -182,46 +182,54 @@
                                         {{ openPractice.jrTrackPrice }}
                                         <span class="duration">/ Class</span>
                                     </h4>
-                                    <hr />
-                                    <h4 class="price-card_price">
-                                        Date
-                                        <span
-                                            class="duration"
-                                            *ngIf="openPractice.Date">
-                                            {{
-                                                openPractice.Date
-                                                    | date : 'MM/dd/yyyy'
-                                            }}
-                                        </span>
-                                        <span
-                                            class="duration"
-                                            *ngIf="
-                                                openPractice.Date2 &&
-                                                openPractice.Date
-                                            ">
-                                            /
-                                        </span>
-                                        <span
-                                            class="duration"
-                                            *ngIf="openPractice.Date2">
-                                            {{
-                                                openPractice.Date2
-                                                    | date : 'MM/dd/yyyy'
-                                            }}
-                                        </span>
-                                    </h4>
-                                    <hr />
-                                    <h4 class="price-card_price">
-                                        Time
-                                        <span class="duration">
-                                            {{ openPractice.startTime }} -
-                                            {{ openPractice.endTime }}
-                                        </span>
-                                    </h4>
                                 </div>
                                 <div class="price-card_content">
                                     <div class="row gy-4">
                                         <div class="checklist-container">
+                                            <h6>
+                                                Open
+                                                <span
+                                                    class="duration"
+                                                    *ngIf="openPractice.Date">
+                                                    {{
+                                                        openPractice.Date
+                                                            | date
+                                                                : 'MM/dd/yyyy'
+                                                    }}
+                                                    from
+                                                    <span class="duration">
+                                                        {{
+                                                            openPractice.startTime
+                                                        }}
+                                                        to
+                                                        {{
+                                                            openPractice.endTime
+                                                        }}
+                                                    </span>
+                                                </span>
+                                                <br />
+                                                Open
+                                                <span
+                                                    class="duration"
+                                                    *ngIf="openPractice.Date2">
+                                                    {{
+                                                        openPractice.Date2
+                                                            | date
+                                                                : 'MM/dd/yyyy'
+                                                    }}
+                                                    from
+                                                    <span class="duration">
+                                                        {{
+                                                            openPractice.startTime2
+                                                        }}
+                                                        to
+                                                        {{
+                                                            openPractice.endTime2
+                                                        }}
+                                                    </span>
+                                                </span>
+                                            </h6>
+                                            <hr />
                                             <div class="checklist style3">
                                                 <ul>
                                                     <li

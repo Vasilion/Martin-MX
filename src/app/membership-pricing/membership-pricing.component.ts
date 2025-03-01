@@ -228,47 +228,6 @@ export class MembershipPricingComponent {
                 if (this.openPractice.isActive) {
                     this.showForm = true;
                 }
-                const today = new Date().toISOString().split('T')[0];
-
-                if (this.openPractice.startTime) {
-                    try {
-                        // Handle time in 24-hour format (HH:mm:ss)
-                        const [hours, minutes] =
-                            this.openPractice.startTime.split(':');
-                        const date = new Date();
-                        date.setHours(parseInt(hours), parseInt(minutes), 0);
-                        this.openPractice.startTime = date.toLocaleTimeString(
-                            undefined,
-                            {
-                                hour: 'numeric',
-                                minute: '2-digit',
-                                hour12: true
-                            }
-                        );
-                    } catch (e) {
-                        console.error('Error parsing startTime:', e);
-                    }
-                }
-
-                if (this.openPractice.endTime) {
-                    try {
-                        // Handle time in 24-hour format (HH:mm:ss)
-                        const [hours, minutes] =
-                            this.openPractice.endTime.split(':');
-                        const date = new Date();
-                        date.setHours(parseInt(hours), parseInt(minutes), 0);
-                        this.openPractice.endTime = date.toLocaleTimeString(
-                            undefined,
-                            {
-                                hour: 'numeric',
-                                minute: '2-digit',
-                                hour12: true
-                            }
-                        );
-                    } catch (e) {
-                        console.error('Error parsing endTime:', e);
-                    }
-                }
             });
         this.apiServivce.getUnlimitedSignUp().subscribe((response: any) => {
             if (!response) {

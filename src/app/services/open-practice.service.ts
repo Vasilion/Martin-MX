@@ -86,6 +86,12 @@ export class OpenPracticeCacheService {
         if (typeof attributes.endTime === 'string') {
             attributes.endTime = this.formatTime(attributes.endTime);
         }
+        if (typeof attributes.startTime2 === 'string') {
+            attributes.startTime2 = this.formatTime(attributes.startTime2);
+        }
+        if (typeof attributes.endTime2 === 'string') {
+            attributes.endTime2 = this.formatTime(attributes.endTime2);
+        }
 
         return {
             ...attributes,
