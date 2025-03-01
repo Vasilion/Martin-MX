@@ -1,111 +1,120 @@
 .container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 15px;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 15px;
+}
+
+.track-pricing {
+    font-weight: 400;
+    font-size: 22px;
+}
+
+.track-pricing li {
+    margin-top: 10px;
 }
 
 .page-content {
-  line-height: 1.6;
-  font-size: 16px;
-  color: #333;
+    line-height: 1.6;
+    font-size: 16px;
+    color: #333;
 }
 
 .sec-title {
-  font-size: 28px;
-  font-weight: bold;
-  margin-bottom: 20px;
-  color: #555;
+    font-size: 28px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    color: #555;
 }
 
 .checklist {
-  background: #f9f9f9;
-  padding: 15px;
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    background: #f9f9f9;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .checklist-title {
-  font-size: 18px;
-  font-weight: bold;
-  margin-bottom: 10px;
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 10px;
 }
 
 .checklist ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
+    list-style: none;
+    padding: 0;
+    margin: 0;
 }
 
 .checklist ul li {
-  font-size: 15px;
-  margin-bottom: 8px;
+    font-size: 15px;
+    margin-bottom: 8px;
 }
 
 .social-icons {
-  width: 250px;
+    width: 250px;
 }
 
 .social-icons svg {
-  width: 24px;
-  height: 24px;
-  margin-right: 35px;
-  transition: color 0.3s ease;
+    width: 24px;
+    height: 24px;
+    margin-right: 35px;
+    transition: color 0.3s ease;
 }
 
 .social-icons a {
-  font-size: 18px;
-  color: #007bff;
-  margin-right: 15px;
-  transition: color 0.3s ease;
+    font-size: 18px;
+    color: #007bff;
+    margin-right: 15px;
+    transition: color 0.3s ease;
 }
 
 .social-icons a:hover {
-  color: #0056b3;
+    color: #0056b3;
 }
 
 .video-box img {
-  width: 100%;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .waiver-margin {
-  position: relative;
-  visibility: hidden;
-  scroll-margin-top: 200px;
-  scroll-padding-top: 200px;
-  scroll-snap-margin-top: 170px;
-  position: relative;
-  padding-top: 90px;
+    position: relative;
+    visibility: hidden;
+    scroll-margin-top: 200px;
+    scroll-padding-top: 200px;
+    scroll-snap-margin-top: 170px;
+    position: relative;
+    padding-top: 90px;
 }
 
 .other-forms {
-  font-size: 134%;
+    font-size: 134%;
 }
 
 @media (max-width: 768px) {
-  .sec-title {
-    font-size: 24px;
-  }
-  .page-content {
-    font-size: 14px;
-  }
+    .sec-title {
+        font-size: 24px;
+    }
+    .page-content {
+        font-size: 14px;
+    }
 }
 
 @media (max-width: 576px) {
-  .checklist ul li {
-    font-size: 13px;
-  }
+    .checklist ul li {
+        font-size: 13px;
+    }
 }
 
 .fade-in-section {
-  opacity: 0;
-  transform: translateY(20px);
-  transition: all 0.6s ease-out;
-  will-change: opacity, transform;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.6s ease-out;
+    will-change: opacity, transform;
 }
 
 .fade-in-section.visible {
-  opacity: 1;
-  transform: translateY(0);
+    opacity: 1;
+    transform: translateY(0);
 }
