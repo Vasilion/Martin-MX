@@ -1,9 +1,20 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit, HostListener } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { ApiService } from '../services/api.service';
 import { OpenPracticeCacheService } from '../services/open-practice.service';
 import { BehaviorSubject, Subject, combineLatest, takeUntil } from 'rxjs';
+
+interface ApiResponse {
+    id: number;
+    date: string;
+    title: string | null;
+    isCancelled: boolean | null;
+    endTime: string;
+    createdAt: string;
+    updatedAt: string;
+    publishedAt: string;
+}
 
 interface Event {
     date: string;
@@ -14,7 +25,7 @@ interface Event {
 
 interface ProcessedEvent {
     date: Date;
-    endDate: Date | null;
+    endTime: string;
     title: string;
     isCancelled: boolean;
     isOpenPractice: boolean;
@@ -54,6 +65,7 @@ export class EventsComponent implements OnInit, OnDestroy {
     public currentMonthIndex = new Date().getMonth();
     public currentYear = new Date().getFullYear();
     public selectedDay: CalendarDay | null = null;
+    public isMobileView: boolean = false;
 
     public monthNames = [
         'January',
@@ -75,7 +87,18 @@ export class EventsComponent implements OnInit, OnDestroy {
     constructor(
         private apiService: ApiService,
         private openPracticeCacheService: OpenPracticeCacheService
-    ) {}
+    ) {
+        this.checkViewport();
+    }
+
+    @HostListener('window:resize', ['$event'])
+    onResize() {
+        this.checkViewport();
+    }
+
+    private checkViewport() {
+        this.isMobileView = window.innerWidth <= 768;
+    }
 
     ngOnInit(): void {
         this.setupSwipeNavigation();
@@ -131,14 +154,23 @@ export class EventsComponent implements OnInit, OnDestroy {
             .getSchedule()
             .pipe(takeUntil(this.destroy$))
             .subscribe({
-                next: data => {
+                next: (data: ApiResponse[]) => {
                     if (data?.[0]?.date) {
                         this.scheduleYear = new Date(
                             data[0].date
                         ).getFullYear();
                         this.currentYear = this.scheduleYear;
                     }
-                    this.scheduleData$.next(data);
+
+                    console.log('Schedule data:', data[0]);
+                    const transformedData: Event[] = data.map(item => ({
+                        date: item.date,
+                        title: item.title,
+                        isCancelled: item.isCancelled,
+                        endTime: item.endTime
+                    }));
+
+                    this.scheduleData$.next(transformedData);
                     this.isScheduleLoading$.next(false);
                 },
                 error: error => {
@@ -155,13 +187,7 @@ export class EventsComponent implements OnInit, OnDestroy {
     ): ProcessedEvent[] {
         return events.map(event => {
             const baseDate = new Date(event.date);
-            let endDate = null;
-
-            if (event.endTime) {
-                const [hours, minutes] = event.endTime.split(':');
-                endDate = new Date(baseDate);
-                endDate.setHours(parseInt(hours), parseInt(minutes), 0);
-            }
+            const endTime = event.endTime || null;
 
             const eventDateFormatted = new Date(event.date)
                 .toISOString()
@@ -175,7 +201,7 @@ export class EventsComponent implements OnInit, OnDestroy {
 
             return {
                 date: baseDate,
-                endDate,
+                endTime: endTime,
                 title: event.title,
                 isCancelled: event.isCancelled,
                 isOpenPractice
@@ -243,6 +269,20 @@ export class EventsComponent implements OnInit, OnDestroy {
         }
 
         return calendarMonths;
+    }
+
+    public formatEndTime(endTime: string): string {
+        if (!endTime) return '';
+
+        const [hours, minutes] = endTime.split(':');
+        const tempDate = new Date();
+        tempDate.setHours(parseInt(hours, 10));
+        tempDate.setMinutes(parseInt(minutes, 10));
+
+        return tempDate.toLocaleTimeString([], {
+            hour: 'numeric',
+            minute: '2-digit'
+        });
     }
 
     public isSameDay(date1: Date, date2: Date): boolean {
@@ -329,17 +369,6 @@ export class EventsComponent implements OnInit, OnDestroy {
             return;
         }
         this.selectedDay = day;
-
-        // Scroll to event list
-        setTimeout(() => {
-            const eventList = document.querySelector('.mobile-event-list');
-            if (eventList) {
-                eventList.scrollIntoView({
-                    behavior: 'smooth',
-                    block: 'start'
-                });
-            }
-        }, 100);
     }
 
     private setupSwipeNavigation(): void {

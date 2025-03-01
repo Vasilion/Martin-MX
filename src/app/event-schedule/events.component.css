@@ -1,5 +1,5 @@
 .mobile-calendar {
-    padding-top: 120px; /* Reduced from 120px since header is no longer sticky */
+    padding-top: 120px;
 }
 
 .calendar-container {
@@ -14,22 +14,12 @@
     padding: 16px;
     border-bottom: 1px solid rgba(37, 100, 0, 0.2);
     box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-}
-
-.header-legend-container {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
     margin-bottom: 24px;
-    flex-wrap: wrap;
-    gap: 20px;
 }
 
 .title-area {
     text-align: center;
     margin-bottom: 15px;
-    flex: 1;
-    min-width: 250px;
 }
 
 .sub-title {
@@ -38,19 +28,16 @@
     justify-content: center;
 }
 
-/* Adjust calendar legend to work in flex layout */
 .calendar-legend {
     display: flex;
-    flex-direction: column;
+    flex-wrap: wrap;
     justify-content: center;
-    gap: 10px;
-    flex: 1;
-    min-width: 250px;
-    max-width: 450px;
-    padding: 10px;
+    gap: 15px;
+    padding: 15px 10px;
     background-color: #f8f9fa;
     border-radius: 8px;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    margin-top: 30px;
 }
 
 .legend-item {
@@ -58,6 +45,7 @@
     align-items: center;
     font-size: 14px;
     color: #495057;
+    margin: 0 10px;
 }
 
 .legend-color {
@@ -102,7 +90,21 @@
     height: 40px;
 }
 
-/* Mobile Calendar Grid */
+.mobile-selected-day-info {
+    margin-bottom: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 15px;
+    background-color: white;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.mobile-day-title {
+    text-align: center;
+    margin-bottom: 16px;
+    font-weight: 600;
+}
+
 .mobile-calendar-grid {
     display: grid;
     grid-template-columns: repeat(7, 1fr);
@@ -186,7 +188,6 @@
     border-radius: 50%;
 }
 
-/* Event day indicator */
 .has-events::after {
     content: '';
     position: absolute;
@@ -201,24 +202,71 @@
     background-color: #28a745;
 }
 
-/* Mobile Event List */
-.mobile-event-list {
-    margin-top: 24px;
-    border-top: 1px solid #ddd;
-    padding-top: 16px;
+.desktop-day-details {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 250px;
+    background-color: white;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    z-index: 10;
+    margin-top: 5px;
 }
 
-.mobile-day-title {
+.desktop-events-list {
+    max-height: 200px;
+    overflow-y: auto;
+}
+
+.desktop-event-item {
+    padding: 5px 0;
+    border-bottom: 1px solid #eee;
+    display: flex;
+    flex-direction: column;
+}
+
+.desktop-event-time {
+    font-size: 12px;
+    font-weight: 500;
+    color: #495057;
+}
+
+.desktop-event-title {
+    font-size: 14px;
+    margin: 2px 0;
+}
+
+.desktop-event-title.cancelled {
+    text-decoration: line-through;
+    color: #dc3545;
+}
+
+.desktop-signup-link {
+    font-size: 12px;
+    color: white;
+    background-color: rgb(37, 100, 0);
+    padding: 2px 5px;
+    border-radius: 4px;
+    text-decoration: none;
+    align-self: flex-end;
+    margin-top: 4px;
+}
+
+.desktop-no-events {
     text-align: center;
-    margin-bottom: 16px;
-    font-weight: 600;
+    color: #6c757d;
+    padding: 10px 0;
+    font-size: 12px;
 }
 
 .mobile-event-card {
-    padding: 16px;
+    padding: 12px;
     border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    margin-bottom: 12px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    margin-bottom: 10px;
 }
 
 .mobile-event-header {
@@ -228,7 +276,7 @@
 }
 
 .mobile-event-time {
-    font-size: 16px;
+    font-size: 14px;
     font-weight: 500;
 }
 
@@ -236,15 +284,15 @@
     background-color: #dc3545;
     color: white;
     border-radius: 20px;
-    padding: 4px 8px;
-    font-size: 12px;
+    padding: 2px 6px;
+    font-size: 11px;
     font-weight: 700;
 }
 
 .mobile-event-title {
-    font-size: 18px;
+    font-size: 16px;
     font-weight: 500;
-    margin-top: 8px;
+    margin-top: 6px;
 }
 
 .mobile-signup-button {
@@ -252,11 +300,12 @@
     color: white;
     border: none;
     border-radius: 4px;
-    padding: 8px 16px;
+    padding: 6px 12px;
+    font-size: 14px;
     font-weight: 500;
     cursor: pointer;
     transition: background-color 0.2s;
-    animation: pulse 2s infinite;
+    text-decoration: none;
 }
 
 .mobile-signup-button:hover {
@@ -266,19 +315,13 @@
 .mobile-event-footer {
     display: flex;
     justify-content: flex-end;
-    margin-top: 12px;
+    margin-top: 10px;
 }
 
 .no-events-message {
     text-align: center;
     color: #6c757d;
-    padding: 32px 0;
-}
-
-.no-day-selected-message {
-    text-align: center;
-    color: #6c757d;
-    padding: 32px 0;
+    padding: 10px 0;
 }
 
 .loading-spinner {
@@ -307,19 +350,6 @@
     }
 }
 
-@keyframes pulse {
-    0% {
-        box-shadow: 0 0 0 0 rgba(37, 100, 0, 0.7);
-    }
-    70% {
-        box-shadow: 0 0 0 6px rgba(37, 100, 0, 0);
-    }
-    100% {
-        box-shadow: 0 0 0 0 rgba(37, 100, 0, 0);
-    }
-}
-
-/* Media Queries for Responsive Design */
 @media (min-width: 769px) {
     .mobile-calendar-grid {
         max-width: 900px;
@@ -350,20 +380,15 @@
         width: 8px;
     }
 
-    .mobile-event-list {
-        max-width: 900px;
-        margin: 24px auto 0 auto;
+    .mobile-selected-day-info {
+        display: none;
     }
 }
 
 @media (max-width: 768px) {
     .calendar-container {
         padding: 10px;
-        margin-top: 20px; /* Reduced from 80px since header is no longer sticky */
-    }
-
-    .header-legend-container {
-        flex-direction: column;
+        margin-top: 20px;
     }
 
     .calendar-header {
@@ -383,8 +408,19 @@
         font-size: 0.9rem;
     }
 
+    .desktop-day-details {
+        display: none;
+    }
+
     .calendar-legend {
-        max-width: 100%;
+        flex-direction: column;
+        align-items: center;
+        padding: 10px;
+        gap: 8px;
+    }
+
+    .legend-item {
+        margin: 0;
     }
 }
 
