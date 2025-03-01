@@ -22,7 +22,7 @@
                             role="tab"
                             aria-controls="price-two"
                             aria-selected="true">
-                            Open Practice
+                            Register for Practice
                         </button>
                         <button
                             class="tab-btn th-btn"
@@ -185,9 +185,27 @@
                                     <hr />
                                     <h4 class="price-card_price">
                                         Date
-                                        <span class="duration">
+                                        <span
+                                            class="duration"
+                                            *ngIf="openPractice.Date">
                                             {{
                                                 openPractice.Date
+                                                    | date : 'MM/dd/yyyy'
+                                            }}
+                                        </span>
+                                        <span
+                                            class="duration"
+                                            *ngIf="
+                                                openPractice.Date2 &&
+                                                openPractice.Date
+                                            ">
+                                            /
+                                        </span>
+                                        <span
+                                            class="duration"
+                                            *ngIf="openPractice.Date2">
+                                            {{
+                                                openPractice.Date2
                                                     | date : 'MM/dd/yyyy'
                                             }}
                                         </span>

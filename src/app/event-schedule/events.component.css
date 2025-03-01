@@ -130,9 +130,7 @@
     border-radius: 8px;
     padding: 2px;
     position: relative;
-    transition:
-        transform 0.15s ease-in-out,
-        box-shadow 0.15s ease-in-out;
+    transition: transform 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 }
 
 .mobile-day.other-month {
