@@ -1,4 +1,6 @@
-<section id="ourTracks" class="our-tracks-container space-top space-extra-bottom">
+<section
+    id="ourTracks"
+    class="our-tracks-container space-top space-extra-bottom">
     <div class="container">
         <div class="title-area text-center">
             <span class="sub-title">Our Tracks</span>
@@ -12,14 +14,16 @@
                     Our main practice track is configured for riders of all
                     skill levels. It is a very rider friendly course, where the
                     average rider feels very comfortable and the faster riders
-                    are still challenged. <br />
+                    are still challenged.
+                    <br />
                     <br />
                     The main track features roughly 22 turns and features a
                     stadium triple, multiple tabletops and tied together with
-                    rollers and a nice rhythm section. Riders will the track
-                    offers a nice balance of features. The main track is also
-                    undergoing constant changes such as new jumps, turns and
-                    more. <br />
+                    rollers and a nice rhythm section. Riders will notice the
+                    track offers a nice balance of features. The main track is
+                    also undergoing constant changes such as new jumps, turns
+                    and more.
+                    <br />
                     <br />
                     In addition to regular tweaks to the track layout, most of
                     our upgrades involve giving you the best possible ride
@@ -29,9 +33,11 @@
                 <div class="scrolling-pictures-container">
                     <div
                         class="scrolling-picture clickable"
-                        *ngFor="let p of mainTrackPictures"
-                    >
-                        <img  (click)="selectImage(p)" [src]="p.image?.data[0]?.attributes?.url" alt="img" />
+                        *ngFor="let p of mainTrackPictures">
+                        <img
+                            (click)="selectImage(p)"
+                            [src]="p.image?.data[0]?.attributes?.url"
+                            alt="img" />
                     </div>
                 </div>
             </div>
@@ -45,7 +51,8 @@
                     inexperienced rider. The Jr. track features many right, left
                     and off camber turns that help build your young motocross
                     riders skill level. The track also features all tabletops
-                    for the jumps, no doubles or triples!<br />
+                    for the jumps, no doubles or triples!
+                    <br />
                     <br />
                     At Martin MX Park, we believe in youngsters riding at an
                     early age. These young riders are the future of the
@@ -56,9 +63,11 @@
                 <div class="scrolling-pictures-container">
                     <div
                         class="clickable scrolling-picture"
-                        *ngFor="let p of youthTrackPictures"
-                    >
-                        <img (click)="selectImage(p)"  [src]="p.image?.data[0]?.attributes?.url" alt="img" />
+                        *ngFor="let p of youthTrackPictures">
+                        <img
+                            (click)="selectImage(p)"
+                            [src]="p.image?.data[0]?.attributes?.url"
+                            alt="img" />
                     </div>
                 </div>
             </div>
@@ -70,22 +79,19 @@
     id="contact"
     class="popup-gallery overflow-hidden space-bottom bg-black2 pt-40"
     data-mask-src="/images/hero/hero_bg-shape-mask.png"
-    *ngIf="selectedImage"
->
+    *ngIf="selectedImage">
     <div class="container">
         <div class="bmi-calculator-form">
-        <div class="popup-gallery-img">
-            <img [src]="selectedImage.image?.data[0]?.attributes?.url" alt="gallery image">
-        </div>
-                    <div class="col-12">
-                        <div class="th-btn">
-                            <input
-                                type="button"
-                                value="Close"
-                                (click)="closeImage()"
-                            />
-                        </div>
-                    </div>
+            <div class="popup-gallery-img">
+                <img
+                    [src]="selectedImage.image?.data[0]?.attributes?.url"
+                    alt="gallery image" />
+            </div>
+            <div class="col-12">
+                <div class="th-btn">
+                    <input type="button" value="Close" (click)="closeImage()" />
+                </div>
+            </div>
         </div>
     </div>
 </div>

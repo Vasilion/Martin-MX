@@ -7,26 +7,6 @@
                 {{ (currentMonth$ | async)?.year }}
             </h1>
         </div>
-        <div class="calendar-legend">
-            <div class="legend-item">
-                <div
-                    class="legend-color"
-                    style="background-color: #007bff"></div>
-                <span>Scheduled Practice</span>
-            </div>
-            <div class="legend-item">
-                <div
-                    class="legend-color"
-                    style="background-color: #28a745"></div>
-                <span>Registration Open</span>
-            </div>
-            <div class="legend-item">
-                <div
-                    class="legend-color"
-                    style="background-color: #dc3545"></div>
-                <span>Cancelled</span>
-            </div>
-        </div>
         <div class="calendar-controls">
             <button (click)="goToToday()" class="today-btn">Today</button>
             <button (click)="prevMonth()" class="nav-btn">&larr;</button>
@@ -215,5 +195,20 @@
                 </div>
             </ng-container>
         </ng-container>
+    </div>
+
+    <div class="calendar-legend">
+        <div class="legend-item">
+            <div class="legend-color" style="background-color: #007bff"></div>
+            <span>Scheduled Practice</span>
+        </div>
+        <div class="legend-item">
+            <div class="legend-color" style="background-color: #28a745"></div>
+            <span>Registration Open</span>
+        </div>
+        <div class="legend-item">
+            <div class="legend-color" style="background-color: #dc3545"></div>
+            <span>Cancelled</span>
+        </div>
     </div>
 </div>
