@@ -79,7 +79,7 @@
         <ng-container *ngFor="let week of (currentMonth$ | async)?.weeks">
             <ng-container *ngFor="let day of week">
                 <div
-                    (click)="selectDay(day)"
+                    (click)="isMobileView ? selectDay(day) : null"
                     class="mobile-day"
                     [class.other-month]="!day.isCurrentMonth"
                     [class.selected-day]="
