@@ -118,3 +118,7 @@
     opacity: 1;
     transform: translateY(0);
 }
+
+.space-fix {
+    margin-bottom: -40px;
+}
