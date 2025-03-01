@@ -239,9 +239,15 @@
     margin: 2px 0;
 }
 
-.desktop-event-title.cancelled {
-    text-decoration: line-through;
+.desktop-day-event-time.cancelled-event {
+    background-color: rgba(220, 53, 69, 0.1);
     color: #dc3545;
+    text-decoration: line-through;
+    border-bottom: 2px solid #dc3545;
+}
+
+.has-cancelled-event::after {
+    background-color: #dc3545 !important;
 }
 
 .desktop-signup-link {
@@ -437,4 +443,74 @@
         height: 3px;
         width: 3px;
     }
+}
+
+.desktop-day-events {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 4px;
+    font-size: 11px;
+    width: 100%;
+}
+
+.desktop-day-event-time {
+    padding: 2px 4px;
+    margin: 1px 0;
+    border-radius: 4px;
+    background-color: rgba(0, 123, 255, 0.1);
+    color: #007bff;
+    width: 90%;
+    text-align: center;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.desktop-day-event-time.cancelled-event {
+    background-color: rgba(220, 53, 69, 0.1);
+    color: #dc3545;
+    text-decoration: line-through;
+}
+
+.desktop-day-event-time.open-practice-event {
+    background-color: rgba(40, 167, 69, 0.1);
+    color: #28a745;
+    font-weight: 500;
+}
+
+.more-events {
+    color: #6c757d;
+    margin-top: 2px;
+    font-size: 10px;
+}
+
+.in-calendar-link {
+    width: 80%;
+    margin: 0 auto;
+    margin-top: 2px;
+    text-align: center;
+}
+
+@media (min-width: 769px) {
+    .mobile-day {
+        min-width: 120px;
+        min-height: 120px;
+        max-width: 120px;
+        max-height: 120px;
+        margin: 0 auto;
+        border-radius: 10px;
+        padding: 5px 2px;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+    }
+
+    .mobile-day-number {
+        margin-bottom: 4px;
+    }
+}
+
+.mobile-day.has-cancelled-event::after {
+    background-color: #dc3545 !important;
 }

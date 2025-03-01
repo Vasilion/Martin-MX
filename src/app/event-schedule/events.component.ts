@@ -271,9 +271,12 @@ export class EventsComponent implements OnInit, OnDestroy {
         return calendarMonths;
     }
 
+    public hasCancelledEvent(day: CalendarDay): boolean {
+        return day.events.some(event => event.isCancelled);
+    }
+
     public formatEndTime(endTime: string): string {
         if (!endTime) return '';
-
         const [hours, minutes] = endTime.split(':');
         const tempDate = new Date();
         tempDate.setHours(parseInt(hours, 10));
@@ -313,6 +316,7 @@ export class EventsComponent implements OnInit, OnDestroy {
     }
 
     public nextMonth(): void {
+        this.selectedDay = null;
         if (this.currentMonthIndex < 11) {
             this.currentMonthIndex++;
             this.setCurrentMonth();

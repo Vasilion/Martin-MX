@@ -84,6 +84,7 @@
                     [class.open-practice-day]="hasOpenPractice(day)"
                     [class.today]="day.isToday"
                     [class.has-events]="day.events.length > 0"
+                    [class.has-cancelled-event]="hasCancelledEvent(day)"
                 >
                     <div
                         class="mobile-day-number"
@@ -93,7 +94,7 @@
                     </div>
 
                     <div
-                        *ngIf="day.events.length > 0"
+                        *ngIf="day.events.length > 0 && isMobileView"
                         class="mobile-event-indicators"
                     >
                         <ng-container
@@ -102,13 +103,44 @@
                             <div
                                 class="mobile-event-dot"
                                 [style.background-color]="event.isCancelled ? '#dc3545' :
-                                                    (event.isOpenPractice && !event.isCancelled) ? '#28a745' :
-                                                    '#007bff'"
+                                    (event.isOpenPractice && !event.isCancelled) ? '#28a745' :
+                                    '#007bff'"
                             ></div>
                         </ng-container>
 
                         <small *ngIf="day.events.length > 3"
                             >+{{ day.events.length - 3 }}</small
+                        >
+                    </div>
+
+                    <div
+                        *ngIf="day.events.length > 0 && !isMobileView"
+                        class="desktop-day-events"
+                        [class.has-cancelled-event]="hasCancelledEvent(day)"
+                    >
+                        <ng-container
+                            *ngFor="let event of day.events | slice:0:2"
+                        >
+                            <div
+                                class="desktop-day-event-time"
+                                [class.cancelled-event]="event.isCancelled"
+                                [class.open-practice-event]="event.isOpenPractice && !event.isCancelled"
+                            >
+                                {{ formatTime(event.date) }}
+                                <span *ngIf="event.endTime"
+                                    >-{{ formatEndTime(event.endTime) }}</span
+                                >
+                            </div>
+                            <a
+                                *ngIf="event.isOpenPractice && !event.isCancelled"
+                                routerLink="/pricing"
+                                class="desktop-signup-link in-calendar-link"
+                            >
+                                Sign Up
+                            </a>
+                        </ng-container>
+                        <small *ngIf="day.events.length > 2" class="more-events"
+                            >+{{ day.events.length - 2 }} more</small
                         >
                     </div>
 
@@ -127,21 +159,22 @@
                                 <span class="desktop-event-time">
                                     {{ formatTime(event.date) }}
                                     <span *ngIf="event.endTime">
-                                        - {{ formatEndTime(event.endTime)
-                                        }}</span
-                                    >
+                                        - {{ formatEndTime(event.endTime) }} </span
+                                    ><br />
                                 </span>
                                 <span
                                     class="desktop-event-title"
                                     [class.cancelled]="event.isCancelled"
-                                    >{{ event.title }}</span
                                 >
+                                    {{ event.title }}
+                                </span>
                                 <a
                                     *ngIf="event.isOpenPractice && !event.isCancelled"
                                     routerLink="/pricing"
                                     class="desktop-signup-link"
-                                    >Sign Up</a
                                 >
+                                    Sign Up
+                                </a>
                             </div>
                         </div>
                         <div
