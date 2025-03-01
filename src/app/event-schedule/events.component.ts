@@ -116,10 +116,6 @@ export class EventsComponent implements OnInit, OnDestroy {
                     this.generateCalendarMonths(processedEvents);
                 this.calendarMonths$.next(calendarMonths);
                 this.setCurrentMonth();
-
-                if (!this.selectedDay) {
-                    this.selectToday();
-                }
             });
     }
 

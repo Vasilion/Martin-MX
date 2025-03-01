@@ -129,7 +129,6 @@
     border: 1px solid #ddd;
     border-radius: 8px;
     padding: 2px;
-    cursor: pointer;
     position: relative;
     transition:
         transform 0.15s ease-in-out,
