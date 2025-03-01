@@ -34,10 +34,8 @@
     justify-content: center;
     gap: 15px;
     padding: 15px 10px;
-    background-color: #f8f9fa;
     border-radius: 8px;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-    margin-top: 30px;
+    margin-bottom: 15px;
 }
 
 .legend-item {
@@ -131,9 +129,7 @@
     padding: 2px;
     cursor: pointer;
     position: relative;
-    transition:
-        transform 0.15s ease-in-out,
-        box-shadow 0.15s ease-in-out;
+    transition: transform 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 }
 
 .mobile-day.other-month {
