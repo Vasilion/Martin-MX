@@ -31,18 +31,52 @@ export class PaymentSuccessComponent implements AfterViewInit {
             .pipe(
                 take(1),
                 switchMap((params: Params): Observable<any> => {
-                    const classParam = params['class'];
+                    let classParam = params['class'];
+                    let is2 = false;
                     const riderName = localStorage.getItem('riderName');
+                    const date1 = localStorage.getItem('openPracticeDate1');
+                    const date2 = localStorage.getItem('openPracticeDate2');
+                    const dropdownValue = localStorage.getItem('dropdown');
                     if (!riderName) {
                         return of(null);
                     }
                     if (this.isValidClassType(classParam)) {
+                        // Modify classParam if needed before setting selectedClass
+                        if (date1 && date2 && dropdownValue) {
+                            // Extract the date part after the hyphen and trim
+                            const selectedDate = dropdownValue
+                                .split('-')[1]
+                                .trim();
+                            // Format dates for comparison
+                            const formattedSelectedDate = new Date(
+                                selectedDate
+                            ).toLocaleDateString();
+                            const formattedDate1 = new Date(
+                                date1 + 'T12:00:00'
+                            ).toLocaleDateString();
+                            const formattedDate2 = new Date(
+                                date2 + 'T12:00:00'
+                            ).toLocaleDateString();
+
+                            if (formattedSelectedDate === formattedDate2) {
+                                is2 = true;
+                            }
+                        }
+
                         this.selectedClass = classParam as ClassType;
                         this.writeRiderDataToStrapi();
-                        return this.http.post(
-                            CLASSES[this.selectedClass].strapiEndpoint,
-                            {}
-                        );
+                        if (is2) {
+                            return this.http.post(
+                                CLASSES[this.selectedClass].strapiEndpoint +
+                                    '2',
+                                {}
+                            );
+                        } else {
+                            return this.http.post(
+                                CLASSES[this.selectedClass].strapiEndpoint,
+                                {}
+                            );
+                        }
                     }
                     return of(null);
                 })

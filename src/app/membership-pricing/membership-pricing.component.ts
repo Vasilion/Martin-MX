@@ -225,6 +225,18 @@ export class MembershipPricingComponent {
                     return;
                 }
                 this.openPractice = response;
+                if (this.openPractice.Date) {
+                    localStorage.setItem(
+                        'openPracticeDate1',
+                        this.openPractice.Date
+                    );
+                }
+                if (this.openPractice.Date2) {
+                    localStorage.setItem(
+                        'openPracticeDate2',
+                        this.openPractice.Date2
+                    );
+                }
                 if (this.openPractice.isActive) {
                     this.showForm = true;
                 }
