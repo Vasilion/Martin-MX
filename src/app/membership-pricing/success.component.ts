@@ -66,16 +66,30 @@ export class PaymentSuccessComponent implements AfterViewInit {
                         this.selectedClass = classParam as ClassType;
                         this.writeRiderDataToStrapi();
                         if (is2) {
-                            return this.http.post(
-                                CLASSES[this.selectedClass].strapiEndpoint +
-                                    '2',
-                                {}
-                            );
+                            if (this.selectedClass === 'A/B') {
+                                return this.http.post(
+                                    CLASSES['AB'].strapiEndpoint + '2',
+                                    {}
+                                );
+                            } else {
+                                return this.http.post(
+                                    CLASSES[this.selectedClass].strapiEndpoint +
+                                        '2',
+                                    {}
+                                );
+                            }
                         } else {
-                            return this.http.post(
-                                CLASSES[this.selectedClass].strapiEndpoint,
-                                {}
-                            );
+                            if (this.selectedClass === 'A/B') {
+                                return this.http.post(
+                                    CLASSES['AB'].strapiEndpoint,
+                                    {}
+                                );
+                            } else {
+                                return this.http.post(
+                                    CLASSES[this.selectedClass].strapiEndpoint,
+                                    {}
+                                );
+                            }
                         }
                     }
                     return of(null);
@@ -132,7 +146,7 @@ export class PaymentSuccessComponent implements AfterViewInit {
                 payload
             )
             .subscribe((): void => {
-                localStorage.clear();
+                // localStorage.clear();
             });
     }
 }
