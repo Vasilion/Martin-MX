@@ -181,24 +181,19 @@ export class EventsComponent implements OnInit, OnDestroy {
         openPracticeDates: string[]
     ): ProcessedEvent[] {
         return events.map(event => {
-            const utcDate = new Date(event.date);
+            const originalDate = new Date(event.date);
 
-            const year = utcDate.getUTCFullYear();
-            const month = utcDate.getUTCMonth();
-            const day = utcDate.getUTCDate();
-            const hours = utcDate.getUTCHours();
-            const minutes = utcDate.getUTCMinutes();
-
-            const localDate = new Date(year, month, day, hours, minutes);
-
-            const dateFormatted = `${year}-${String(month + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
+            const year = originalDate.getFullYear();
+            const month = originalDate.getMonth() + 1;
+            const day = originalDate.getDate();
+            const dateFormatted = `${year}-${String(month).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
 
             const isOpenPractice = openPracticeDates.some(
                 practiceDate => dateFormatted === practiceDate
             );
 
             return {
-                date: localDate,
+                date: originalDate,
                 endTime: event.endTime || null,
                 title: event.title || null,
                 isCancelled: event.isCancelled || false,

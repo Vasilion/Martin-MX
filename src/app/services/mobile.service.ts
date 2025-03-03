@@ -1,13 +1,13 @@
 import {
     BreakpointObserver,
     Breakpoints,
-    BreakpointState,
+    BreakpointState
 } from '@angular/cdk/layout';
 import { Injectable } from '@angular/core';
 import { map, Observable } from 'rxjs';
 
 @Injectable({
-    providedIn: 'root',
+    providedIn: 'root'
 })
 export class MobileService {
     /*
@@ -26,7 +26,8 @@ export class MobileService {
     }
 
     public showMobileMenu$(): Observable<boolean> {
-        return this.breakpointObserver.observe('(max-width: 992px')
+        return this.breakpointObserver
+            .observe('(max-width: 1300px')
             .pipe(map((result: BreakpointState): boolean => result.matches));
     }
 }
