@@ -16,6 +16,7 @@ export class HeroComponent {
     constructor(private openPracticeCacheService: OpenPracticeCacheService) {
         this.getPricing();
     }
+
     public isDate2Earlier(): boolean {
         if (!this.openPractice?.Date2 || !this.openPractice?.Date) {
             return false;
