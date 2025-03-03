@@ -19,10 +19,9 @@ import { Sponsor } from '../interfaces/responses';
     ],
     selector: 'app-header',
     templateUrl: 'header.component.html',
-    styleUrls: ['header.component.css'],
+    styleUrls: ['header.component.css']
 })
 export class HeaderComponent {
-
     public showMobileNav: boolean = false;
     public isSponsorsVisible: boolean = false;
 
@@ -35,7 +34,9 @@ export class HeaderComponent {
                 this.isSponsorsVisible = false;
                 return;
             } else {
-                const activeSponsors = data.filter((sponsor: Sponsor) => sponsor.isActive);
+                const activeSponsors = data.filter(
+                    (sponsor: Sponsor) => sponsor.isActive
+                );
                 if (activeSponsors.length === 0) {
                     this.isSponsorsVisible = false;
                     return;
@@ -43,12 +44,11 @@ export class HeaderComponent {
                     this.isSponsorsVisible = true;
                 }
             }
-
         });
     }
 
-    public get isMobile$(): Observable<boolean> {
-        return this.mobileService.isHandset();
+    public get isMobile(): boolean {
+        return this.mobileService.isMobile();
     }
 
     public toggleMobileNav(): void {

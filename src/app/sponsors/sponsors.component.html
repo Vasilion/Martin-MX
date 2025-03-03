@@ -1,37 +1,42 @@
 <section class="sponsors-section">
-  <div class="container">
-    <div class="title-area text-center mb-12">
-      <span class="sub-title">Our Sponsors</span>
-    </div>
-    <div
-      *ngIf="sponsors && sponsors.length > 0"
-      class="spon-container grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
-    >
-      <div
-        *ngFor="let sponsor of sponsors"
-        class="sponsor-card bg-white rounded-lg shadow-lg p-6 transition-all hover:shadow-xl"
-      >
-        <a
-          [href]="sponsor.link || '#'"
-          [target]="sponsor.link ? '_blank' : '_self'"
-          class="block"
+    <div class="container">
+        <div class="title-area text-center mb-12">
+            <span class="sub-title">Our Sponsors</span>
+        </div>
+        <div
+            *ngIf="sponsors && sponsors.length > 0"
+            class="spon-container grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
         >
-          <div class="aspect-w-16 aspect-h-9 mb-4" *ngIf="sponsor.photo">
-            <img
-              [src]="sponsor.photo"
-              [alt]="sponsor.name"
-              class="w-full h-full object-contain rounded"
-            />
-          </div>
-          <h3 class="text-xl font-semibold text-center">{{sponsor.name}}</h3>
-        </a>
-      </div>
+            <div
+                *ngFor="let sponsor of sponsors"
+                class="sponsor-card bg-white rounded-lg shadow-lg p-6 transition-all hover:shadow-xl"
+            >
+                <a
+                    [href]="sponsor.link || '#'"
+                    [target]="sponsor.link ? '_blank' : '_self'"
+                    class="block"
+                >
+                    <div
+                        class="center aspect-w-16 aspect-h-9 mb-4"
+                        *ngIf="sponsor.photo"
+                    >
+                        <img
+                            [src]="sponsor.photo"
+                            [alt]="sponsor.name"
+                            class="w-full h-full object-contain rounded"
+                        />
+                    </div>
+                    <h3 class="text-xl font-semibold text-center">
+                        {{sponsor.name}}
+                    </h3>
+                </a>
+            </div>
+        </div>
+        <div
+            *ngIf="!sponsors || sponsors.length === 0"
+            class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+        >
+            <div class="text-center text-gray-500">Sponsors not available</div>
+        </div>
     </div>
-    <div
-      *ngIf="!sponsors || sponsors.length === 0"
-      class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
-    >
-      <div class="text-center text-gray-500">Sponsors not available</div>
-    </div>
-  </div>
 </section>

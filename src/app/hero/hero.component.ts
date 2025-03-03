@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { ApiService } from '../services/api.service';
 import { CommonModule } from '@angular/common';
 import { OpenPracticeCacheService } from '../services/open-practice.service';
 
