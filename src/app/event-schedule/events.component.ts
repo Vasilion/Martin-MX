@@ -158,7 +158,6 @@ export class EventsComponent implements OnInit, OnDestroy {
                         this.currentYear = this.scheduleYear;
                     }
 
-                    console.log('Schedule data:', data[0]);
                     const transformedData: Event[] = data.map(item => ({
                         date: item.date,
                         title: item.title,
@@ -182,24 +181,27 @@ export class EventsComponent implements OnInit, OnDestroy {
         openPracticeDates: string[]
     ): ProcessedEvent[] {
         return events.map(event => {
-            const baseDate = new Date(event.date);
-            const endTime = event.endTime || null;
+            const utcDate = new Date(event.date);
 
-            const eventDateFormatted = new Date(event.date)
-                .toISOString()
-                .split('T')[0];
+            const year = utcDate.getUTCFullYear();
+            const month = utcDate.getUTCMonth();
+            const day = utcDate.getUTCDate();
+            const hours = utcDate.getUTCHours();
+            const minutes = utcDate.getUTCMinutes();
+
+            const localDate = new Date(year, month, day, hours, minutes);
+
+            const dateFormatted = `${year}-${String(month + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
 
             const isOpenPractice = openPracticeDates.some(
-                (practiceDate): boolean => {
-                    return eventDateFormatted === practiceDate;
-                }
+                practiceDate => dateFormatted === practiceDate
             );
 
             return {
-                date: baseDate,
-                endTime: endTime,
-                title: event.title,
-                isCancelled: event.isCancelled,
+                date: localDate,
+                endTime: event.endTime || null,
+                title: event.title || null,
+                isCancelled: event.isCancelled || false,
                 isOpenPractice
             };
         });
@@ -228,14 +230,21 @@ export class EventsComponent implements OnInit, OnDestroy {
 
             while (currentDate <= lastDayOfCalendar) {
                 const currentDateCopy = new Date(currentDate);
-                const dayEvents = events.filter(
-                    event =>
-                        event.date.getDate() === currentDateCopy.getDate() &&
-                        event.date.getMonth() === currentDateCopy.getMonth() &&
-                        event.date.getFullYear() ===
-                            currentDateCopy.getFullYear()
-                );
+                const dayEvents = events.filter(event => {
+                    const eventDay = event.date.getDate();
+                    const eventMonth = event.date.getMonth();
+                    const eventYear = event.date.getFullYear();
 
+                    const calendarDay = currentDateCopy.getDate();
+                    const calendarMonth = currentDateCopy.getMonth();
+                    const calendarYear = currentDateCopy.getFullYear();
+
+                    return (
+                        eventDay === calendarDay &&
+                        eventMonth === calendarMonth &&
+                        eventYear === calendarYear
+                    );
+                });
                 const calendarDay: CalendarDay = {
                     date: currentDateCopy,
                     events: dayEvents,

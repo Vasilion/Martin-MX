@@ -39,7 +39,9 @@ export class ApiService {
 
     public getSchedule(): Observable<any> {
         let url =
-            environment.strapiBaseUrl + '/martin-schedules' + '?populate=*';
+            environment.strapiBaseUrl +
+            '/martin-schedules' +
+            '?populate=*&pagination[limit]=-1';
         return this.http
             .get(url)
             .pipe(
