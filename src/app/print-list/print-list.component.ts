@@ -15,6 +15,11 @@ interface GroupedRiders {
     [key: string]: Rider[];
 }
 
+interface ClassCount {
+    class: string;
+    count: number;
+}
+
 @Component({
     selector: 'app-print-list',
     standalone: true,
@@ -29,7 +34,6 @@ export class PrintListComponent implements OnInit {
 
     public ngOnInit(): void {
         this.apiService.getRiderList().subscribe(res => {
-            // Group riders by date and sort by name within each group
             this.groupedRiders = this.groupRidersByDate(res);
         });
     }
@@ -44,7 +48,6 @@ export class PrintListComponent implements OnInit {
             return acc;
         }, {});
 
-        // Sort riders by name within each date group
         Object.keys(grouped).forEach(date => {
             grouped[date].sort((a, b) => a.Name.localeCompare(b.Name));
         });
@@ -52,9 +55,25 @@ export class PrintListComponent implements OnInit {
         return grouped;
     }
 
+    public getClassCounts(riders: Rider[]): ClassCount[] {
+        const classMap = riders.reduce(
+            (acc: { [key: string]: number }, rider: Rider) => {
+                acc[rider.Class] = (acc[rider.Class] || 0) + 1;
+                return acc;
+            },
+            {}
+        );
+
+        return Object.entries(classMap)
+            .map(([className, count]) => ({ class: className, count }))
+            .sort((a, b) => a.class.localeCompare(b.class));
+    }
+
     public printRiderList(date: string): void {
-        const printContent = document.getElementById(`riders-table-${date}`);
-        if (printContent) {
+        const tableContent = document.getElementById(`riders-table-${date}`);
+        const totalsSection = document.getElementById(`totals-section-${date}`);
+
+        if (tableContent && totalsSection) {
             const printWindow = window.open('', '', 'height=600,width=800');
             if (printWindow) {
                 printWindow.document.write(
@@ -68,6 +87,10 @@ export class PrintListComponent implements OnInit {
                     table { width: 100%; margin: 20px 0; }
                     th, td { padding: 8px; text-align: left; }
                     th { background-color: #f8f9fa; }
+                    .totals-section { margin-top: 15px; padding: 10px; background-color: #f8f9fa; }
+                    .totals-section h4 { font-size: 1.1rem; margin-bottom: 10px; }
+                    .totals-section li { padding: 5px 0; }
+                    .totals-section .grand-total { font-weight: 600; border-top: 1px solid #dee2e6; margin-top: 5px; padding-top: 10px; }
                     @media print {
                         table { border-collapse: collapse; }
                         th, td { border: 1px solid #ddd; }
@@ -75,7 +98,8 @@ export class PrintListComponent implements OnInit {
                 `);
                 printWindow.document.write('</style>');
                 printWindow.document.write('</head><body>');
-                printWindow.document.write(printContent.outerHTML);
+                printWindow.document.write(tableContent.outerHTML);
+                printWindow.document.write(totalsSection.outerHTML);
                 printWindow.document.write('</body></html>');
                 printWindow.document.close();
                 printWindow.focus();
@@ -84,7 +108,16 @@ export class PrintListComponent implements OnInit {
                     printWindow.print();
                     printWindow.close();
                 }, 250);
+            } else {
+                console.error('Could not open print window');
             }
+        } else {
+            console.error(
+                'Could not find table or totals section for date:',
+                date
+            );
+            if (!tableContent) console.error('Table not found');
+            if (!totalsSection) console.error('Totals section not found');
         }
     }
 }

@@ -31,6 +31,24 @@
                 </tbody>
             </table>
         </div>
+        <div class="totals-section" [id]="'totals-section-' + date.key">
+            <div class="row">
+                <div class="col-12">
+                    <h4>Totals:</h4>
+                    <ul class="list-unstyled">
+                        <li
+                            *ngFor="
+                                let classCount of getClassCounts(date.value)
+                            ">
+                            {{ classCount.class }}: {{ classCount.count }}
+                        </li>
+                        <li class="grand-total">
+                            Total: {{ date.value.length }}
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
         <div class="text-center mt-3 mb-4">
             <button class="th-btn print-btn" (click)="printRiderList(date.key)">
                 Print {{ date.key | date : 'mediumDate' }} List

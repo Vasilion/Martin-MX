@@ -21,3 +21,29 @@
     color: #333;
     font-size: 1.5rem;
 }
+
+.totals-section {
+    margin-top: 15px;
+    padding: 10px;
+    background-color: #f8f9fa;
+    border-radius: 4px;
+}
+
+.totals-section h4 {
+    font-size: 1.1rem;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.totals-section li {
+    padding: 5px 0;
+    color: #555;
+}
+
+.totals-section .grand-total {
+    font-weight: 600;
+    border-top: 1px solid #dee2e6;
+    margin-top: 5px;
+    padding-top: 10px;
+    color: #333;
+}
