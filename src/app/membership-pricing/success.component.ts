@@ -146,7 +146,7 @@ export class PaymentSuccessComponent implements AfterViewInit {
                 payload
             )
             .subscribe((): void => {
-                // localStorage.clear();
+                localStorage.clear();
             });
     }
 }
