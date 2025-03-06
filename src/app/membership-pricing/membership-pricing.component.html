@@ -13,8 +13,7 @@
                 <div class="sec-btn">
                     <div
                         class="nav tab-menu1 price-tab-btn mobile-pricing-nav-small"
-                        role="tablist"
-                    >
+                        role="tablist">
                         <button
                             class="tab-btn th-btn active"
                             id="price-two-tab"
@@ -22,8 +21,7 @@
                             data-bs-target="#price-two"
                             role="tab"
                             aria-controls="price-two"
-                            aria-selected="true"
-                        >
+                            aria-selected="true">
                             Register for Practice
                         </button>
                         <button
@@ -33,8 +31,7 @@
                             data-bs-target="#price-one"
                             role="tab"
                             aria-controls="price-one"
-                            aria-selected="false"
-                        >
+                            aria-selected="false">
                             Unlimited Membership
                         </button>
                     </div>
@@ -46,13 +43,11 @@
                 class="tab-pane fade show"
                 id="price-one"
                 role="tabpanel"
-                aria-labelledby="price-one-tab"
-            >
+                aria-labelledby="price-one-tab">
                 <div class="row gy-30 justify-content-center">
                     <div
                         class="col-xl-12 col-lg-6"
-                        *ngIf="yearlySignUp && yearlySignUp.isActive"
-                    >
+                        *ngIf="yearlySignUp && yearlySignUp.isActive">
                         <div class="price-card">
                             <div class="price-title-wrap">
                                 <h3 class="box-title">Yearly</h3>
@@ -70,56 +65,51 @@
                                                 <li
                                                     *ngIf="
                                                         yearlySignUp.description1
-                                                    "
-                                                >
+                                                    ">
                                                     <i
-                                                        class="far fa-circle-check"
-                                                    ></i>
-                                                    {{ yearlySignUp.description1
+                                                        class="far fa-circle-check"></i>
+                                                    {{
+                                                        yearlySignUp.description1
                                                     }}
                                                 </li>
                                                 <li
                                                     *ngIf="
                                                         yearlySignUp.description2
-                                                    "
-                                                >
+                                                    ">
                                                     <i
-                                                        class="far fa-circle-check"
-                                                    ></i>
-                                                    {{ yearlySignUp.description2
+                                                        class="far fa-circle-check"></i>
+                                                    {{
+                                                        yearlySignUp.description2
                                                     }}
                                                 </li>
                                                 <li
                                                     *ngIf="
                                                         yearlySignUp.description3
-                                                    "
-                                                >
+                                                    ">
                                                     <i
-                                                        class="far fa-circle-check"
-                                                    ></i>
-                                                    {{ yearlySignUp.description3
+                                                        class="far fa-circle-check"></i>
+                                                    {{
+                                                        yearlySignUp.description3
                                                     }}
                                                 </li>
                                                 <li
                                                     *ngIf="
                                                         yearlySignUp.description5
-                                                    "
-                                                >
+                                                    ">
                                                     <i
-                                                        class="far fa-circle-check"
-                                                    ></i>
-                                                    {{ yearlySignUp.description4
+                                                        class="far fa-circle-check"></i>
+                                                    {{
+                                                        yearlySignUp.description4
                                                     }}
                                                 </li>
                                                 <li
                                                     *ngIf="
                                                         yearlySignUp.description5
-                                                    "
-                                                >
+                                                    ">
                                                     <i
-                                                        class="far fa-circle-check"
-                                                    ></i>
-                                                    {{ yearlySignUp.description5
+                                                        class="far fa-circle-check"></i>
+                                                    {{
+                                                        yearlySignUp.description5
                                                     }}
                                                 </li>
                                             </ul>
@@ -131,8 +121,7 @@
                                 <a
                                     href="https://buy.stripe.com/7sI0081086Xr4so4gh"
                                     target="_blank"
-                                    class="th-btn style3 w-100"
-                                >
+                                    class="th-btn style3 w-100">
                                     Sign Up Now!
                                 </a>
                             </div>
@@ -140,8 +129,7 @@
                     </div>
                     <div
                         class="col-xl-12 col-lg-6"
-                        *ngIf="!yearlySignUp || !yearlySignUp.isActive"
-                    >
+                        *ngIf="!yearlySignUp || !yearlySignUp.isActive">
                         <div class="price-card">
                             <div class="price-title-wrap">
                                 <h3 class="box-title">
@@ -156,26 +144,22 @@
                 class="tab-pane fade show active"
                 id="price-two"
                 role="tabpanel"
-                aria-labelledby="price-two-tab"
-            >
+                aria-labelledby="price-two-tab">
                 <div class="row gy-30 justify-content-center">
                     <div class="col-xl-12 col-lg-6">
                         <div
                             class="price-card"
-                            *ngIf="openPractice && openPractice.isActive"
-                        >
+                            *ngIf="openPractice && openPractice.isActive">
                             <div
                                 *ngIf="openPractice.isCancelled"
-                                class="price-title-wrap"
-                            >
+                                class="price-title-wrap">
                                 <h2 class="box-title">Practice is Cancelled</h2>
                                 <h4
                                     class="box-title"
                                     *ngIf="
                                         openPractice.isCancelled &&
                                         openPractice.reasonForCancel
-                                    "
-                                >
+                                    ">
                                     Due to: {{ openPractice.reasonForCancel }}
                                 </h4>
                             </div>
@@ -183,8 +167,7 @@
                                 *ngIf="
                                     !openPractice.isCancelled &&
                                     openPractice.isActive
-                                "
-                            >
+                                ">
                                 <div class="price-title-wrap">
                                     <h3 class="box-title">Main Track</h3>
                                     <h4 class="price-card_price">
@@ -204,40 +187,50 @@
                                         <div class="checklist-container">
                                             <h6>
                                                 <ng-container
-                                                    *ngIf="openPractice.Date"
-                                                >
+                                                    *ngIf="openPractice.Date">
                                                     Open
                                                 </ng-container>
                                                 <span
                                                     class="duration"
-                                                    *ngIf="openPractice.Date"
-                                                >
-                                                    {{ openPractice.Date | date
-                                                    : 'MM/dd/yyyy' }} from
+                                                    *ngIf="openPractice.Date">
+                                                    {{
+                                                        openPractice.Date
+                                                            | date
+                                                                : 'MM/dd/yyyy'
+                                                    }}
+                                                    from
                                                     <span class="duration">
                                                         {{
-                                                        openPractice.startTime
-                                                        }} to {{
-                                                        openPractice.endTime }}
+                                                            openPractice.startTime
+                                                        }}
+                                                        to
+                                                        {{
+                                                            openPractice.endTime
+                                                        }}
                                                     </span>
                                                 </span>
                                                 <br />
                                                 <ng-container
-                                                    *ngIf="openPractice.Date2"
-                                                >
+                                                    *ngIf="openPractice.Date2">
                                                     Open
                                                 </ng-container>
                                                 <span
                                                     class="duration"
-                                                    *ngIf="openPractice.Date2"
-                                                >
-                                                    {{ openPractice.Date2 | date
-                                                    : 'MM/dd/yyyy' }} from
+                                                    *ngIf="openPractice.Date2">
+                                                    {{
+                                                        openPractice.Date2
+                                                            | date
+                                                                : 'MM/dd/yyyy'
+                                                    }}
+                                                    from
                                                     <span class="duration">
                                                         {{
-                                                        openPractice.startTime2
-                                                        }} to {{
-                                                        openPractice.endTime2 }}
+                                                            openPractice.startTime2
+                                                        }}
+                                                        to
+                                                        {{
+                                                            openPractice.endTime2
+                                                        }}
                                                     </span>
                                                 </span>
                                             </h6>
@@ -247,61 +240,51 @@
                                                     <li
                                                         *ngIf="
                                                             openPractice.description1
-                                                        "
-                                                    >
+                                                        ">
                                                         <i
-                                                            class="far fa-circle-check"
-                                                        ></i>
+                                                            class="far fa-circle-check"></i>
                                                         {{
-                                                        openPractice.description1
+                                                            openPractice.description1
                                                         }}
                                                     </li>
                                                     <li
                                                         *ngIf="
                                                             openPractice.description2
-                                                        "
-                                                    >
+                                                        ">
                                                         <i
-                                                            class="far fa-circle-check"
-                                                        ></i>
+                                                            class="far fa-circle-check"></i>
                                                         {{
-                                                        openPractice.description2
+                                                            openPractice.description2
                                                         }}
                                                     </li>
                                                     <li
                                                         *ngIf="
                                                             openPractice.description3
-                                                        "
-                                                    >
+                                                        ">
                                                         <i
-                                                            class="far fa-circle-check"
-                                                        ></i>
+                                                            class="far fa-circle-check"></i>
                                                         {{
-                                                        openPractice.description3
+                                                            openPractice.description3
                                                         }}
                                                     </li>
                                                     <li
                                                         *ngIf="
                                                             openPractice.description4
-                                                        "
-                                                    >
+                                                        ">
                                                         <i
-                                                            class="far fa-circle-check"
-                                                        ></i>
+                                                            class="far fa-circle-check"></i>
                                                         {{
-                                                        openPractice.description4
+                                                            openPractice.description4
                                                         }}
                                                     </li>
                                                     <li
                                                         *ngIf="
                                                             openPractice.description5
-                                                        "
-                                                    >
+                                                        ">
                                                         <i
-                                                            class="far fa-circle-check"
-                                                        ></i>
+                                                            class="far fa-circle-check"></i>
                                                         {{
-                                                        openPractice.description5
+                                                            openPractice.description5
                                                         }}
                                                     </li>
                                                 </ul>
@@ -313,11 +296,11 @@
                         </div>
                         <div
                             class="price-card"
-                            *ngIf="!openPractice || !openPractice.isActive"
-                        >
+                            *ngIf="!openPractice || !openPractice.isActive">
                             <div class="price-title-wrap">
                                 <h3 class="box-title">
-                                    Open Practice is unavailable at this time.
+                                    Online Registration is unavailable at this
+                                    time.
                                 </h3>
                             </div>
                         </div>
@@ -329,13 +312,11 @@
                 class="tab-pane fade show"
                 id="price-one"
                 role="tabpanel"
-                aria-labelledby="price-one-tab"
-            >
+                aria-labelledby="price-one-tab">
                 <div class="row gy-30 justify-content-center">
                     <div
                         class="col-xl-12 col-lg-6"
-                        *ngIf="yearlySignUp && yearlySignUp.isActive"
-                    >
+                        *ngIf="yearlySignUp && yearlySignUp.isActive">
                         <div class="price-card">
                             <div class="price-title-wrap">
                                 <h3 class="box-title">Yearly</h3>
@@ -353,56 +334,51 @@
                                                 <li
                                                     *ngIf="
                                                         yearlySignUp.description1
-                                                    "
-                                                >
+                                                    ">
                                                     <i
-                                                        class="far fa-circle-check"
-                                                    ></i>
-                                                    {{ yearlySignUp.description1
+                                                        class="far fa-circle-check"></i>
+                                                    {{
+                                                        yearlySignUp.description1
                                                     }}
                                                 </li>
                                                 <li
                                                     *ngIf="
                                                         yearlySignUp.description2
-                                                    "
-                                                >
+                                                    ">
                                                     <i
-                                                        class="far fa-circle-check"
-                                                    ></i>
-                                                    {{ yearlySignUp.description2
+                                                        class="far fa-circle-check"></i>
+                                                    {{
+                                                        yearlySignUp.description2
                                                     }}
                                                 </li>
                                                 <li
                                                     *ngIf="
                                                         yearlySignUp.description3
-                                                    "
-                                                >
+                                                    ">
                                                     <i
-                                                        class="far fa-circle-check"
-                                                    ></i>
-                                                    {{ yearlySignUp.description3
+                                                        class="far fa-circle-check"></i>
+                                                    {{
+                                                        yearlySignUp.description3
                                                     }}
                                                 </li>
                                                 <li
                                                     *ngIf="
                                                         yearlySignUp.description4
-                                                    "
-                                                >
+                                                    ">
                                                     <i
-                                                        class="far fa-circle-check"
-                                                    ></i>
-                                                    {{ yearlySignUp.description4
+                                                        class="far fa-circle-check"></i>
+                                                    {{
+                                                        yearlySignUp.description4
                                                     }}
                                                 </li>
                                                 <li
                                                     *ngIf="
                                                         yearlySignUp.description5
-                                                    "
-                                                >
+                                                    ">
                                                     <i
-                                                        class="far fa-circle-check"
-                                                    ></i>
-                                                    {{ yearlySignUp.description5
+                                                        class="far fa-circle-check"></i>
+                                                    {{
+                                                        yearlySignUp.description5
                                                     }}
                                                 </li>
                                             </ul>
@@ -415,16 +391,14 @@
                             <a
                                 href="https://buy.stripe.com/7sI0081086Xr4so4gh"
                                 target="_blank"
-                                class="th-btn style3 w-130"
-                            >
+                                class="th-btn style3 w-130">
                                 Sign Up Now!
                             </a>
                         </div>
                     </div>
                     <div
                         class="col-xl-12 col-lg-6"
-                        *ngIf="!yearlySignUp || !yearlySignUp.isActive"
-                    >
+                        *ngIf="!yearlySignUp || !yearlySignUp.isActive">
                         <div class="price-card">
                             <div class="price-title-wrap">
                                 <h3 class="box-title">
@@ -557,8 +531,7 @@
     <div
         id="sign-up"
         class="overflow-hidden space-bottom bg-black2 pt-40"
-        data-mask-src="/images/hero/hero_bg-shape-mask.png"
-    >
+        data-mask-src="/images/hero/hero_bg-shape-mask.png">
         <div class="container">
             <div class="title-area text-center">
                 <span class="sub-title">Practice - Sign Up</span>
@@ -568,8 +541,7 @@
                     class="bmi-form"
                     id="signUpForm"
                     name="signUpForm"
-                    [formGroup]="signUpForm"
-                >
+                    [formGroup]="signUpForm">
                     <div class="row gy-30 gx-30 justify-content-center">
                         <div class="col-12">
                             <div class="form-group style-dark2">
@@ -587,20 +559,16 @@
                                     (blur)="
                                         signUpForm.get('email')?.markAsTouched()
                                     "
-                                    required
-                                />
+                                    required />
                                 <div
                                     class="invalid-feedback"
-                                    *ngIf="signUpForm.get('email')?.touched"
-                                >
+                                    *ngIf="signUpForm.get('email')?.touched">
                                     <span
-                                        *ngIf="signUpForm.get('email')?.errors?.['required']"
-                                    >
+                                        *ngIf="signUpForm.get('email')?.errors?.['required']">
                                         Email is required
                                     </span>
                                     <span
-                                        *ngIf="signUpForm.get('email')?.errors?.['email']"
-                                    >
+                                        *ngIf="signUpForm.get('email')?.errors?.['email']">
                                         Please enter a valid email address
                                     </span>
                                 </div>
@@ -625,17 +593,14 @@
                                             .get('riderName')
                                             ?.markAsTouched()
                                     "
-                                    required
-                                />
+                                    required />
                                 <div
                                     class="invalid-feedback"
                                     *ngIf="
                                         signUpForm.get('riderName')?.touched
-                                    "
-                                >
+                                    ">
                                     <span
-                                        *ngIf="signUpForm.get('riderName')?.errors?.['required']"
-                                    >
+                                        *ngIf="signUpForm.get('riderName')?.errors?.['required']">
                                         Rider name is required
                                     </span>
                                 </div>
@@ -660,20 +625,16 @@
                                             .get('bikeSize')
                                             ?.markAsTouched()
                                     "
-                                    required
-                                />
+                                    required />
                                 <div
                                     class="invalid-feedback"
-                                    *ngIf="signUpForm.get('bikeSize')?.touched"
-                                >
+                                    *ngIf="signUpForm.get('bikeSize')?.touched">
                                     <span
-                                        *ngIf="signUpForm.get('bikeSize')?.errors?.['required']"
-                                    >
+                                        *ngIf="signUpForm.get('bikeSize')?.errors?.['required']">
                                         Bike size is required
                                     </span>
                                     <span
-                                        *ngIf="signUpForm.get('bikeSize')?.errors?.['min']"
-                                    >
+                                        *ngIf="signUpForm.get('bikeSize')?.errors?.['min']">
                                         Bike size must be greater than 0
                                     </span>
                                 </div>
@@ -699,22 +660,18 @@
                                             .get('riderNumber')
                                             ?.markAsTouched()
                                     "
-                                    required
-                                />
+                                    required />
                                 <div
                                     class="invalid-feedback"
                                     *ngIf="
                                         signUpForm.get('riderNumber')?.touched
-                                    "
-                                >
+                                    ">
                                     <span
-                                        *ngIf="signUpForm.get('riderNumber')?.errors?.['required']"
-                                    >
+                                        *ngIf="signUpForm.get('riderNumber')?.errors?.['required']">
                                         Rider number is required
                                     </span>
                                     <span
-                                        *ngIf="signUpForm.get('riderNumber')?.errors?.['pattern']"
-                                    >
+                                        *ngIf="signUpForm.get('riderNumber')?.errors?.['pattern']">
                                         Please enter a valid rider number
                                     </span>
                                 </div>
@@ -725,8 +682,7 @@
                                 <select
                                     formControlName="minorCheck"
                                     class="form-control"
-                                    name="minorCheck"
-                                >
+                                    name="minorCheck">
                                     <option value="" disabled selected>
                                         Minor / Adult
                                     </option>
@@ -742,8 +698,7 @@
                                     *ngIf="!isDate2Earlier()"
                                     formControlName="dropdown"
                                     class="form-control"
-                                    name="dropdown"
-                                >
+                                    name="dropdown">
                                     <option value="" disabled selected>
                                         Select a Class
                                     </option>
@@ -756,16 +711,17 @@
                                             'A/B - ' +
                                             (openPractice.Date
                                                 | date : 'mediumDate')
-                                        "
-                                    >
-                                        A/B - {{ openPractice.Date | date :
-                                        'mediumDate' }}
+                                        ">
+                                        A/B -
+                                        {{
+                                            openPractice.Date
+                                                | date : 'mediumDate'
+                                        }}
                                         <span
                                             *ngIf="
                                                 spotsLeftClassAB <= 6 &&
                                                 spotsLeftClassAB > 0
-                                            "
-                                        >
+                                            ">
                                             - {{ spotsLeftClassAB }} spots
                                             remaining.
                                         </span>
@@ -779,16 +735,17 @@
                                             'C - ' +
                                             (openPractice.Date
                                                 | date : 'mediumDate')
-                                        "
-                                    >
-                                        C - {{ openPractice.Date | date :
-                                        'mediumDate' }}
+                                        ">
+                                        C -
+                                        {{
+                                            openPractice.Date
+                                                | date : 'mediumDate'
+                                        }}
                                         <span
                                             *ngIf="
                                                 spotsLeftClassC <= 6 &&
                                                 spotsLeftClassC > 0
-                                            "
-                                        >
+                                            ">
                                             - {{ spotsLeftClassC }} spots
                                             remaining.
                                         </span>
@@ -802,16 +759,17 @@
                                             'Mini - ' +
                                             (openPractice.Date
                                                 | date : 'mediumDate')
-                                        "
-                                    >
-                                        Mini - {{ openPractice.Date | date :
-                                        'mediumDate' }}
+                                        ">
+                                        Mini -
+                                        {{
+                                            openPractice.Date
+                                                | date : 'mediumDate'
+                                        }}
                                         <span
                                             *ngIf="
                                                 spotsLeftClassMini <= 6 &&
                                                 spotsLeftClassMini > 0
-                                            "
-                                        >
+                                            ">
                                             - {{ spotsLeftClassMini }} spots
                                             remaining.
                                         </span>
@@ -825,16 +783,17 @@
                                             'Jr Track - ' +
                                             (openPractice.Date
                                                 | date : 'mediumDate')
-                                        "
-                                    >
-                                        Jr Track - {{ openPractice.Date | date :
-                                        'mediumDate' }}
+                                        ">
+                                        Jr Track -
+                                        {{
+                                            openPractice.Date
+                                                | date : 'mediumDate'
+                                        }}
                                         <span
                                             *ngIf="
                                                 spotsLeftClassJr <= 6 &&
                                                 spotsLeftClassJr > 0
-                                            "
-                                        >
+                                            ">
                                             - {{ spotsLeftClassJr }} spots
                                             remaining.
                                         </span>
@@ -848,10 +807,12 @@
                                             'A/B - ' +
                                             (openPractice.Date2
                                                 | date : 'mediumDate')
-                                        "
-                                    >
-                                        A/B - {{ openPractice.Date2 | date :
-                                        'mediumDate' }}
+                                        ">
+                                        A/B -
+                                        {{
+                                            openPractice.Date2
+                                                | date : 'mediumDate'
+                                        }}
                                     </option>
                                     <option
                                         *ngIf="openPractice.Date2"
@@ -859,10 +820,12 @@
                                             'C - ' +
                                             (openPractice.Date2
                                                 | date : 'mediumDate')
-                                        "
-                                    >
-                                        C - {{ openPractice.Date2 | date :
-                                        'mediumDate' }}
+                                        ">
+                                        C -
+                                        {{
+                                            openPractice.Date2
+                                                | date : 'mediumDate'
+                                        }}
                                     </option>
                                     <option
                                         *ngIf="openPractice.Date2"
@@ -870,10 +833,12 @@
                                             'Mini - ' +
                                             (openPractice.Date2
                                                 | date : 'mediumDate')
-                                        "
-                                    >
-                                        Mini - {{ openPractice.Date2 | date :
-                                        'mediumDate' }}
+                                        ">
+                                        Mini -
+                                        {{
+                                            openPractice.Date2
+                                                | date : 'mediumDate'
+                                        }}
                                     </option>
                                     <option
                                         *ngIf="openPractice.Date2"
@@ -881,10 +846,12 @@
                                             'Jr Track - ' +
                                             (openPractice.Date2
                                                 | date : 'mediumDate')
-                                        "
-                                    >
-                                        Jr Track - {{ openPractice.Date2 | date
-                                        : 'mediumDate' }}
+                                        ">
+                                        Jr Track -
+                                        {{
+                                            openPractice.Date2
+                                                | date : 'mediumDate'
+                                        }}
                                     </option>
                                 </select>
 
@@ -893,8 +860,7 @@
                                     *ngIf="isDate2Earlier()"
                                     formControlName="dropdown"
                                     class="form-control"
-                                    name="dropdown"
-                                >
+                                    name="dropdown">
                                     <option value="" disabled selected>
                                         Select a Class
                                     </option>
@@ -905,10 +871,12 @@
                                             'A/B - ' +
                                             (openPractice.Date2
                                                 | date : 'mediumDate')
-                                        "
-                                    >
-                                        A/B - {{ openPractice.Date2 | date :
-                                        'mediumDate' }}
+                                        ">
+                                        A/B -
+                                        {{
+                                            openPractice.Date2
+                                                | date : 'mediumDate'
+                                        }}
                                     </option>
                                     <option
                                         *ngIf="openPractice.Date2"
@@ -916,10 +884,12 @@
                                             'C - ' +
                                             (openPractice.Date2
                                                 | date : 'mediumDate')
-                                        "
-                                    >
-                                        C - {{ openPractice.Date2 | date :
-                                        'mediumDate' }}
+                                        ">
+                                        C -
+                                        {{
+                                            openPractice.Date2
+                                                | date : 'mediumDate'
+                                        }}
                                     </option>
                                     <option
                                         *ngIf="openPractice.Date2"
@@ -927,10 +897,12 @@
                                             'Mini - ' +
                                             (openPractice.Date2
                                                 | date : 'mediumDate')
-                                        "
-                                    >
-                                        Mini - {{ openPractice.Date2 | date :
-                                        'mediumDate' }}
+                                        ">
+                                        Mini -
+                                        {{
+                                            openPractice.Date2
+                                                | date : 'mediumDate'
+                                        }}
                                     </option>
                                     <option
                                         *ngIf="openPractice.Date2"
@@ -938,10 +910,12 @@
                                             'Jr Track - ' +
                                             (openPractice.Date2
                                                 | date : 'mediumDate')
-                                        "
-                                    >
-                                        Jr Track - {{ openPractice.Date2 | date
-                                        : 'mediumDate' }}
+                                        ">
+                                        Jr Track -
+                                        {{
+                                            openPractice.Date2
+                                                | date : 'mediumDate'
+                                        }}
                                     </option>
 
                                     <hr *ngIf="openPractice.Date2" />
@@ -956,16 +930,17 @@
                                             'A/B - ' +
                                             (openPractice.Date
                                                 | date : 'mediumDate')
-                                        "
-                                    >
-                                        A/B - {{ openPractice.Date | date :
-                                        'mediumDate' }}
+                                        ">
+                                        A/B -
+                                        {{
+                                            openPractice.Date
+                                                | date : 'mediumDate'
+                                        }}
                                         <span
                                             *ngIf="
                                                 spotsLeftClassAB <= 6 &&
                                                 spotsLeftClassAB > 0
-                                            "
-                                        >
+                                            ">
                                             - {{ spotsLeftClassAB }} spots
                                             remaining.
                                         </span>
@@ -979,16 +954,17 @@
                                             'C - ' +
                                             (openPractice.Date
                                                 | date : 'mediumDate')
-                                        "
-                                    >
-                                        C - {{ openPractice.Date | date :
-                                        'mediumDate' }}
+                                        ">
+                                        C -
+                                        {{
+                                            openPractice.Date
+                                                | date : 'mediumDate'
+                                        }}
                                         <span
                                             *ngIf="
                                                 spotsLeftClassC <= 6 &&
                                                 spotsLeftClassC > 0
-                                            "
-                                        >
+                                            ">
                                             - {{ spotsLeftClassC }} spots
                                             remaining.
                                         </span>
@@ -1002,16 +978,17 @@
                                             'Mini - ' +
                                             (openPractice.Date
                                                 | date : 'mediumDate')
-                                        "
-                                    >
-                                        Mini - {{ openPractice.Date | date :
-                                        'mediumDate' }}
+                                        ">
+                                        Mini -
+                                        {{
+                                            openPractice.Date
+                                                | date : 'mediumDate'
+                                        }}
                                         <span
                                             *ngIf="
                                                 spotsLeftClassMini <= 6 &&
                                                 spotsLeftClassMini > 0
-                                            "
-                                        >
+                                            ">
                                             - {{ spotsLeftClassMini }} spots
                                             remaining.
                                         </span>
@@ -1025,16 +1002,17 @@
                                             'Jr Track - ' +
                                             (openPractice.Date
                                                 | date : 'mediumDate')
-                                        "
-                                    >
-                                        Jr Track - {{ openPractice.Date | date :
-                                        'mediumDate' }}
+                                        ">
+                                        Jr Track -
+                                        {{
+                                            openPractice.Date
+                                                | date : 'mediumDate'
+                                        }}
                                         <span
                                             *ngIf="
                                                 spotsLeftClassJr <= 6 &&
                                                 spotsLeftClassJr > 0
-                                            "
-                                        >
+                                            ">
                                             - {{ spotsLeftClassJr }} spots
                                             remaining.
                                         </span>
@@ -1043,11 +1021,9 @@
 
                                 <div
                                     class="invalid-feedback"
-                                    *ngIf="signUpForm.get('dropdown')?.touched"
-                                >
+                                    *ngIf="signUpForm.get('dropdown')?.touched">
                                     <span
-                                        *ngIf="signUpForm.get('dropdown')?.errors?.['required']"
-                                    >
+                                        *ngIf="signUpForm.get('dropdown')?.errors?.['required']">
                                         Please select a class
                                     </span>
                                 </div>
@@ -1059,8 +1035,7 @@
                                 <input
                                     type="button"
                                     value="Sign Up"
-                                    (click)="submit()"
-                                />
+                                    (click)="submit()" />
                             </div>
                         </div>
                     </div>
