@@ -27,7 +27,7 @@ export class MobileService {
 
     public showMobileMenu$(): Observable<boolean> {
         return this.breakpointObserver
-            .observe('(max-width: 1300px')
+            .observe('(max-width: 1300px)')
             .pipe(map((result: BreakpointState): boolean => result.matches));
     }
 }
