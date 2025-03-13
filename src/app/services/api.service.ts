@@ -27,7 +27,7 @@ export class ApiService {
         let url =
             environment.strapiBaseUrl +
             '/martin-rider-sign-up-lists' +
-            '?populate=*';
+            '?populate=*&pagination[limit]=-1';
         return this.http
             .get(url)
             .pipe(
