@@ -1,12 +1,30 @@
 <div class="container pt-40">
-    <div class="title-area text-center">
+    <div class="title-area text-center mb-4">
         <span class="sub-title">Rider Lists by Date</span>
+    </div>
+
+    <div class="sort-controls mb-4">
+        <div class="form-group">
+            <label for="sortOption" class="me-2">Sort riders by:</label>
+            <select
+                id="sortOption"
+                class="form-select d-inline-block w-auto"
+                [(ngModel)]="selectedSort"
+                (change)="onSortChange()">
+                <option
+                    *ngFor="let option of sortOptions"
+                    [value]="option.value">
+                    {{ option.label }}
+                </option>
+            </select>
+        </div>
     </div>
 
     <div
         *ngFor="let date of groupedRiders | keyvalue"
         class="table-section mb-5">
         <h3 class="date-header">{{ date.key | date : 'mediumDate' }}</h3>
+
         <div class="table-responsive print-table">
             <table
                 [id]="'riders-table-' + date.key"

@@ -2,10 +2,11 @@ import { Component } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { OpenPracticeCacheService } from '../services/open-practice.service';
+import { WeatherComponent } from '../weather/weather.component';
 
 @Component({
     standalone: true,
-    imports: [RouterModule, CommonModule],
+    imports: [RouterModule, CommonModule, WeatherComponent],
     selector: 'app-hero',
     templateUrl: 'hero.component.html',
     styleUrls: ['hero.component.css']

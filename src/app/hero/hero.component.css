@@ -46,6 +46,7 @@
 }
 
 .hero-style1 .hero-title {
+    margin-top: 10px;
     font-size: 3.5rem;
     font-weight: 800;
     line-height: 1.1;
