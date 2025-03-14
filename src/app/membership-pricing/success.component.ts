@@ -33,11 +33,13 @@ export class PaymentSuccessComponent implements AfterViewInit {
                 switchMap((params: Params): Observable<any> => {
                     let classParam = params['class'];
                     let is2 = false;
-                    const riderName = localStorage.getItem('riderName');
+                    const riderFirstName =
+                        localStorage.getItem('riderFirstName');
+                    const riderLastName = localStorage.getItem('riderLastName');
                     const date1 = localStorage.getItem('openPracticeDate1');
                     const date2 = localStorage.getItem('openPracticeDate2');
                     const dropdownValue = localStorage.getItem('dropdown');
-                    if (!riderName) {
+                    if (!riderFirstName || !riderLastName) {
                         return of(null);
                     }
                     if (this.isValidClassType(classParam)) {
@@ -112,10 +114,11 @@ export class PaymentSuccessComponent implements AfterViewInit {
     private writeRiderDataToStrapi(): void {
         const dropdownValue = localStorage.getItem('dropdown') || '';
         const [riderClass, date] = dropdownValue.split(' - ');
-        const riderName = localStorage.getItem('riderName');
+        const riderFirstName = localStorage.getItem('riderFirstName');
+        const riderLastName = localStorage.getItem('riderLastName');
         let isMinor = false;
 
-        if (!riderName) {
+        if (!riderFirstName || !riderLastName) {
             console.log('No rider found');
             return;
         }
@@ -130,7 +133,10 @@ export class PaymentSuccessComponent implements AfterViewInit {
 
         const payload = {
             data: {
-                Name: localStorage.getItem('riderName'),
+                Name:
+                    localStorage.getItem('riderFirstName') +
+                    ' ' +
+                    localStorage.getItem('riderLastName'),
                 Date: new Date(date),
                 Class: riderClass,
                 Number: localStorage.getItem('riderNumber'),
