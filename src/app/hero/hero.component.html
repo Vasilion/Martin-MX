@@ -23,7 +23,33 @@
                                             Welcome to the track
                                         </span>
                                     </span>
-                                    <app-weather></app-weather>
+                                    <div
+                                        class="weather-widget-container"
+                                        data-ani="slideinup"
+                                        data-ani-delay="0.6s">
+                                        <button
+                                            (click)="toggleWeather()"
+                                            class="th-btn weather-btn">
+                                            {{
+                                                showWeather
+                                                    ? 'Hide Weather'
+                                                    : 'See Weather'
+                                            }}
+                                        </button>
+                                        <div
+                                            class="weather-content weather-box"
+                                            [ngClass]="{
+                                                'weather-content-visible':
+                                                    showWeather
+                                            }">
+                                            <a
+                                                href="https://weather.com/weather/radar/interactive/l/Martin+MI?canonicalCityId=a2af2b26d8bbe7a50b74b8486d0588a2a0661424ea9ef6d3c7e16f4d230e0631"
+                                                target="_blank"
+                                                rel="noopener noreferrer">
+                                                <app-weather></app-weather>
+                                            </a>
+                                        </div>
+                                    </div>
                                     <h1 class="hero-title text-white">
                                         <span
                                             class="title1"

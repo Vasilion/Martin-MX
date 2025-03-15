@@ -13,6 +13,7 @@ import { WeatherComponent } from '../weather/weather.component';
 })
 export class HeroComponent {
     public openPractice: any;
+    public showWeather: boolean = false;
 
     constructor(private openPracticeCacheService: OpenPracticeCacheService) {
         this.getPricing();
@@ -37,5 +38,9 @@ export class HeroComponent {
 
                 this.openPractice = response;
             });
+    }
+
+    toggleWeather(): void {
+        this.showWeather = !this.showWeather;
     }
 }
