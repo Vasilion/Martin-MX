@@ -2,16 +2,18 @@ import { Component } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { OpenPracticeCacheService } from '../services/open-practice.service';
+import { WeatherComponent } from '../weather/weather.component';
 
 @Component({
     standalone: true,
-    imports: [RouterModule, CommonModule],
+    imports: [RouterModule, CommonModule, WeatherComponent],
     selector: 'app-hero',
     templateUrl: 'hero.component.html',
     styleUrls: ['hero.component.css']
 })
 export class HeroComponent {
     public openPractice: any;
+    public showWeather: boolean = false;
 
     constructor(private openPracticeCacheService: OpenPracticeCacheService) {
         this.getPricing();
@@ -36,5 +38,9 @@ export class HeroComponent {
 
                 this.openPractice = response;
             });
+    }
+
+    toggleWeather(): void {
+        this.showWeather = !this.showWeather;
     }
 }

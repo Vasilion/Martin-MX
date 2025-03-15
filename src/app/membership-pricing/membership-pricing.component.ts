@@ -38,7 +38,8 @@ export class MembershipPricingComponent {
         this.getSpotsLeft();
         this.signUpForm = this.fb.group({
             email: ['', [Validators.required, Validators.email]],
-            riderName: ['', Validators.required],
+            riderFirstName: ['', Validators.required],
+            riderLastName: ['', Validators.required],
             bikeSize: ['', [Validators.required]],
             riderNumber: ['', Validators.required],
             minorCheck: ['', Validators.required],
@@ -69,7 +70,8 @@ export class MembershipPricingComponent {
 
             const formFields = [
                 'email',
-                'riderName',
+                'riderFirstName',
+                'riderLastName',
                 'bikeSize',
                 'riderNumber',
                 'minorCheck',
@@ -97,9 +99,14 @@ export class MembershipPricingComponent {
                                 );
                             }
                             break;
-                        case 'riderName':
+                        case 'riderFirstName':
                             if (control.errors['required']) {
-                                errors.push('Rider name is required');
+                                errors.push('Rider first name is required');
+                            }
+                            break;
+                        case 'riderLastName':
+                            if (control.errors['required']) {
+                                errors.push('Rider last name is required');
                             }
                             break;
                         case 'bikeSize':

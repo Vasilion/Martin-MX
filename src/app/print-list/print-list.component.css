@@ -47,3 +47,20 @@
     padding-top: 10px;
     color: #333;
 }
+
+.sort-controls {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.sort-controls label {
+    font-weight: 500;
+    margin-right: 10px;
+}
+
+.sort-controls .form-select {
+    width: auto;
+    display: inline-block;
+    min-width: 180px;
+}

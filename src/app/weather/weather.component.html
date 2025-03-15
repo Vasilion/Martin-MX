@@ -1,0 +1,44 @@
+<div class="weather-container" *ngIf="weatherData">
+    <div class="weather-header">
+        <h3>Track Weather</h3>
+    </div>
+    <div class="weather-content">
+        <div class="weather-icon">
+            <span>{{ getWeatherIcon() }}</span>
+        </div>
+        <div class="weather-details">
+            <div class="temp">
+                {{ weatherData.current.temperature_2m | number : '1.0-0' }}°F
+            </div>
+            <div class="conditions">{{ getWeatherCondition() }}</div>
+        </div>
+    </div>
+    <div class="weather-stats">
+        <div class="stat">
+            <span class="label">Feels Like:</span>
+            <span class="value">
+                {{
+                    weatherData.current.apparent_temperature | number : '1.0-0'
+                }}°F
+            </span>
+        </div>
+        <div class="stat">
+            <span class="label">Wind:</span>
+            <span class="value">
+                {{ weatherData.current.wind_speed_10m | number : '1.0-1' }} mph
+            </span>
+        </div>
+        <div class="stat">
+            <span class="label">Humidity:</span>
+            <span class="value">
+                {{ weatherData.current.relative_humidity_2m }}%
+            </span>
+        </div>
+    </div>
+    <div class="weather-footer">
+        <span>Martin MX Park</span>
+    </div>
+</div>
+<div class="weather-container error" *ngIf="!weatherData && errorMessage">
+    <p>{{ errorMessage }}</p>
+</div>

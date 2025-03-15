@@ -196,7 +196,7 @@
                                                     {{
                                                         openPractice.Date
                                                             | date
-                                                                : 'MM/dd/yyyy'
+                                                                : 'EEEE, MM/dd/yyyy'
                                                     }}
                                                     from
                                                     <span class="duration">
@@ -220,7 +220,7 @@
                                                     {{
                                                         openPractice.Date2
                                                             | date
-                                                                : 'MM/dd/yyyy'
+                                                                : 'EEEE, MM/dd/yyyy'
                                                     }}
                                                     from
                                                     <span class="duration">
@@ -577,31 +577,66 @@
                         <div class="col-12">
                             <div class="form-group style-dark2">
                                 <input
-                                    formControlName="riderName"
+                                    formControlName="riderFirstName"
                                     class="form-control"
                                     [ngClass]="{
                                         'is-invalid':
-                                            signUpForm.get('riderName')
+                                            signUpForm.get('riderFirstName')
                                                 ?.errors &&
-                                            signUpForm.get('riderName')?.touched
+                                            signUpForm.get('riderFirstName')
+                                                ?.touched
                                     }"
-                                    placeholder="Rider Name"
+                                    placeholder="Rider First Name"
                                     type="text"
-                                    name="riderName"
+                                    name="riderFirstName"
                                     (blur)="
                                         signUpForm
-                                            .get('riderName')
+                                            .get('riderFirstName')
                                             ?.markAsTouched()
                                     "
                                     required />
                                 <div
                                     class="invalid-feedback"
                                     *ngIf="
-                                        signUpForm.get('riderName')?.touched
+                                        signUpForm.get('riderFirstName')
+                                            ?.touched
                                     ">
                                     <span
-                                        *ngIf="signUpForm.get('riderName')?.errors?.['required']">
-                                        Rider name is required
+                                        *ngIf="signUpForm.get('riderFirstName')?.errors?.['required']">
+                                        Rider first name is required
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="form-group style-dark2">
+                                <input
+                                    formControlName="riderLastName"
+                                    class="form-control"
+                                    [ngClass]="{
+                                        'is-invalid':
+                                            signUpForm.get('riderLastName')
+                                                ?.errors &&
+                                            signUpForm.get('riderLastName')
+                                                ?.touched
+                                    }"
+                                    placeholder="Rider Last Name"
+                                    type="text"
+                                    name="riderLastName"
+                                    (blur)="
+                                        signUpForm
+                                            .get('riderLastName')
+                                            ?.markAsTouched()
+                                    "
+                                    required />
+                                <div
+                                    class="invalid-feedback"
+                                    *ngIf="
+                                        signUpForm.get('riderLastName')?.touched
+                                    ">
+                                    <span
+                                        *ngIf="signUpForm.get('riderLastName')?.errors?.['required']">
+                                        Rider last name is required
                                     </span>
                                 </div>
                             </div>
@@ -1033,6 +1068,7 @@
                         <div class="col-12">
                             <div class="th-btn">
                                 <input
+                                    [disabled]="signUpForm.invalid"
                                     type="button"
                                     value="Sign Up"
                                     (click)="submit()" />

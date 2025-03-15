@@ -30,6 +30,12 @@ section.space > div.container {
     margin-top: 0.25rem;
 }
 
+.th-btn input[type='button']:disabled {
+    background-color: #424242; /* Gray color for disabled state */
+    color: #666666; /* Darker gray for text */
+    cursor: not-allowed; /* Change cursor to indicate it's not clickable */
+}
+
 .form-control.is-invalid {
     border-color: #dc3545;
 }

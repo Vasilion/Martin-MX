@@ -45,7 +45,29 @@
     align-items: center;
 }
 
+.weather-content {
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    transition: max-height 0.5s ease-in-out, opacity 0.4s ease-in-out;
+}
+
+.weather-content-visible {
+    max-height: 500px; /* Set this to a value larger than your content's height */
+    opacity: 1;
+}
+
+.weather-box {
+    margin-top: 5px;
+}
+
+.weather-btn {
+    border-radius: 10px;
+    background-color: #348e003f;
+}
+
 .hero-style1 .hero-title {
+    margin-top: 10px;
     font-size: 3.5rem;
     font-weight: 800;
     line-height: 1.1;
@@ -93,8 +115,8 @@
 
 .hero-style1 .btn-wrap .th-btn {
     padding: 12px 28px;
-    background-color: #4caf50;
-    color: white;
+    /* background-color: #4caf50;
+    color: white; */
     text-transform: uppercase;
     font-weight: 600;
     letter-spacing: 1px;
@@ -107,9 +129,9 @@
 }
 
 .hero-style1 .btn-wrap .th-btn:hover {
-    background-color: #3c9f40;
+    /* background-color: #3c9f40; */
     transform: translateY(-3px);
-    box-shadow: 0 5px 15px rgba(76, 175, 80, 0.4);
+    /* box-shadow: 0 5px 15px rgba(76, 175, 80, 0.4); */
 }
 
 .hero-style1 .btn-wrap .counter-title {
