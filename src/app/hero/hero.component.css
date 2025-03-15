@@ -66,6 +66,19 @@
     background-color: #348e003f;
 }
 
+.th-btn:hover,
+.th-btn:active {
+    color: #fff;
+}
+
+.th-btn:hover::after,
+.th-btn:active::after,
+.th-btn:hover::before,
+.th-btn:active::before {
+    background-image: none;
+    color: #fff;
+}
+
 .hero-style1 .hero-title {
     margin-top: 10px;
     font-size: 3.5rem;
