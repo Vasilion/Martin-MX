@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { ApiService } from '../services/api.service';
-import { Component } from '@angular/core';
+import { Component, ElementRef, ViewChild } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { CLASSES, PracticeSpotsLeft } from '../interfaces/responses';
 import {
@@ -22,6 +22,7 @@ export class MembershipPricingComponent {
     /*
      * YOU TALKIN' BOUT PRACTICE??
      */
+    @ViewChild('signUp') signUp!: ElementRef; // Reference to the sign-up form
     public signUpForm: FormGroup;
     public openPractice: any;
     public yearlySignUp: any;
@@ -62,6 +63,30 @@ export class MembershipPricingComponent {
 
     public get spotsLeftClassJr(): number {
         return this.classes?.find(c => c.class === CLASSES.JR.name)?.spotsLeft;
+    }
+
+    public navigateToSignUp(): void {
+        const priceTwoTab = document.getElementById('price-two-tab');
+        const isActive = priceTwoTab?.classList.contains('active');
+
+        if (!isActive) {
+            const otherTabs = document.querySelectorAll('.tab-btn');
+            otherTabs.forEach(tab => tab.classList.remove('active'));
+            priceTwoTab.classList.add('active');
+        }
+
+        if (this.signUp) {
+            const signUpPosition =
+                this.signUp.nativeElement.getBoundingClientRect().top +
+                window.scrollY;
+
+            const offset = window.innerWidth < 768 ? 100 : 180; // Adjust offset for mobile (less than 768px)
+
+            window.scrollTo({
+                top: signUpPosition - offset,
+                behavior: 'smooth'
+            });
+        }
     }
 
     public submit(): void {

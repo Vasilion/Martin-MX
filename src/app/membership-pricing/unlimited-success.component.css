@@ -1,0 +1,89 @@
+.success-icon {
+    font-size: 4rem;
+    color: #22c55e;
+    animation: scaleIn 0.5s ease-in-out;
+}
+
+.success-class-title {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+}
+
+.badge {
+    font-size: 1rem;
+    padding: 0.5rem 1rem;
+    border-radius: 50px;
+    margin-left: 1rem;
+}
+
+.badge-ab {
+    background-color: #3b82f6;
+    color: white;
+}
+
+.badge-c {
+    background-color: #8b5cf6;
+    color: white;
+}
+
+.badge-mini {
+    background-color: #10b981;
+    color: white;
+}
+
+.track-details {
+    background-color: rgba(0, 0, 0, 0.02);
+    border-radius: 12px;
+    padding: 2rem;
+}
+
+.checklist.style3 ul li {
+    margin-bottom: 1rem;
+    font-size: 1.1rem;
+}
+
+.checklist.style3 ul li i {
+    color: #22c55e;
+    margin-right: 1rem;
+    font-size: 1.2rem;
+}
+
+.btn-wrap {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+}
+
+.th-btn {
+    min-width: 200px;
+}
+
+@keyframes scaleIn {
+    0% {
+        transform: scale(0);
+        opacity: 0;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+.price-card {
+    animation: slideUp 0.5s ease-out;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+@keyframes slideUp {
+    0% {
+        transform: translateY(20px);
+        opacity: 0;
+    }
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
