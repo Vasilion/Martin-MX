@@ -24,7 +24,8 @@ export class UnlimitedPaymentSuccessComponent {
                 environment.strapiBaseUrl + '/martin-unlimited-emailer/send',
                 {
                     email: 'martinmxpark@gmail.com',
-                    subject: 'NEW MEMBER! - Martin Unlimied Membership Created',
+                    subject:
+                        'NEW MEMBER! - Martin Unlimited Membership Created',
                     text: 'You have a new member! Check stripe <a href="https://dashboard.stripe.com/payments?amount[gt]=15000" target="_blank" rel="noopener noreferrer">here</a>!'
                 }
             )

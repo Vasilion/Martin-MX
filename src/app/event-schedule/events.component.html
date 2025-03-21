@@ -3,8 +3,8 @@
         <div class="title-area">
             <span class="sub-title">{{ scheduleYear }} Schedule</span>
             <h1 *ngIf="currentMonth$ | async">
-                {{ (currentMonth$ | async)?.name }} {{ (currentMonth$ |
-                async)?.year }}
+                {{ (currentMonth$ | async)?.name }}
+                {{ (currentMonth$ | async)?.year }}
             </h1>
         </div>
         <div class="calendar-controls">
@@ -29,8 +29,7 @@
                         : event.isOpenPractice && !event.isCancelled
                         ? '4px solid #28a745'
                         : '4px solid #007bff'
-                "
-            >
+                ">
                 <div class="mobile-event-header">
                     <div class="mobile-event-time">
                         {{ formatTime(event.date) }}
@@ -40,8 +39,7 @@
                     </div>
                     <div
                         *ngIf="event.isCancelled"
-                        class="mobile-cancelled-badge"
-                    >
+                        class="mobile-cancelled-badge">
                         CANCELLED
                     </div>
                 </div>
@@ -50,16 +48,14 @@
                     class="mobile-event-title"
                     [style.text-decoration]="
                         event.isCancelled ? 'line-through' : 'none'
-                    "
-                >
+                    ">
                     {{ event.title }}
                 </div>
 
                 <div
                     *ngIf="event.isOpenPractice && !event.isCancelled"
-                    class="mobile-event-footer"
-                >
-                    <a routerLink="/pricing" class="mobile-signup-button">
+                    class="mobile-event-footer">
+                    <a routerLink="/register" class="mobile-signup-button">
                         Sign Up
                     </a>
                 </div>
@@ -86,8 +82,7 @@
                         : event.isOpenPractice && !event.isCancelled
                         ? '4px solid #28a745'
                         : '4px solid #007bff'
-                "
-            >
+                ">
                 <div class="mobile-event-header">
                     <div class="mobile-event-time">
                         {{ formatTime(event.date) }}
@@ -97,8 +92,7 @@
                     </div>
                     <div
                         *ngIf="event.isCancelled"
-                        class="mobile-cancelled-badge"
-                    >
+                        class="mobile-cancelled-badge">
                         CANCELLED
                     </div>
                 </div>
@@ -107,16 +101,14 @@
                     class="mobile-event-title"
                     [style.text-decoration]="
                         event.isCancelled ? 'line-through' : 'none'
-                    "
-                >
+                    ">
                     {{ event.title }}
                 </div>
 
                 <div
                     *ngIf="event.isOpenPractice && !event.isCancelled"
-                    class="mobile-event-footer"
-                >
-                    <a routerLink="/pricing" class="mobile-signup-button">
+                    class="mobile-event-footer">
+                    <a routerLink="/register" class="mobile-signup-button">
                         Sign Up
                     </a>
                 </div>
@@ -149,22 +141,18 @@
                     [class.open-practice-day]="hasOpenPractice(day)"
                     [class.today]="day.isToday"
                     [class.has-events]="day.events.length > 0"
-                    [class.has-cancelled-event]="hasCancelledEvent(day)"
-                >
+                    [class.has-cancelled-event]="hasCancelledEvent(day)">
                     <div
                         class="mobile-day-number"
-                        [class.today-number]="day.isToday"
-                    >
+                        [class.today-number]="day.isToday">
                         {{ day.date.getDate() }}
                     </div>
 
                     <div
                         *ngIf="day.events.length > 0 && isMobileView"
-                        class="mobile-event-indicators"
-                    >
+                        class="mobile-event-indicators">
                         <ng-container
-                            *ngFor="let event of day.events | slice : 0 : 3"
-                        >
+                            *ngFor="let event of day.events | slice : 0 : 3">
                             <div
                                 class="mobile-event-dot"
                                 [style.background-color]="
@@ -174,8 +162,7 @@
                                           !event.isCancelled
                                         ? '#28a745'
                                         : '#007bff'
-                                "
-                            ></div>
+                                "></div>
                         </ng-container>
 
                         <small *ngIf="day.events.length > 3">
@@ -186,18 +173,15 @@
                     <div
                         *ngIf="day.events.length > 0 && !isMobileView"
                         class="desktop-day-events"
-                        [class.has-cancelled-event]="hasCancelledEvent(day)"
-                    >
+                        [class.has-cancelled-event]="hasCancelledEvent(day)">
                         <ng-container
-                            *ngFor="let event of day.events | slice : 0 : 2"
-                        >
+                            *ngFor="let event of day.events | slice : 0 : 2">
                             <div
                                 class="desktop-day-event-time"
                                 [class.cancelled-event]="event.isCancelled"
                                 [class.open-practice-event]="
                                     event.isOpenPractice && !event.isCancelled
-                                "
-                            >
+                                ">
                                 {{ formatTime(event.date) }}
                                 <span *ngIf="event.endTime">
                                     -{{ formatEndTime(event.endTime) }}
@@ -207,16 +191,14 @@
                                 *ngIf="
                                     event.isOpenPractice && !event.isCancelled
                                 "
-                                routerLink="/pricing"
-                                class="desktop-signup-link in-calendar-link"
-                            >
+                                routerLink="/register"
+                                class="desktop-signup-link in-calendar-link">
                                 Sign Up
                             </a>
                         </ng-container>
                         <small
                             *ngIf="day.events.length > 2"
-                            class="more-events"
-                        >
+                            class="more-events">
                             +{{ day.events.length - 2 }} more
                         </small>
                     </div>

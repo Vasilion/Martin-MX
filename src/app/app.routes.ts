@@ -15,7 +15,7 @@ export const routes: Routes = [
     { path: 'track-info', component: TrackInfoComponent },
     { path: 'daily-signup', component: DailyComponent },
     {
-        path: 'pricing',
+        path: 'register',
         component: MembershipPricingComponent
     },
     { path: 'gallery', component: GalleryComponent },
