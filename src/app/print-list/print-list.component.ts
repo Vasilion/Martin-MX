@@ -40,7 +40,7 @@ export class PrintListComponent implements OnInit {
         { value: 'alphabetical', label: 'Name (A-Z)' },
         { value: 'recent', label: 'Most Recent First' }
     ];
-    public selectedSort: SortOption = 'alphabetical';
+    public selectedSort: SortOption = 'recent';
     private allRiders: Rider[] = [];
 
     constructor(private apiService: ApiService) {}
