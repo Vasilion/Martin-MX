@@ -51,11 +51,9 @@ a {
     background-color: var(--black-color2);
 }
 
-
 .mobile-nav-links-container.show {
     max-height: 80vh;
 }
-
 
 .mobile-nav-links-container a {
     color: white;
@@ -65,10 +63,9 @@ a {
     cursor: pointer;
 }
 
-.gallery-link {
+.store-link {
     margin-bottom: -14px !important;
 }
-
 
 .mobile-nav-links-container a:hover {
     color: var(--theme-color2);
@@ -102,26 +99,8 @@ hr {
     font-size: 0.7rem;
 }
 
-
-
 @media (max-width: 375px) {
-
     .mobile-menu-container > svg {
         margin-left: 2%;
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
