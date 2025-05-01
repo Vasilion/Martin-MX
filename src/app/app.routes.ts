@@ -9,6 +9,7 @@ import { SponsorsComponent } from './sponsors/sponsors.component';
 import { PaymentSuccessComponent } from './membership-pricing/success.component';
 import { PrintListComponent } from './print-list/print-list.component';
 import { UnlimitedPaymentSuccessComponent } from './membership-pricing/unlimited-success.component';
+import { HiringFormComponent } from './hiring-form/hiring-form.component';
 
 export const routes: Routes = [
     { path: '', component: HomeComponent },
@@ -26,5 +27,6 @@ export const routes: Routes = [
         component: UnlimitedPaymentSuccessComponent
     },
     { path: 'sponsors', component: SponsorsComponent },
-    { path: 'print', component: PrintListComponent }
+    { path: 'print', component: PrintListComponent },
+    { path: 'hiring', component: HiringFormComponent }
 ];

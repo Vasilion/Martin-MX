@@ -1,0 +1,281 @@
+<section>
+    <div
+        id="hiring-form"
+        class="overflow-hidden space-bottom bg-black2 pt-40"
+        data-mask-src="/images/hero/hero_bg-shape-mask.png">
+        <div class="container">
+            <div class="title-area text-center">
+                <span class="sub-title">Employment Application</span>
+                <h2 class="sec-title">Your Information</h2>
+            </div>
+            <div class="bmi-calculator-form">
+                <form class="bmi-form" id="hiringForm" [formGroup]="hiringForm">
+                    <div class="row gy-30 gx-30 justify-content-center">
+                        <div class="col-12" *ngIf="submissionSuccess">
+                            <div class="alert alert-success">
+                                Application submitted successfully! We will
+                                contact you soon.
+                            </div>
+                        </div>
+                        <div class="col-12" *ngIf="submissionError">
+                            <div class="alert alert-danger">
+                                {{ submissionError }}
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="form-group style-dark2">
+                                <input
+                                    formControlName="email"
+                                    class="form-control"
+                                    [ngClass]="{
+                                        'is-invalid':
+                                            hiringForm.get('email')?.errors &&
+                                            hiringForm.get('email')?.touched
+                                    }"
+                                    placeholder="Email"
+                                    type="email"
+                                    name="email"
+                                    (blur)="
+                                        hiringForm.get('email')?.markAsTouched()
+                                    "
+                                    required />
+                                <div
+                                    class="invalid-feedback"
+                                    *ngIf="hiringForm.get('email')?.touched">
+                                    <span
+                                        *ngIf="hiringForm.get('email')?.errors?.['required']">
+                                        Email is required
+                                    </span>
+                                    <span
+                                        *ngIf="hiringForm.get('email')?.errors?.['email']">
+                                        Please enter a valid email address
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-12">
+                            <div class="form-group style-dark2">
+                                <input
+                                    formControlName="firstName"
+                                    class="form-control"
+                                    [ngClass]="{
+                                        'is-invalid':
+                                            hiringForm.get('firstName')
+                                                ?.errors &&
+                                            hiringForm.get('firstName')?.touched
+                                    }"
+                                    placeholder="First Name"
+                                    type="text"
+                                    name="firstName"
+                                    required />
+                            </div>
+                        </div>
+
+                        <div class="col-12">
+                            <div class="form-group style-dark2">
+                                <input
+                                    formControlName="lastName"
+                                    class="form-control"
+                                    [ngClass]="{
+                                        'is-invalid':
+                                            hiringForm.get('lastName')
+                                                ?.errors &&
+                                            hiringForm.get('lastName')?.touched
+                                    }"
+                                    placeholder="Last Name"
+                                    type="text"
+                                    name="lastName"
+                                    required />
+                            </div>
+                        </div>
+
+                        <div class="col-12">
+                            <div class="form-group style-dark2">
+                                <input
+                                    formControlName="phone"
+                                    class="form-control"
+                                    [ngClass]="{
+                                        'is-invalid':
+                                            hiringForm.get('phone')?.errors &&
+                                            hiringForm.get('phone')?.touched
+                                    }"
+                                    placeholder="Phone Number"
+                                    type="tel"
+                                    name="phone"
+                                    required />
+                            </div>
+                        </div>
+
+                        <div class="col-12">
+                            <div class="form-group style-dark2">
+                                <input
+                                    formControlName="age"
+                                    class="form-control"
+                                    [ngClass]="{
+                                        'is-invalid':
+                                            hiringForm.get('age')?.errors &&
+                                            hiringForm.get('age')?.touched
+                                    }"
+                                    placeholder="Age"
+                                    type="number"
+                                    name="age"
+                                    required />
+                            </div>
+                        </div>
+
+                        <div class="col-12">
+                            <div class="form-group style-dark2">
+                                <input
+                                    formControlName="city"
+                                    class="form-control"
+                                    [ngClass]="{
+                                        'is-invalid':
+                                            hiringForm.get('city')?.errors &&
+                                            hiringForm.get('city')?.touched
+                                    }"
+                                    placeholder="What city do you currently live in?"
+                                    type="text"
+                                    name="city"
+                                    required />
+                            </div>
+                        </div>
+
+                        <div class="col-12">
+                            <div class="form-group style-dark2">
+                                <select
+                                    formControlName="customerServiceExperience"
+                                    class="form-control"
+                                    name="customerServiceExperience">
+                                    <option value="" disabled selected>
+                                        Do you have any customer service
+                                        experience?
+                                    </option>
+                                    <option value="Yes">Yes</option>
+                                    <option value="No">No</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="col-12">
+                            <div class="form-group style-dark2">
+                                <select
+                                    formControlName="motocrossIndustryFamiliar"
+                                    class="form-control"
+                                    name="motocrossIndustryFamiliar">
+                                    <option value="" disabled selected>
+                                        Are you familiar with the Motocross
+                                        Industry?
+                                    </option>
+                                    <option value="Yes">Yes</option>
+                                    <option value="No">No</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="col-12">
+                            <div class="form-group style-dark2">
+                                <select
+                                    formControlName="rideMotocross"
+                                    class="form-control"
+                                    name="rideMotocross">
+                                    <option value="" disabled selected>
+                                        Do you ride motocross?
+                                    </option>
+                                    <option value="Yes">Yes</option>
+                                    <option value="No">No</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="col-12">
+                            <div class="form-group style-dark2">
+                                <select
+                                    formControlName="operatingProceduresFamiliar"
+                                    class="form-control"
+                                    name="operatingProceduresFamiliar">
+                                    <option value="" disabled selected>
+                                        Are you familiar with the general
+                                        operating procedures of a motocross
+                                        track?
+                                    </option>
+                                    <option value="Very familiar">
+                                        Very familiar
+                                    </option>
+                                    <option value="Somewhat familiar">
+                                        Somewhat familiar
+                                    </option>
+                                    <option value="Not familiar">
+                                        Not familiar
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="col-12">
+                            <div class="form-group style-dark2">
+                                <select
+                                    formControlName="desiredPosition"
+                                    class="form-control"
+                                    name="desiredPosition">
+                                    <option value="" disabled selected>
+                                        Desired Position
+                                    </option>
+                                    <option value="Flagger">Flagger</option>
+                                    <option value="Track Maintenance">
+                                        Track Maintenance
+                                    </option>
+                                    <option value="General Staff">
+                                        General Staff
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="col-12">
+                            <div class="form-group style-dark2">
+                                <select
+                                    formControlName="availability"
+                                    class="form-control"
+                                    name="availability">
+                                    <option value="" disabled selected>
+                                        Which days are you available to work?
+                                    </option>
+                                    <option value="Wednesdays">
+                                        Wednesdays (3pm - 8pm)
+                                    </option>
+                                    <option value="Saturdays">
+                                        Saturdays (9am - 3pm)
+                                    </option>
+                                    <option value="Sundays">
+                                        Sundays (10am - 4pm)
+                                    </option>
+                                    <option value="Weekends">
+                                        Weekend days
+                                    </option>
+                                    <option value="Any">Any</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="col-12">
+                            <div class="th-btn">
+                                <input
+                                    [disabled]="
+                                        hiringForm.invalid || isSubmitting
+                                    "
+                                    type="button"
+                                    [value]="
+                                        isSubmitting
+                                            ? 'Submitting...'
+                                            : 'Submit Application'
+                                    "
+                                    (click)="submit()" />
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
