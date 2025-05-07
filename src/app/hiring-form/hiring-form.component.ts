@@ -35,7 +35,9 @@ export class HiringFormComponent {
             rideMotocross: ['', Validators.required],
             operatingProceduresFamiliar: ['', Validators.required],
             desiredPosition: ['', Validators.required],
-            availability: ['', Validators.required]
+            availability: ['', Validators.required],
+            soon: ['', Validators.required],
+            extra: ['']
         });
     }
 
@@ -63,7 +65,9 @@ export class HiringFormComponent {
                     'operatingProceduresFamiliar'
                 )?.value,
                 desiredPosition: this.hiringForm.get('desiredPosition')?.value,
-                availability: this.hiringForm.get('availability')?.value
+                availability: this.hiringForm.get('availability')?.value,
+                soon: this.hiringForm.get('soon')?.value,
+                extra: this.hiringForm.get('extra')?.value
             };
 
             console.log('Sending data:', formData);

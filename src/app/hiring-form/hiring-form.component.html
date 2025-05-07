@@ -254,6 +254,37 @@
                                 </select>
                             </div>
                         </div>
+                        <div class="col-12">
+                            <div class="form-group style-dark2">
+                                <input
+                                    formControlName="soon"
+                                    class="form-control"
+                                    [ngClass]="{
+                                        'is-invalid':
+                                            hiringForm.get('soon')?.errors &&
+                                            hiringForm.get('soon')?.touched
+                                    }"
+                                    placeholder="How soon are you available to start training?"
+                                    type="text"
+                                    name="soon"
+                                    required />
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="form-group style-dark2">
+                                <input
+                                    formControlName="extra"
+                                    class="form-control"
+                                    [ngClass]="{
+                                        'is-invalid':
+                                            hiringForm.get('extra')?.errors &&
+                                            hiringForm.get('extra')?.touched
+                                    }"
+                                    placeholder="Any other information you would like to add?"
+                                    type="text"
+                                    name="extra" />
+                            </div>
+                        </div>
 
                         <div class="col-12">
                             <div class="th-btn">
