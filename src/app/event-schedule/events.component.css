@@ -141,9 +141,7 @@
     border-radius: 8px;
     padding: 2px;
     position: relative;
-    transition:
-        transform 0.15s ease-in-out,
-        box-shadow 0.15s ease-in-out;
+    transition: transform 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
     cursor: pointer;
 }
 
@@ -254,7 +252,6 @@
 .desktop-day-event-time.cancelled-event {
     background-color: rgba(220, 53, 69, 0.1);
     color: #dc3545;
-    text-decoration: line-through;
     border-bottom: 2px solid #dc3545;
 }
 
@@ -486,7 +483,6 @@
 .desktop-day-event-time.cancelled-event {
     background-color: rgba(220, 53, 69, 0.1);
     color: #dc3545;
-    text-decoration: line-through;
 }
 
 .desktop-day-event-time.open-practice-event {
