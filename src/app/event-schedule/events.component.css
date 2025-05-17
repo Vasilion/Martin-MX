@@ -477,7 +477,7 @@
     text-align: center;
     white-space: nowrap;
     overflow: hidden;
-    text-overflow: ellipsis;
+    /* text-overflow: ellipsis; */
 }
 
 .desktop-day-event-time.cancelled-event {
