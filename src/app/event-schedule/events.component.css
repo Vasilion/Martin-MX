@@ -152,11 +152,11 @@
 }
 
 .mobile-day.today {
-    background-color: rgba(0, 123, 255, 0.1);
+    background-color: rgba(238, 226, 155, 0.404);
 }
 
 .mobile-day.selected-day {
-    border: 2px solid #007bff !important;
+    border: 2px solid #e6d36c !important;
     background-color: rgba(0, 123, 255, 0.05);
     transform: scale(1.05);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -173,8 +173,7 @@
 }
 
 .mobile-day-number.today-number {
-    background-color: #007bff;
-    color: white;
+    /* background-color: #e6d46c91; */
     border-radius: 50%;
     width: 20px;
     height: 20px;
