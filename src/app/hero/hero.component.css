@@ -66,6 +66,28 @@
     background-color: #348e003f;
 }
 
+.button-group {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.track-status-btn {
+    margin-left: 0;
+}
+
+@media only screen and (max-width: 768px) {
+    .button-group {
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    .button-group .th-btn {
+        width: 100%;
+        text-align: center;
+    }
+}
+
 .th-btn:hover,
 .th-btn:active {
     color: #fff;

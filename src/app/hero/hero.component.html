@@ -27,15 +27,22 @@
                                         class="weather-widget-container"
                                         data-ani="slideinup"
                                         data-ani-delay="0.6s">
-                                        <button
-                                            (click)="toggleWeather()"
-                                            class="th-btn weather-btn">
-                                            {{
-                                                showWeather
-                                                    ? 'Hide Weather'
-                                                    : 'See Weather'
-                                            }}
-                                        </button>
+                                        <div class="button-group">
+                                            <a
+                                                routerLink="/schedule"
+                                                class="th-btn weather-btn track-status-btn">
+                                                Track Status
+                                            </a>
+                                            <button
+                                                (click)="toggleWeather()"
+                                                class="th-btn weather-btn">
+                                                {{
+                                                    showWeather
+                                                        ? 'Hide Weather'
+                                                        : 'See Weather'
+                                                }}
+                                            </button>
+                                        </div>
                                         <div
                                             class="weather-content weather-box"
                                             [ngClass]="{
