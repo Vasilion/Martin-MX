@@ -2,6 +2,812 @@
     id="ourTracks"
     class="our-tracks-container space-top space-extra-bottom">
     <div class="container">
+        <!-- Martin MX Interactive 3D Model Full Embed -->
+        <style>
+            .model-section {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                gap: 40px;
+            }
+            .layer-controls {
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                justify-content: center;
+                background: #000;
+                border: 2px solid #00ff00;
+                border-radius: 8px;
+                padding: 12px 24px;
+                margin-bottom: 20px;
+            }
+            .layer-controls ul {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 16px;
+                list-style: none;
+                padding: 0;
+                margin: 0;
+            }
+            .layer-controls li {
+                margin-bottom: 0;
+                white-space: nowrap;
+            }
+            .layer-controls label {
+                font-size: 14px;
+                cursor: pointer;
+                display: flex;
+                align-items: center;
+                gap: 6px;
+                color: #fff;
+                font-weight: 500;
+            }
+            .layer-controls input[type='checkbox'] {
+                appearance: none;
+                width: 16px;
+                height: 16px;
+                margin: 0;
+                cursor: pointer;
+                border: 2px solid #fff;
+                background: #000;
+                border-radius: 3px;
+                position: relative;
+                transition: all 0.2s;
+            }
+            .layer-controls input[type='checkbox']:checked {
+                background: #00ff00;
+                border: 2px solid #000;
+            }
+            .layer-controls input[type='checkbox']:checked::after {
+                content: '✓';
+                position: absolute;
+                top: -1px;
+                left: 2px;
+                color: #000;
+                font-size: 12px;
+                font-weight: bold;
+                line-height: 1;
+            }
+            .layer-controls input[type='checkbox']:hover {
+                transform: scale(1.1);
+                box-shadow: 0 0 5px rgba(0, 255, 0, 0.5);
+            }
+            .vertical-divider {
+                width: 2px;
+                height: 40px;
+                background: #00ff00;
+                margin: 0 20px;
+                align-self: center;
+            }
+            .toggle-all-section {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                padding: 0;
+            }
+            .toggle-all-button {
+                background: transparent;
+                border: 2px solid #fff;
+                color: #fff;
+                font-size: 14px;
+                font-weight: 500;
+                padding: 8px 16px;
+                border-radius: 4px;
+                cursor: pointer;
+                transition: all 0.3s;
+                min-width: 80px;
+            }
+            .toggle-all-button.all-on {
+                color: #00ff00;
+                border-color: #00ff00;
+                box-shadow: 0 0 5px rgba(0, 255, 0, 0.3);
+            }
+            .toggle-all-button.mixed {
+                color: #888;
+                border-color: #666;
+                opacity: 0.7;
+            }
+            .sketchfab-embed-wrapper {
+                width: 100%;
+                max-width: 100%;
+                min-width: 320px;
+                aspect-ratio: 16/9;
+                position: relative;
+                background: #222;
+                border-radius: 12px;
+                overflow: hidden;
+                box-shadow: 0 4px 24px #0002;
+                border: 2px solid #fff !important;
+                flex: 1;
+            }
+            .sketchfab-embed-wrapper iframe {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                border: none;
+                pointer-events: auto;
+            }
+
+            /* Interactive Media Container Styles */
+            .interactive-media-container {
+                width: 100%;
+                max-width: 1200px;
+                margin: 0 auto;
+                padding: 0 15px;
+            }
+
+            .media-grid {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 30px;
+                align-items: stretch;
+                width: 100%;
+                box-sizing: border-box;
+            }
+
+            .media-item {
+                display: flex;
+                flex-direction: column;
+                background: rgba(0, 0, 0, 0.8);
+                border-radius: 12px;
+                padding: 25px;
+                border: 2px solid #00ff00;
+                box-shadow: 0 4px 24px rgba(0, 0, 0, 0.3);
+                min-height: 500px;
+                width: 100%;
+                box-sizing: border-box;
+            }
+
+            .media-title {
+                color: #00ff00;
+                font-size: 22px;
+                font-weight: 600;
+                margin: 0 0 15px 0;
+                text-align: center;
+            }
+
+            .media-description {
+                color: #fff;
+                font-size: 16px;
+                margin: 0 0 25px 0;
+                text-align: center;
+                opacity: 0.9;
+                line-height: 1.4;
+            }
+
+            .video-wrapper {
+                width: 100%;
+                border-radius: 8px;
+                overflow: hidden;
+                box-shadow: 0 2px 12px rgba(0, 0, 0, 0.4);
+                flex: 1;
+                display: flex;
+                align-items: center;
+                min-height: 300px;
+            }
+
+            .track-video {
+                width: 100%;
+                height: auto;
+                object-fit: cover;
+                border-radius: 8px;
+                display: block;
+                min-height: 300px;
+            }
+
+            /* A3E Drone Services Credit */
+            .drone-credit {
+                text-align: center;
+                margin-bottom: 20px;
+                padding: 10px;
+            }
+
+            .credit-text {
+                font-size: 12px;
+                font-weight: 500;
+                margin: 0;
+                opacity: 0.9;
+                text-transform: uppercase;
+                letter-spacing: 1px;
+            }
+
+            .credit-text .white-text {
+                color: #fff;
+            }
+
+            .credit-text .green-text {
+                color: #00ff00;
+            }
+            .activation-message {
+                display: none;
+            }
+            @media (min-width: 900px) and (max-width: 2000px) {
+                .layer-controls {
+                    flex-direction: column;
+                    flex-wrap: wrap;
+                    max-width: 95vw;
+                    padding: 16px 28px;
+                    justify-content: center;
+                    gap: 12px;
+                }
+                .toggle-all-section {
+                    order: -1;
+                    margin: 0 0 8px 0;
+                    align-self: center;
+                }
+                .layer-controls > *:not(.toggle-all-section) {
+                    order: 1;
+                }
+                .layer-controls ul {
+                    flex-wrap: wrap;
+                    justify-content: center;
+                    gap: 14px;
+                    max-width: 100%;
+                }
+                .layer-controls li {
+                    flex: 0 0 auto;
+                }
+                .layer-controls label {
+                    font-size: 13px;
+                    white-space: nowrap;
+                }
+                .vertical-divider {
+                    display: none;
+                }
+                .sketchfab-embed-wrapper {
+                    max-width: 95vw;
+                    width: 100%;
+                }
+            }
+            @media (max-width: 900px) {
+                .sketchfab-embed-wrapper,
+                .layer-controls {
+                    max-width: 100%;
+                    width: 100%;
+                }
+            }
+            @media (max-width: 600px) {
+                .hide-video-btn {
+                    display: none !important;
+                }
+                .sketchfab-embed-wrapper {
+                    width: 90vw !important;
+                    min-width: 0 !important;
+                    max-width: 90vw !important;
+                    height: 126vw !important;
+                    aspect-ratio: unset !important;
+                    border-radius: 8px;
+                    padding-bottom: 0 !important;
+                    position: relative;
+                    border: 2px solid #fff !important;
+                }
+                .sketchfab-embed-wrapper iframe {
+                    width: 90vw !important;
+                    height: 126vw !important;
+                    min-height: 0 !important;
+                    max-height: none !important;
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                }
+
+                /* Mobile responsive for media grid */
+                .interactive-media-container {
+                    padding: 0 5px;
+                    width: 100%;
+                    max-width: 100vw;
+                    box-sizing: border-box;
+                }
+
+                .media-grid {
+                    grid-template-columns: 1fr;
+                    gap: 15px;
+                    width: 100%;
+                }
+
+                .media-item {
+                    padding: 15px;
+                    min-height: 350px;
+                    width: 100%;
+                    box-sizing: border-box;
+                }
+
+                .media-title {
+                    font-size: 18px;
+                }
+
+                .media-description {
+                    font-size: 14px;
+                }
+
+                .track-video {
+                    min-height: 200px;
+                    width: 100% !important;
+                    height: auto !important;
+                }
+
+                .video-wrapper {
+                    min-height: 200px;
+                }
+
+                .sketchfab-embed-wrapper {
+                    width: 100% !important;
+                    max-width: 100% !important;
+                    height: 250px !important;
+                    aspect-ratio: unset !important;
+                }
+
+                .sketchfab-embed-wrapper iframe {
+                    width: 100% !important;
+                    height: 250px !important;
+                    position: relative !important;
+                }
+            }
+
+            /* Tablet responsive for media grid */
+            @media (max-width: 900px) {
+                .media-grid {
+                    grid-template-columns: 1fr;
+                    gap: 25px;
+                }
+
+                .interactive-media-container {
+                    max-width: 100%;
+                    padding: 0 10px;
+                }
+
+                .media-item {
+                    min-height: 450px;
+                    padding: 20px;
+                }
+
+                .media-title {
+                    font-size: 21px;
+                }
+
+                .media-description {
+                    font-size: 15px;
+                }
+
+                .video-wrapper {
+                    min-height: 250px;
+                }
+
+                .track-video {
+                    min-height: 250px;
+                }
+            }
+        </style>
+        <div class="model-section">
+            <!-- <div class="layer-controls">
+                 <ul>
+                     <li>
+                         <label>
+                             <input type="checkbox" data-layer="Main Entrance" />
+                             Main Entrance
+                         </label>
+                     </li>
+                     <li>
+                         <label>
+                             <input
+                                 type="checkbox"
+                                 data-layer="Fee Booth / Check-In" />
+                             Fee Booth / Check-In
+                         </label>
+                     </li>
+                     <li>
+                         <label>
+                             <input type="checkbox" data-layer="Roads" />
+                             Roads
+                         </label>
+                     </li>
+                     <li>
+                         <label>
+                             <input type="checkbox" data-layer="Restrooms" />
+                             Restrooms
+                         </label>
+                     </li>
+                     <li>
+                         <label>
+                             <input
+                                 type="checkbox"
+                                 data-layer="Track Entrance" />
+                             Track Entrance
+                         </label>
+                     </li>
+                     <li>
+                         <label>
+                             <input type="checkbox" data-layer="Track Exit" />
+                             Track Exit
+                         </label>
+                     </li>
+                     <li>
+                         <label>
+                             <input type="checkbox" data-layer="Finish" />
+                             Finish
+                         </label>
+                     </li>
+                     <li>
+                         <label>
+                             <input type="checkbox" data-layer="Junior Track" />
+                             Junior Track
+                         </label>
+                     </li>
+                     <li>
+                         <label>
+                             <input
+                                 type="checkbox"
+                                 data-layer="Track Line / Direction" />
+                             Track Line / Direction
+                         </label>
+                     </li>
+                     <li>
+                         <label>
+                             <input type="checkbox" data-layer="Singles" />
+                             Singles
+                         </label>
+                     </li>
+                     <li>
+                         <label>
+                             <input type="checkbox" data-layer="A_Doubles" />
+                             Doubles
+                         </label>
+                     </li>
+                     <li>
+                         <label>
+                             <input type="checkbox" data-layer="A_Triples" />
+                             Triples
+                         </label>
+                     </li>
+                     <li>
+                         <label>
+                             <input type="checkbox" data-layer="A_Table-Tops" />
+                             Table-Tops
+                         </label>
+                     </li>
+                     <li>
+                         <label>
+                             <input type="checkbox" data-layer="A_Rollers" />
+                             Rollers
+                         </label>
+                     </li>
+                 </ul>
+                 <div class="vertical-divider"></div>
+                 <div class="toggle-all-section">
+                     <button id="toggle-all-btn" class="toggle-all-button">
+                         All Off
+                     </button>
+                 </div>
+             </div> -->
+
+            <!-- Interactive Media Section -->
+            <div class="interactive-media-container">
+                <div class="media-grid">
+                    <!-- 3D Model Section -->
+                    <div class="media-item model-section">
+                        <h3 class="media-title">Interactive 3D Track Map</h3>
+                        <p class="media-description">
+                            Explore our track layout in 3D - rotate, zoom, and
+                            discover every detail
+                        </p>
+                        <div class="sketchfab-embed-wrapper">
+                            <iframe
+                                id="api-frame"
+                                title="Martin MX"
+                                src="https://sketchfab.com/models/308b91191bbc435abdfefa38b272beb4/embed?autostart=1&ui_controls=1&ui_infos=0&ui_inspector=0&ui_watermark=0&ui_stop=0&ui_settings=0&ui_animations=0&ui_annotations=0&ui_loading=0&transparent=1"
+                                frameborder="0"
+                                allowfullscreen
+                                mozallowfullscreen="true"
+                                webkitallowfullscreen="true"
+                                allow="autoplay; fullscreen; xr-spatial-tracking"></iframe>
+                        </div>
+                    </div>
+
+                    <!-- Video Section -->
+                    <div class="media-item video-section">
+                        <h3 class="media-title">Track Action Video</h3>
+                        <p class="media-description">
+                            Watch riders in action on our world-class motocross
+                            track
+                        </p>
+                        <div class="video-wrapper">
+                            <video
+                                id="track-video"
+                                controls
+                                loop
+                                muted
+                                autoplay
+                                playsinline
+                                preload="auto"
+                                style="
+                                    width: 100%;
+                                    height: 100%;
+                                    min-height: 300px;
+                                    object-fit: cover;
+                                    border-radius: 8px;
+                                ">
+                                <source
+                                    src="https://a3edrone.com/Videos/MartinMX/MartinMX.mp4"
+                                    type="video/mp4" />
+                                <p>
+                                    Your browser doesn't support HTML5 video.
+                                    <a
+                                        href="https://a3edrone.com/Videos/MartinMX/MartinMX.mp4">
+                                        Download the video
+                                    </a>
+                                    instead.
+                                </p>
+                            </video>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- A3E Drone Services Credit -->
+            <div class="drone-credit">
+                <p class="credit-text">
+                    <span class="white-text">Created by&nbsp;</span>
+                    <a
+                        href="https://www.a38drone.com/"
+                        class="green-text"
+                        target="_blank"
+                        rel="noopener">
+                        A3E Drone Services
+                    </a>
+                </p>
+            </div>
+        </div>
+        <script src="https://static.sketchfab.com/api/sketchfab-viewer-1.12.1.js"></script>
+        <script>
+            // Force video autoplay
+            document.addEventListener('DOMContentLoaded', function () {
+                const video = document.getElementById('track-video');
+                if (video) {
+                    video.muted = true;
+                    video.play().catch(function (error) {
+                        console.log('Autoplay prevented:', error);
+                        // If autoplay fails, show a play button overlay
+                        const playButton = document.createElement('div');
+                        playButton.innerHTML = '▶️ Click to Play';
+                        playButton.style.cssText = `
+                            position: absolute;
+                            top: 50%;
+                            left: 50%;
+                            transform: translate(-50%, -50%);
+                            background: rgba(0, 0, 0, 0.7);
+                            color: white;
+                            padding: 20px 40px;
+                            border-radius: 8px;
+                            cursor: pointer;
+                            font-size: 18px;
+                            z-index: 10;
+                        `;
+                        playButton.onclick = function () {
+                            video.play();
+                            this.remove();
+                        };
+                        video.parentElement.style.position = 'relative';
+                        video.parentElement.appendChild(playButton);
+                    });
+                }
+            });
+        </script>
+        <script>
+            (function () {
+                let apiInstance = null;
+                let nodeMap = new Map();
+                let nodeHierarchy = new Map();
+                const modelUID = '308b91191bbc435abdfefa38b272beb4';
+                setupBasicControls();
+                setTimeout(function () {
+                    initializeSketchfabAPI();
+                }, 500);
+                function setupBasicControls() {
+                    const checkboxes = document.querySelectorAll(
+                        '.layer-controls input[type="checkbox"]'
+                    );
+                    const toggleAllBtn =
+                        document.getElementById('toggle-all-btn');
+                    checkboxes.forEach(checkbox => {
+                        const layerName = checkbox.getAttribute('data-layer');
+                        checkbox.checked = false;
+                        checkbox.disabled = false;
+                        checkbox.addEventListener('change', function (e) {
+                            setCollectionVisibility(
+                                layerName,
+                                e.target.checked
+                            );
+                            updateToggleAllButton();
+                        });
+                    });
+                    toggleAllBtn.addEventListener('click', function () {
+                        const checkboxes = document.querySelectorAll(
+                            '.layer-controls input[type="checkbox"]:not(:disabled)'
+                        );
+                        const checkedBoxes = document.querySelectorAll(
+                            '.layer-controls input[type="checkbox"]:checked:not(:disabled)'
+                        );
+                        let shouldTurnOn = checkedBoxes.length === 0;
+                        checkboxes.forEach(checkbox => {
+                            checkbox.checked = shouldTurnOn;
+                            setCollectionVisibility(
+                                checkbox.getAttribute('data-layer'),
+                                shouldTurnOn
+                            );
+                        });
+                        updateToggleAllButton();
+                    });
+                    updateToggleAllButton();
+                }
+                function updateToggleAllButton() {
+                    const toggleAllBtn =
+                        document.getElementById('toggle-all-btn');
+                    const checkboxes = document.querySelectorAll(
+                        '.layer-controls input[type="checkbox"]:not(:disabled)'
+                    );
+                    const checkedBoxes = document.querySelectorAll(
+                        '.layer-controls input[type="checkbox"]:checked:not(:disabled)'
+                    );
+                    toggleAllBtn.classList.remove('all-on', 'mixed');
+                    if (checkedBoxes.length === 0) {
+                        toggleAllBtn.textContent = 'All On';
+                    } else if (checkedBoxes.length === checkboxes.length) {
+                        toggleAllBtn.textContent = 'All Off';
+                        toggleAllBtn.classList.add('all-on');
+                    } else {
+                        toggleAllBtn.textContent = 'All Off';
+                        toggleAllBtn.classList.add('mixed');
+                    }
+                }
+                function initializeSketchfabAPI() {
+                    const iframe = document.getElementById('api-frame');
+                    if (!iframe || typeof Sketchfab === 'undefined') return;
+                    const client = new Sketchfab('1.12.1', iframe);
+                    client.init(modelUID, {
+                        success: function (api) {
+                            apiInstance = api;
+                            api.start();
+                            buildNodeHierarchy();
+                            api.addEventListener('viewerready', function () {
+                                setTimeout(function () {
+                                    setupLayerControl(api);
+                                }, 1200);
+                            });
+                        },
+                        error: function () {
+                            alert('Sketchfab API failed to load.');
+                        },
+                        ui_stop: 0,
+                        ui_inspector: 0,
+                        ui_watermark: 0,
+                        ui_controls: 1,
+                        ui_infos: 0,
+                        ui_settings: 0,
+                        transparent: 1,
+                        autostart: 1,
+                        camera: 0,
+                        ui_animations: 0,
+                        ui_annotations: 0,
+                        ui_loading: 0
+                    });
+                }
+                function buildNodeHierarchy() {
+                    const hierarchyData = {
+                        3: [0, 1, 2], // Always on: Collection
+                        79: [76, 77, 78], // Main Entrance
+                        83: [80, 81, 82], // Fee Booth / Check-In
+                        75: [73, 74], // Roads
+                        101: [90, 91, 92, 93, 94, 95, 96, 97, 98, 99, 100], // Restrooms
+                        87: [86], // Track Entrance
+                        89: [88], // Track Exit
+                        85: [84], // Finish
+                        106: [102, 103, 104, 105], // Junior Track
+                        143: [
+                            107, 108, 109, 110, 111, 112, 113, 114, 115, 116,
+                            117, 118, 119, 120, 121, 122, 123, 124, 125, 126,
+                            127, 128, 129, 130, 131, 132, 133, 134, 135, 136,
+                            137, 138, 139, 140, 141, 142
+                        ], // Track Line / Direction
+                        72: [68, 69, 70, 71], // Singles
+                        67: [
+                            31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43,
+                            44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56,
+                            57, 58, 59, 60, 61, 62, 63, 64, 65, 66
+                        ], // Doubles
+                        25: [13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24], // Triples
+                        12: [4, 5, 6, 7, 8, 9, 10, 11], // Table-Tops
+                        30: [26, 27, 28, 29] // Rollers
+                    };
+                    for (const [parentId, children] of Object.entries(
+                        hierarchyData
+                    )) {
+                        nodeHierarchy.set(parseInt(parentId), children);
+                    }
+                }
+                function setupLayerControl(api) {
+                    api.getNodeMap(function (err, nodes) {
+                        if (err) return;
+                        Object.entries(nodes).forEach(([instanceID, node]) => {
+                            const nodeId = parseInt(instanceID);
+                            const nodeName = node.name || `Node_${nodeId}`;
+                            if (!nodeMap.has(nodeName))
+                                nodeMap.set(nodeName, []);
+                            nodeMap.get(nodeName).push(nodeId);
+                        });
+                        // Hide all layers initially
+                        [
+                            'Main Entrance',
+                            'Fee Booth / Check-In',
+                            'Roads',
+                            'Restrooms',
+                            'Track Entrance',
+                            'Track Exit',
+                            'Finish',
+                            'Junior Track',
+                            'Track Line / Direction',
+                            'Singles',
+                            'Doubles',
+                            'Triples',
+                            'Table-Tops',
+                            'Rollers'
+                        ].forEach(name => setCollectionVisibility(name, false));
+                    });
+                }
+                function setCollectionVisibility(collectionName, visible) {
+                    // Map UI label 'Roads' to collection 'Road'
+                    let actualCollectionName = collectionName;
+                    if (collectionName === 'Roads') {
+                        actualCollectionName = 'Road';
+                    }
+                    if (!apiInstance) return;
+                    const processedNodes = new Set();
+                    const matchingNodes = [];
+                    if (nodeMap.has(actualCollectionName))
+                        matchingNodes.push(
+                            ...nodeMap.get(actualCollectionName)
+                        );
+                    for (const [nodeName, nodeIds] of nodeMap.entries()) {
+                        if (
+                            nodeName !== actualCollectionName &&
+                            (nodeName.includes(actualCollectionName) ||
+                                actualCollectionName.includes(nodeName))
+                        ) {
+                            matchingNodes.push(...nodeIds);
+                        }
+                    }
+                    matchingNodes.forEach(nodeId =>
+                        setNodeVisibilityRecursive(
+                            nodeId,
+                            visible,
+                            processedNodes
+                        )
+                    );
+                }
+                function setNodeVisibilityRecursive(
+                    nodeId,
+                    visible,
+                    processedNodes
+                ) {
+                    if (processedNodes.has(nodeId)) return;
+                    processedNodes.add(nodeId);
+                    try {
+                        if (visible) apiInstance.show(nodeId);
+                        else apiInstance.hide(nodeId);
+                        const children = nodeHierarchy.get(nodeId) || [];
+                        children.forEach(childId =>
+                            setNodeVisibilityRecursive(
+                                childId,
+                                visible,
+                                processedNodes
+                            )
+                        );
+                    } catch (e) {}
+                }
+            })();
+        </script>
+
         <div class="title-area text-center">
             <span class="sub-title">Our Tracks</span>
         </div>
