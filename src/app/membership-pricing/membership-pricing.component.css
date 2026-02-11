@@ -54,6 +54,11 @@ section.space > div.container {
     content: none;
 }
 
+.price-card_price-old-wrap,
+.price-card_price-new-wrap {
+    display: block;
+}
+
 @media (max-width: 412px) {
     .mobile-pricing-nav-small {
         display: flex;
