@@ -50,6 +50,10 @@ section.space > div.container {
     font-weight: 700;
 }
 
+.price-card_price::before {
+    content: none;
+}
+
 @media (max-width: 412px) {
     .mobile-pricing-nav-small {
         display: flex;
