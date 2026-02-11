@@ -40,6 +40,16 @@ section.space > div.container {
     border-color: #dc3545;
 }
 
+.price-card_price-old {
+    text-decoration: line-through;
+    opacity: 0.6;
+    margin-right: 12px;
+}
+
+.price-card_price-new {
+    font-weight: 700;
+}
+
 @media (max-width: 412px) {
     .mobile-pricing-nav-small {
         display: flex;
