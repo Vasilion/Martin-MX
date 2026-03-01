@@ -53,15 +53,15 @@
                             <div class="price-title-wrap">
                                 <h3 class="box-title">Yearly</h3>
                                 <h4 class="price-card_price">
-                                    <span class="price-card_price-old-wrap">
+                                    <!-- <span class="price-card_price-old-wrap">
                                         <span class="currency">$</span
                                         ><span class="price-card_price-old"
                                             >750</span
                                         >
-                                    </span>
+                                    </span> -->
                                     <span class="price-card_price-new-wrap">
-                                        <span class="currency">$</span
-                                        >{{ yearlySignUp.price }}
+                                        <span class="currency">$</span>
+                                        {{ yearlySignUp.price }}
                                     </span>
                                 </h4>
                             </div>
@@ -330,15 +330,14 @@
                                 <h3 class="box-title">Yearly</h3>
                                 <h4 class="price-card_price">
                                     <span class="price-card_price-old-wrap">
-                                        <span class="currency">$</span
-                                        ><span class="price-card_price-old"
-                                            >750</span
-                                        >
+                                        <span class="currency">$</span>
+                                        <span class="price-card_price-old">
+                                            750
+                                        </span>
                                     </span>
                                     <span class="price-card_price-new-wrap">
-                                        <span class="currency">$</span
-                                        >{{ yearlySignUp.price
-                                        }}
+                                        <span class="currency">$</span>
+                                        {{ yearlySignUp.price }}
                                     </span>
                                 </h4>
                             </div>
@@ -581,11 +580,19 @@
                                     class="invalid-feedback"
                                     *ngIf="signUpForm.get('email')?.touched">
                                     <span
-                                        *ngIf="signUpForm.get('email')?.errors?.['required']">
+                                        *ngIf="
+                                            signUpForm.get('email')?.errors?.[
+                                                'required'
+                                            ]
+                                        ">
                                         Email is required
                                     </span>
                                     <span
-                                        *ngIf="signUpForm.get('email')?.errors?.['email']">
+                                        *ngIf="
+                                            signUpForm.get('email')?.errors?.[
+                                                'email'
+                                            ]
+                                        ">
                                         Please enter a valid email address
                                     </span>
                                 </div>
@@ -619,7 +626,10 @@
                                             ?.touched
                                     ">
                                     <span
-                                        *ngIf="signUpForm.get('riderFirstName')?.errors?.['required']">
+                                        *ngIf="
+                                            signUpForm.get('riderFirstName')
+                                                ?.errors?.['required']
+                                        ">
                                         Rider first name is required
                                     </span>
                                 </div>
@@ -652,7 +662,10 @@
                                         signUpForm.get('riderLastName')?.touched
                                     ">
                                     <span
-                                        *ngIf="signUpForm.get('riderLastName')?.errors?.['required']">
+                                        *ngIf="
+                                            signUpForm.get('riderLastName')
+                                                ?.errors?.['required']
+                                        ">
                                         Rider last name is required
                                     </span>
                                 </div>
@@ -682,11 +695,17 @@
                                     class="invalid-feedback"
                                     *ngIf="signUpForm.get('bikeSize')?.touched">
                                     <span
-                                        *ngIf="signUpForm.get('bikeSize')?.errors?.['required']">
+                                        *ngIf="
+                                            signUpForm.get('bikeSize')
+                                                ?.errors?.['required']
+                                        ">
                                         Bike size is required
                                     </span>
                                     <span
-                                        *ngIf="signUpForm.get('bikeSize')?.errors?.['min']">
+                                        *ngIf="
+                                            signUpForm.get('bikeSize')
+                                                ?.errors?.['min']
+                                        ">
                                         Bike size must be greater than 0
                                     </span>
                                 </div>
@@ -719,11 +738,17 @@
                                         signUpForm.get('riderNumber')?.touched
                                     ">
                                     <span
-                                        *ngIf="signUpForm.get('riderNumber')?.errors?.['required']">
+                                        *ngIf="
+                                            signUpForm.get('riderNumber')
+                                                ?.errors?.['required']
+                                        ">
                                         Rider number is required
                                     </span>
                                     <span
-                                        *ngIf="signUpForm.get('riderNumber')?.errors?.['pattern']">
+                                        *ngIf="
+                                            signUpForm.get('riderNumber')
+                                                ?.errors?.['pattern']
+                                        ">
                                         Please enter a valid rider number
                                     </span>
                                 </div>
@@ -762,12 +787,12 @@
                                         [value]="
                                             'A/B - ' +
                                             (openPractice.Date
-                                                | date : 'mediumDate')
+                                                | date: 'mediumDate')
                                         ">
                                         A/B -
                                         {{
                                             openPractice.Date
-                                                | date : 'mediumDate'
+                                                | date: 'mediumDate'
                                         }}
                                         <span
                                             *ngIf="
@@ -786,12 +811,12 @@
                                         [value]="
                                             'C - ' +
                                             (openPractice.Date
-                                                | date : 'mediumDate')
+                                                | date: 'mediumDate')
                                         ">
                                         C -
                                         {{
                                             openPractice.Date
-                                                | date : 'mediumDate'
+                                                | date: 'mediumDate'
                                         }}
                                         <span
                                             *ngIf="
@@ -810,12 +835,12 @@
                                         [value]="
                                             'Mini - ' +
                                             (openPractice.Date
-                                                | date : 'mediumDate')
+                                                | date: 'mediumDate')
                                         ">
                                         Mini -
                                         {{
                                             openPractice.Date
-                                                | date : 'mediumDate'
+                                                | date: 'mediumDate'
                                         }}
                                         <span
                                             *ngIf="
@@ -834,12 +859,12 @@
                                         [value]="
                                             'Jr Track - ' +
                                             (openPractice.Date
-                                                | date : 'mediumDate')
+                                                | date: 'mediumDate')
                                         ">
                                         Jr Track -
                                         {{
                                             openPractice.Date
-                                                | date : 'mediumDate'
+                                                | date: 'mediumDate'
                                         }}
                                         <span
                                             *ngIf="
@@ -858,12 +883,12 @@
                                         [value]="
                                             'A/B - ' +
                                             (openPractice.Date2
-                                                | date : 'mediumDate')
+                                                | date: 'mediumDate')
                                         ">
                                         A/B -
                                         {{
                                             openPractice.Date2
-                                                | date : 'mediumDate'
+                                                | date: 'mediumDate'
                                         }}
                                     </option>
                                     <option
@@ -871,12 +896,12 @@
                                         [value]="
                                             'C - ' +
                                             (openPractice.Date2
-                                                | date : 'mediumDate')
+                                                | date: 'mediumDate')
                                         ">
                                         C -
                                         {{
                                             openPractice.Date2
-                                                | date : 'mediumDate'
+                                                | date: 'mediumDate'
                                         }}
                                     </option>
                                     <option
@@ -884,12 +909,12 @@
                                         [value]="
                                             'Mini - ' +
                                             (openPractice.Date2
-                                                | date : 'mediumDate')
+                                                | date: 'mediumDate')
                                         ">
                                         Mini -
                                         {{
                                             openPractice.Date2
-                                                | date : 'mediumDate'
+                                                | date: 'mediumDate'
                                         }}
                                     </option>
                                     <option
@@ -897,12 +922,12 @@
                                         [value]="
                                             'Jr Track - ' +
                                             (openPractice.Date2
-                                                | date : 'mediumDate')
+                                                | date: 'mediumDate')
                                         ">
                                         Jr Track -
                                         {{
                                             openPractice.Date2
-                                                | date : 'mediumDate'
+                                                | date: 'mediumDate'
                                         }}
                                     </option>
                                 </select>
@@ -922,12 +947,12 @@
                                         [value]="
                                             'A/B - ' +
                                             (openPractice.Date2
-                                                | date : 'mediumDate')
+                                                | date: 'mediumDate')
                                         ">
                                         A/B -
                                         {{
                                             openPractice.Date2
-                                                | date : 'mediumDate'
+                                                | date: 'mediumDate'
                                         }}
                                     </option>
                                     <option
@@ -935,12 +960,12 @@
                                         [value]="
                                             'C - ' +
                                             (openPractice.Date2
-                                                | date : 'mediumDate')
+                                                | date: 'mediumDate')
                                         ">
                                         C -
                                         {{
                                             openPractice.Date2
-                                                | date : 'mediumDate'
+                                                | date: 'mediumDate'
                                         }}
                                     </option>
                                     <option
@@ -948,12 +973,12 @@
                                         [value]="
                                             'Mini - ' +
                                             (openPractice.Date2
-                                                | date : 'mediumDate')
+                                                | date: 'mediumDate')
                                         ">
                                         Mini -
                                         {{
                                             openPractice.Date2
-                                                | date : 'mediumDate'
+                                                | date: 'mediumDate'
                                         }}
                                     </option>
                                     <option
@@ -961,12 +986,12 @@
                                         [value]="
                                             'Jr Track - ' +
                                             (openPractice.Date2
-                                                | date : 'mediumDate')
+                                                | date: 'mediumDate')
                                         ">
                                         Jr Track -
                                         {{
                                             openPractice.Date2
-                                                | date : 'mediumDate'
+                                                | date: 'mediumDate'
                                         }}
                                     </option>
 
@@ -981,12 +1006,12 @@
                                         [value]="
                                             'A/B - ' +
                                             (openPractice.Date
-                                                | date : 'mediumDate')
+                                                | date: 'mediumDate')
                                         ">
                                         A/B -
                                         {{
                                             openPractice.Date
-                                                | date : 'mediumDate'
+                                                | date: 'mediumDate'
                                         }}
                                         <span
                                             *ngIf="
@@ -1005,12 +1030,12 @@
                                         [value]="
                                             'C - ' +
                                             (openPractice.Date
-                                                | date : 'mediumDate')
+                                                | date: 'mediumDate')
                                         ">
                                         C -
                                         {{
                                             openPractice.Date
-                                                | date : 'mediumDate'
+                                                | date: 'mediumDate'
                                         }}
                                         <span
                                             *ngIf="
@@ -1029,12 +1054,12 @@
                                         [value]="
                                             'Mini - ' +
                                             (openPractice.Date
-                                                | date : 'mediumDate')
+                                                | date: 'mediumDate')
                                         ">
                                         Mini -
                                         {{
                                             openPractice.Date
-                                                | date : 'mediumDate'
+                                                | date: 'mediumDate'
                                         }}
                                         <span
                                             *ngIf="
@@ -1053,12 +1078,12 @@
                                         [value]="
                                             'Jr Track - ' +
                                             (openPractice.Date
-                                                | date : 'mediumDate')
+                                                | date: 'mediumDate')
                                         ">
                                         Jr Track -
                                         {{
                                             openPractice.Date
-                                                | date : 'mediumDate'
+                                                | date: 'mediumDate'
                                         }}
                                         <span
                                             *ngIf="
@@ -1075,7 +1100,10 @@
                                     class="invalid-feedback"
                                     *ngIf="signUpForm.get('dropdown')?.touched">
                                     <span
-                                        *ngIf="signUpForm.get('dropdown')?.errors?.['required']">
+                                        *ngIf="
+                                            signUpForm.get('dropdown')
+                                                ?.errors?.['required']
+                                        ">
                                         Please select a class
                                     </span>
                                 </div>
